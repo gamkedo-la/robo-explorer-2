@@ -33,9 +33,9 @@ function create ()
 {
  
     player = this.physics.add.sprite(PlayerPositionX, PlayerPositionY, 'player');
-
-    // player.setBounce(0.2);
-    // player.setCollideWorldBounds(true);
+    
+    player.setBounce(0.2);
+    player.setCollideWorldBounds(true);
 
 }
 
