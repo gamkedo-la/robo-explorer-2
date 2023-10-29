@@ -1,8 +1,11 @@
+
 class Level1 extends Phaser.Scene {
   cursors;
+  keyA;
+  
   constructor() {
     //   super({ key: "Level1", active: true });
-    super("Level1");
+    super({key:"Level1"});
   }
 
   preload() {
@@ -12,12 +15,8 @@ class Level1 extends Phaser.Scene {
       frameHeight: 144,
     });
   }
-  onCollision(){
-    console.log("Trying to load level2");
-    Level2.scene.start("Level2");
-    
-  }
-
+  
+  
   create() {
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
@@ -40,13 +39,16 @@ class Level1 extends Phaser.Scene {
     );
 
     this.obstacle = this.physics.add.sprite(
-      PlayerPositionX + 250,
+      PlayerPositionX + 210,
       PlayerPositionY ,
       "obstacle"
     );
     
-    this.physics.add.collider(this.player, this.obstacle,this.onCollision);
+    
+  
+    this.physics.add.collider(this.player, this.obstacle,onCollision);
 
+    
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
@@ -59,7 +61,12 @@ class Level1 extends Phaser.Scene {
     //   },
     //   this
     // );
+    
+   
   }
+
+  
+
 
   update() {
     // const cam = this.cameras.main;
@@ -70,7 +77,7 @@ class Level1 extends Phaser.Scene {
       // }
     this.player.setVelocity(0);
 
-        if (this.cursors.left.isDown)
+        if (this.cursors.left.isDown )
         {
           this.player.setVelocityX(-300);
         }
@@ -94,7 +101,7 @@ class Level1 extends Phaser.Scene {
 class Level2 extends Phaser.Scene {
   constructor() {
     // super({ key: "Level2", active: false });
-    super("Level2");
+    super({key:"Level2"});
   }
 
   preload() {
@@ -130,6 +137,15 @@ class Level2 extends Phaser.Scene {
   }
 
   update() {}
+}
+
+var onCollision = function onCollision(player, obstacle){
+    
+  console.log(this);
+  console.log("Trying to load level2");
+   player.scene.scene.start("Level2");
+  //Level1.player.scene.scene.start("Level2");
+  
 }
 
 var config = {
