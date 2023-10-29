@@ -32,8 +32,15 @@ class Level1 extends Phaser.Scene {
       "player"
     );
 
+    Level1.obstacle = this.physics.add.sprite(
+      PlayerPositionX + 250,
+      PlayerPositionY ,
+      "obstacle"
+    );
+
     Level1.player.setBounce(0.2);
     Level1.player.setCollideWorldBounds(true);
+    Level1.obstacle.setCollideWorldBounds(true);
     this.input.manager.enabled = true;
 
     this.input.once(
