@@ -1,4 +1,5 @@
 class Level1 extends Phaser.Scene {
+  cursors;
   constructor() {
     //   super({ key: "Level1", active: true });
     super("Level1");
@@ -23,9 +24,9 @@ class Level1 extends Phaser.Scene {
     // PLAYER
     const PlayerPositionY = 10;
     const PlayerPositionX = 50;
-
+    
     this.add.image(960, 135, "Bg");
-
+    this.cursors = this.input.keyboard.createCursorKeys();
     Level1.player = this.physics.add.sprite(
       PlayerPositionX,
       PlayerPositionY,
@@ -58,7 +59,27 @@ class Level1 extends Phaser.Scene {
     // if(cursors.left.isDown){
     //     // move left
     //     cam.scrollX -= speed
-    // }
+      // }
+    Level1.player.setVelocity(0);
+
+        if (this.cursors.left.isDown)
+        {
+          Level1.player.setVelocityX(-300);
+        }
+        else if (this.cursors.right.isDown)
+        {
+          Level1.player.setVelocityX(300);
+        }
+
+        if (this.cursors.up.isDown)
+        {
+          Level1.player.setVelocityY(-300);
+        }
+        else if (this.cursors.down.isDown)
+        {
+          Level1.player.setVelocityY(300);
+        }
+  
   }
 }
 
