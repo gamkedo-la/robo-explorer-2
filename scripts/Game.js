@@ -31,23 +31,23 @@ class Level1 extends Phaser.Scene {
     this.add.image(960, 135, "Bg");
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    Level1.player = this.physics.add.sprite(
+    this.player = this.physics.add.sprite(
       PlayerPositionX,
       PlayerPositionY,
       "player"
     );
 
-    Level1.obstacle = this.physics.add.sprite(
+    this.obstacle = this.physics.add.sprite(
       PlayerPositionX + 250,
       PlayerPositionY ,
       "obstacle"
     );
     
-    this.physics.add.collider(Level1.player, Level1.obstacle,this.onCollision);
+    this.physics.add.collider(this.player, this.obstacle,this.onCollision);
 
-    Level1.player.setBounce(0.2);
-    Level1.player.setCollideWorldBounds(true);
-    Level1.obstacle.setCollideWorldBounds(true);
+    this.player.setBounce(0.2);
+    this.player.setCollideWorldBounds(true);
+    this.obstacle.setCollideWorldBounds(true);
     this.input.manager.enabled = true;
 
     this.input.once(
@@ -66,24 +66,24 @@ class Level1 extends Phaser.Scene {
     //     // move left
     //     cam.scrollX -= speed
       // }
-    Level1.player.setVelocity(0);
+    this.player.setVelocity(0);
 
         if (this.cursors.left.isDown)
         {
-          Level1.player.setVelocityX(-300);
+          this.player.setVelocityX(-300);
         }
         else if (this.cursors.right.isDown)
         {
-          Level1.player.setVelocityX(300);
+          this.player.setVelocityX(300);
         }
 
         if (this.cursors.up.isDown)
         {
-          Level1.player.setVelocityY(-300);
+          this.player.setVelocityY(-300);
         }
         else if (this.cursors.down.isDown)
         {
-          Level1.player.setVelocityY(300);
+          this.player.setVelocityY(300);
         }
   
   }
