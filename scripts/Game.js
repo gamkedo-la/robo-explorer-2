@@ -13,7 +13,9 @@ class Level1 extends Phaser.Scene {
     });
   }
   onCollision(){
-    console.log("Bump");
+    console.log("Trying to load level2");
+    Level2.scene.start("Level2");
+    
   }
 
   create() {
@@ -48,15 +50,15 @@ class Level1 extends Phaser.Scene {
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
-    this.input.manager.enabled = true;
+    // this.input.manager.enabled = true;
 
-    this.input.once(
-      "pointerdown",
-      function () {
-        this.scene.start("Level2");
-      },
-      this
-    );
+    // this.input.once(
+    //   "pointerdown",
+    //   function () {
+    //     this.scene.start("Level2");
+    //   },
+    //   this
+    // );
   }
 
   update() {
@@ -116,15 +118,15 @@ class Level2 extends Phaser.Scene {
     Level2.player.setBounce(0.2);
     Level2.player.setCollideWorldBounds(true);
 
-    this.input.manager.enabled = true;
+    // this.input.manager.enabled = true;
 
-    this.input.once(
-      "pointerdown",
-      function () {
-        this.scene.start("Level1");
-      },
-      this
-    );
+    // this.input.once(
+    //   "pointerdown",
+    //   function () {
+    //     this.scene.start("Level1");
+    //   },
+    //   this
+    // );
   }
 
   update() {}
