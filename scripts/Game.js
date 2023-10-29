@@ -12,6 +12,9 @@ class Level1 extends Phaser.Scene {
       frameHeight: 144,
     });
   }
+  onCollision(){
+    console.log("Bump");
+  }
 
   create() {
     // UI
@@ -40,7 +43,7 @@ class Level1 extends Phaser.Scene {
       "obstacle"
     );
     
-    this.physics.add.collider(Level1.player, Level1.obstacle);
+    this.physics.add.collider(Level1.player, Level1.obstacle,this.onCollision);
 
     Level1.player.setBounce(0.2);
     Level1.player.setCollideWorldBounds(true);
