@@ -5,8 +5,8 @@ class Level1 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("Bg", "assets/Environment/Levels/Bg.png");
-    this.load.image("player", "assets/Player/player.png", {
+    this.load.image("Bg", "assets/Artwork/Environment/Levels/Bg.png");
+    this.load.image("player", "assets/Artwork/Player/player.png", {
       frameWidth: 171,
       frameHeight: 144,
     });
@@ -62,7 +62,8 @@ class Level2 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("player", "assets/Player/player.png", {
+    //E:\xampp\htdocs\htgd\robo-explorer-2\assets\Artwork\Player
+    this.load.image("player", "assets/Artwork/Player/player.png", {
       frameWidth: 171,
       frameHeight: 144,
     });
