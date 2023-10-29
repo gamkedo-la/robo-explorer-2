@@ -27,6 +27,7 @@ class Level1 extends Phaser.Scene {
     
     this.add.image(960, 135, "Bg");
     this.cursors = this.input.keyboard.createCursorKeys();
+
     Level1.player = this.physics.add.sprite(
       PlayerPositionX,
       PlayerPositionY,
@@ -38,6 +39,8 @@ class Level1 extends Phaser.Scene {
       PlayerPositionY ,
       "obstacle"
     );
+    
+    this.physics.add.collider(Level1.player, Level1.obstacle);
 
     Level1.player.setBounce(0.2);
     Level1.player.setCollideWorldBounds(true);
