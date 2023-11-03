@@ -66,8 +66,10 @@ class Level1 extends Phaser.Scene {
 
     this.anims.create({
       key: "down",
-      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 4 }),
+      // frames: this.anims.generateFrameNumbers("player", { start: 0, end: 4 }),
+      frames: [{ key: "player", frame: 0 }],
       frameRate: 20,
+      repeat: -1
     });
 
     this.obstacle = this.physics.add.sprite(
@@ -99,7 +101,7 @@ class Level1 extends Phaser.Scene {
     //     // move left
     //     cam.scrollX -= speed
     // }
-    this.player.setVelocity(0);
+    // this.player.setVelocity(200);
 
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-300);
@@ -107,11 +109,11 @@ class Level1 extends Phaser.Scene {
       this.player.setVelocityX(300);
     }
 
-    if (this.cursors.up.isDown) {
+    if (this.cursors.up.isDown && this.player.body.touching.down) {
       this.player.setVelocityY(-300);
     } else if (this.cursors.down.isDown) {
       this.player.setVelocityY(300);
-      this.player.anims.play("down");
+      this.player.anims.play("down", true);
     }
   }
 }
