@@ -14,7 +14,7 @@ class Level1 extends Phaser.Scene {
     });
     this.load.image("Bg", "assets/Artwork/Environment/Levels/Bg.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
-      frameWidth: 660,
+      frameWidth: 132,
       frameHeight: 132,
     });
   }
@@ -57,7 +57,7 @@ class Level1 extends Phaser.Scene {
     this.testParticles();
 
     this.cursors = this.input.keyboard.createCursorKeys();
-
+    // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = this.physics.add.sprite(
       PlayerPositionX,
       PlayerPositionY,
@@ -65,15 +65,25 @@ class Level1 extends Phaser.Scene {
     );
 
     this.anims.create({
+      key: "up",
+      frames: this.anims.generateFrameNumbers("player", { start: 2, end: 1 }),
+      // frames: [{ key: "player", frame: 3 }],
+      frameRate: 5,
+      repeat: -1
+    });
+
+    this.anims.create({
       key: "down",
-      // frames: this.anims.generateFrameNumbers("player", { start: 0, end: 4 }),
-      frames: [{ key: "player", frame: 0 }],
-      frameRate: 20,
+      frames: this.anims.generateFrameNumbers("player", { 
+        start: 1, end: 2
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      frameRate: 3,
       repeat: -1
     });
 
     this.obstacle = this.physics.add.sprite(
-      PlayerPositionX + 210,
+      PlayerPositionX + 710,
       PlayerPositionY,
       "obstacle"
     );
@@ -102,19 +112,23 @@ class Level1 extends Phaser.Scene {
     //     cam.scrollX -= speed
     // }
     // this.player.setVelocity(200);
-
+    this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 200;
     if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-300);
+      this.player.setVelocityX(-160);
     } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(300);
+      this.player.setVelocityX(160);
     }
+  
 
-    if (this.cursors.up.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-300);
+    if (this.cursors.up.isDown) {
+      this.player.setVelocityY(-160);
+      this.player.anims.play("up", true);
     } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(300);
+      this.player.setVelocityY(160);
       this.player.anims.play("down", true);
     }
+  
   }
 }
 
