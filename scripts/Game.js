@@ -1,6 +1,9 @@
+import audioManager from "./AudioManager.js";
+
 class Level1 extends Phaser.Scene {
   cursors;
   keyA;
+  isJumping;
 
   constructor() {
     //   super({ key: "Level1", active: true });
@@ -17,6 +20,7 @@ class Level1 extends Phaser.Scene {
       frameWidth: 132,
       frameHeight: 132,
     });
+    this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
   }
 
   testParticles() {
@@ -47,6 +51,9 @@ class Level1 extends Phaser.Scene {
       fill: "#000",
     });
     this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
+
+    // MUSIC & SOUND
+    audioManager.init(this);
 
     // PLAYER
     const PlayerPositionY = 10;
@@ -124,9 +131,21 @@ class Level1 extends Phaser.Scene {
     if (this.cursors.up.isDown) {
       this.player.setVelocityY(-160);
       this.player.anims.play("up", true);
+
+      if (!this.isJumping) {
+        audioManager.playSound("jump");
+        this.isJumping = true;
+      }
+
+      
     } else if (this.cursors.down.isDown) {
       this.player.setVelocityY(160);
       this.player.anims.play("down", true);
+    }
+
+    if (this.cursors.up.isUp) {
+      audioManager.stopSound("jump");
+      this.isJumping = false;
     }
   
   }
