@@ -2,7 +2,7 @@ import audioManager from "./AudioManager.js";
 
 class Level1 extends Phaser.Scene {
   cursors;
-  keyA;
+  // keyA;
   isJumping;
 
   constructor() {
@@ -45,6 +45,7 @@ class Level1 extends Phaser.Scene {
   }
 
   create() {
+    
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -73,7 +74,7 @@ class Level1 extends Phaser.Scene {
 
     this.anims.create({
       key: "up",
-      frames: this.anims.generateFrameNumbers("player", { start: 3, end: 1 }),
+      frames: this.anims.generateFrameNumbers("player", { start: 2, end: 1 }),
       // frames: [{ key: "player", frame: 3 }],
       frameRate: 5,
       repeat: -1
@@ -121,14 +122,20 @@ class Level1 extends Phaser.Scene {
     // this.player.setVelocity(200);
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 200;
-    if (this.cursors.left.isDown) {
+
+    let keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); // Jump
+    let keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A); // Move left 
+    let keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
+    let keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
+
+    if (this.cursors.left.isDown || keyA.isDown) {
       this.player.setVelocityX(-160);
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown || keyD.isDown) {
       this.player.setVelocityX(160);
     }
   
 
-    if (this.cursors.up.isDown) {
+    if (this.cursors.up.isDown || keyW.isDown) {
       this.player.setVelocityY(-160);
       this.player.anims.play("up", true);
 
@@ -138,7 +145,7 @@ class Level1 extends Phaser.Scene {
       }
 
       
-    } else if (this.cursors.down.isDown) {
+    } else if (this.cursors.down.isDown || keyS.isDown) {
       this.player.setVelocityY(160);
       this.player.anims.play("down", true);
     }
