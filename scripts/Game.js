@@ -73,7 +73,7 @@ class Level1 extends Phaser.Scene {
 
     this.anims.create({
       key: "up",
-      frames: this.anims.generateFrameNumbers("player", { start: 2, end: 1 }),
+      frames: this.anims.generateFrameNumbers("player", { start: 3, end: 1 }),
       // frames: [{ key: "player", frame: 3 }],
       frameRate: 5,
       repeat: -1
@@ -85,7 +85,7 @@ class Level1 extends Phaser.Scene {
         start: 1, end: 2
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 3,
+      frameRate: 5,
       repeat: -1
     });
 
