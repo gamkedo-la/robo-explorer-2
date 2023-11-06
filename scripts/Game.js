@@ -15,7 +15,7 @@ class Level1 extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32,
     });
-    this.load.image("Bg", "assets/Artwork/Environment/Levels/Bg.png");
+    this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
       frameWidth: 132,
       frameHeight: 132,
