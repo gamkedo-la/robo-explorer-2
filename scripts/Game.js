@@ -16,7 +16,8 @@ class TestArea extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32,
     });
-    this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
+    // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
+    this.load.image("roadsand", "assets/Artwork/Environment/IntroScene/roadsand.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
       frameWidth: 132,
       frameHeight: 132,
@@ -45,6 +46,15 @@ class TestArea extends Phaser.Scene {
     particles.setDepth(999);
   }
 
+  // Test Platforms
+  
+  platform() {
+    var platforms;
+    platforms = this.physics.add.staticGroup(); 
+    platforms.create(100, 500 , "roadsand").setScale(1).refreshBody();
+    console.log("Test if platform function is working");
+  }
+
   create() {
     
     // UI
@@ -65,6 +75,8 @@ class TestArea extends Phaser.Scene {
 
     this.testParticles();
 
+    this.platform();
+     
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = this.physics.add.sprite(
@@ -102,25 +114,10 @@ class TestArea extends Phaser.Scene {
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
-    // this.input.manager.enabled = true;
-
-    // this.input.once(
-    //   "pointerdown",
-    //   function () {
-    //     this.scene.start("Level2");
-    //   },
-    //   this
-    // );
   }
 
   update() {
-    // const cam = this.cameras.main;
-    // const speed = 3;
-    // if(cursors.left.isDown){
-    //     // move left
-    //     cam.scrollX -= speed
-    // }
-    // this.player.setVelocity(200);
+
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 300;
 
@@ -160,6 +157,7 @@ class TestArea extends Phaser.Scene {
   
   }
 }
+
 
 
 class Level1 extends Phaser.Scene {
