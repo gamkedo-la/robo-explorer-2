@@ -17,7 +17,7 @@ class TestArea extends Phaser.Scene {
       frameHeight: 32,
     });
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
-    this.load.image("roadsand", "assets/Artwork/Environment/IntroScene/roadsand.png");
+    this.load.image("roadsand", "assets/Artwork/Environment/Levels/IntroScene/roadsand.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
       frameWidth: 132,
       frameHeight: 132,
@@ -51,7 +51,7 @@ class TestArea extends Phaser.Scene {
   platform() {
     var platforms;
     platforms = this.physics.add.staticGroup(); 
-    platforms.create(100, 500 , "roadsand").setScale(1).refreshBody();
+    platforms.create(100, 50 , "roadsand").setScale(1).refreshBody();
     console.log("Test if platform function is working");
   }
 
