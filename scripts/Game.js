@@ -51,7 +51,7 @@ class TestArea extends Phaser.Scene {
   platform() {
     var platforms;
     platforms = this.physics.add.staticGroup(); 
-    platforms.create(100, 50 , "roadsand").setScale(1).refreshBody();
+    platforms.create(800, 100 , "roadsand").setScale(1).refreshBody();
     console.log("Test if platform function is working");
   }
 
