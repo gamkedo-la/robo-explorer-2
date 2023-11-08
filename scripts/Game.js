@@ -58,6 +58,11 @@ class TestArea extends Phaser.Scene {
     console.log("Test if platform function is working");
   }
 
+  collectBomb(player, bomb) {
+    bomb.disableBody(true, true);
+   
+  }
+  
 
   create() {
     
@@ -116,23 +121,26 @@ class TestArea extends Phaser.Scene {
     );
 
     
-    // let bomb;
-    // bomb = this.physics.add.group({
-    //   key: "bomb",
-    //   repeat: 10,
-    //   setXY: { x: 12, y: 0, stepX: 70 },
-    // });
+    let bomb;
+    bomb = this.physics.add.group({
+      key: "bomb",
+      repeat: 10,
+      setXY: { x: 12, y: 0, stepX: 70 },
+    });
   
-    // bomb.children.iterate(function (child) {
-    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    // });
+    bomb.children.iterate(function (child) {
+      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
 
 
     this.physics.add.collider(this.player, this.obstacle, onCollision);
+    
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
+
+    this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
   }
 
   update() {
@@ -178,10 +186,6 @@ class TestArea extends Phaser.Scene {
 }
 
 
-function collectBomb(player, bomb) {
-  bomb.disableBody(true, true);
- 
-}
 
 
 class Level1 extends Phaser.Scene {
