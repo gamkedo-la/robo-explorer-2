@@ -1,5 +1,5 @@
 import audioManager from "./AudioManager.js";
-
+// import platform from "./Platform.js"
 
 class TestArea extends Phaser.Scene {
   cursors;
@@ -17,7 +17,9 @@ class TestArea extends Phaser.Scene {
       frameHeight: 32,
     });
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
+   
     this.load.image("roadsand", "assets/Artwork/Environment/Levels/IntroScene/roadsand.png");
+    this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
       frameWidth: 132,
       frameHeight: 132,
@@ -48,12 +50,14 @@ class TestArea extends Phaser.Scene {
 
   // Test Platforms
   
+  
   platform() {
     var platforms;
     platforms = this.physics.add.staticGroup(); 
     platforms.create(800, 100 , "roadsand").setScale(1).refreshBody();
     console.log("Test if platform function is working");
   }
+
 
   create() {
     
@@ -70,6 +74,8 @@ class TestArea extends Phaser.Scene {
     // PLAYER
     const PlayerPositionY = 10;
     const PlayerPositionX = 50;
+
+    // Obstacle
 
     this.add.image(960, 135, "Bg");
 
@@ -106,8 +112,21 @@ class TestArea extends Phaser.Scene {
     this.obstacle = this.physics.add.sprite(
       PlayerPositionX + 710,
       PlayerPositionY,
-      "obstacle"
+      "bomb"
     );
+
+    
+    // let bomb;
+    // bomb = this.physics.add.group({
+    //   key: "bomb",
+    //   repeat: 10,
+    //   setXY: { x: 12, y: 0, stepX: 70 },
+    // });
+  
+    // bomb.children.iterate(function (child) {
+    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    // });
+
 
     this.physics.add.collider(this.player, this.obstacle, onCollision);
 
@@ -158,6 +177,11 @@ class TestArea extends Phaser.Scene {
   }
 }
 
+
+function collectBomb(player, bomb) {
+  bomb.disableBody(true, true);
+ 
+}
 
 
 class Level1 extends Phaser.Scene {
