@@ -19,6 +19,7 @@ class TestArea extends Phaser.Scene {
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
    
     this.load.image("roadsand", "assets/Artwork/Environment/Levels/IntroScene/roadsand.png");
+    this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
       frameWidth: 132,
@@ -114,6 +115,7 @@ class TestArea extends Phaser.Scene {
       repeat: -1
     });
 
+    // TEST Bomb 
     this.obstacle = this.physics.add.sprite(
       PlayerPositionX + 710,
       PlayerPositionY,
@@ -132,13 +134,21 @@ class TestArea extends Phaser.Scene {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
 
+    // Test for creating rocket
+    this.rocket = this.physics.add.sprite(
+      PlayerPositionX + 10,
+      PlayerPositionY,
+      "rocket"
+    );
 
+    // Collisions Code
     this.physics.add.collider(this.player, this.obstacle, onCollision);
     
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
+    this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
   }
