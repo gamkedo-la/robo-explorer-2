@@ -19,6 +19,7 @@ class TestArea extends Phaser.Scene {
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
    
     this.load.image("roadsand", "assets/Artwork/Environment/Levels/IntroScene/roadsand.png");
+    this.load.image("buildingVan", "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png");
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
@@ -59,6 +60,14 @@ class TestArea extends Phaser.Scene {
     console.log("Test if platform function is working");
   }
 
+  
+  building() {
+    var building;
+    building = this.physics.add.staticGroup(); 
+    building.create(1000, 100 , "buildingVan").setScale(1).refreshBody();
+    console.log("Test if Building Van will work!");
+  }
+
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
    
@@ -88,6 +97,7 @@ class TestArea extends Phaser.Scene {
     this.testParticles();
 
     this.platform();
+    this.building();
      
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
