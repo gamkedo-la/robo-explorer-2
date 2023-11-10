@@ -6,6 +6,11 @@ class TestArea extends Phaser.Scene {
   // keyA;
   isJumping;
 
+  ROCKET_SPEED_X = 1000;
+  ROCKET_SPEED_Y = 0;
+  ROCKET_SPAWN_XOFFSET = 50;
+  ROCKET_SPAWN_YOFFSET = 10;
+
   constructor() {
     //   super({ key: "Level1", active: true });
     super({ key: "TestArea" });
@@ -201,8 +206,24 @@ class TestArea extends Phaser.Scene {
       audioManager.stopSound("jump");
       this.isJumping = false;
     }
+
+    // fire a rocket
+    if (keySpaceBar.isDown) {
+        if (!this.spaceDownLastFrame) this.fireRocket();
+        this.spaceDownLastFrame = true;
+    } else {
+        this.spaceDownLastFrame = false;
+    }
   
   }
+
+  fireRocket() {
+    // console.log("firing a rocket!");
+    this.rocket = this.physics.add.sprite(this.player.x+this.ROCKET_SPAWN_XOFFSET,this.player.y+this.ROCKET_SPAWN_YOFFSET,"rocket");
+    this.rocket.setVelocityX(this.ROCKET_SPEED_X);
+    this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
+  }
+ 
 }
 
 
