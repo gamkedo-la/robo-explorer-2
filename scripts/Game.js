@@ -27,7 +27,7 @@ class TestArea extends Phaser.Scene {
     this.load.image("buildingVan", "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png");
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
-    this.load.spritesheet("player", "assets/Artwork/Player/player.png", {
+    this.load.spritesheet("player", "assets/Artwork/Player/playerWalkRight.png", {
       frameWidth: 132,
       frameHeight: 132,
     });
@@ -130,6 +130,16 @@ class TestArea extends Phaser.Scene {
       repeat: -1
     });
 
+    this.anims.create({
+      key: "right",
+      frames: this.anims.generateFrameNumbers("player", { 
+        start: 1, end: 2
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      frameRate: 5,
+      repeat: -1
+    });
+
     // TEST Bomb 
     this.obstacle = this.physics.add.sprite(
       PlayerPositionX + 710,
@@ -184,6 +194,7 @@ class TestArea extends Phaser.Scene {
       this.player.setVelocityX(-160);
     } else if (this.cursors.right.isDown || keyD.isDown) {
       this.player.setVelocityX(160);
+      this.player.anims.play("right", true);
     }
   
 
