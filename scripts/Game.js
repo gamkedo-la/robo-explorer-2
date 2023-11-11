@@ -27,7 +27,7 @@ class TestArea extends Phaser.Scene {
     this.load.image("buildingVan", "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png");
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
-    this.load.spritesheet("player", "assets/Artwork/Player/playerWalkRight.png", {
+    this.load.spritesheet("player", "assets/Artwork/Player/playerWalkRightLeft.png", {
       frameWidth: 132,
       frameHeight: 132,
     });
