@@ -1,10 +1,9 @@
 import audioManager from "./AudioManager.js";
 // import platform from "./Platform.js"
-import TestArea from "./TestArea.js"
-import Level1 from "./Level1.js"
-import Level2 from "./Level2.js"
-
-
+import TestArea from "./TestArea.js";
+import Level1 from "./Level1.js";
+import Level2 from "./Level2.js";
+import PauseScene from "./PauseScene.js";
 
 var config = {
   type: Phaser.AUTO,
@@ -18,7 +17,7 @@ var config = {
       debug: false,
     },
   },
-  scene: [TestArea,Level1, Level2],
+  scene: [TestArea, Level1, Level2, PauseScene],
 };
 
 var game = new Phaser.Game(config);
