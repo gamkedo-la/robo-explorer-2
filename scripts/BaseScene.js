@@ -1,4 +1,5 @@
 import audioManager from "./AudioManager.js";
+import { SCENE_KEYS } from "./Constants.js";
 
 export default class BaseScene extends Phaser.Scene {
   cursors;
@@ -10,6 +11,8 @@ export default class BaseScene extends Phaser.Scene {
   ROCKET_SPEED_Y = 0;
   ROCKET_SPAWN_XOFFSET = 50;
   ROCKET_SPAWN_YOFFSET = 10;
+
+  sceneKeyArray = Object.values(SCENE_KEYS);
 
   constructor(levelKey, nextLevel) {
     super({ key: levelKey });
@@ -174,14 +177,51 @@ export default class BaseScene extends Phaser.Scene {
     let keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     let keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
     let keySpaceBar = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE
+      Phaser.Input.Keyboard.KeyCodes.SPACE1
     );
 
+    // Number keys
+    let keyOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+    let keyTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    let keyThree = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.THREE
+    );
+    let keyNumpadOne = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE
+    );
+    let keyNumpadTwo = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO
+    );
+    let keyNumpadThree = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_THREE
+    );
+    const numKeys = [
+      keyOne,
+      keyTwo,
+      keyThree,
+      keyNumpadOne,
+      keyNumpadTwo,
+      keyNumpadThree,
+    ];
+
+    // Dev tool to move between scenes with num keys
+    numKeys.forEach((key) => {
+      if (key.isDown) {
+        console.log("num key pressed: " + key.originalEvent.key);
+        const keyNumber = parseInt(key.originalEvent.key);
+        const nextScene = this.sceneKeyArray[keyNumber - 1];
+        console.log("starting scene: " + nextScene);
+        this.scene.start(nextScene);
+      }
+    });
+
+    // Pausing game
     if (keyP.isDown) {
       this.scene.launch("pauseScene");
       this.scene.pause();
     }
 
+    // Movement
     if (this.cursors.left.isDown || keyA.isDown) {
       this.player.setVelocityX(-160);
     } else if (this.cursors.right.isDown || keyD.isDown) {
