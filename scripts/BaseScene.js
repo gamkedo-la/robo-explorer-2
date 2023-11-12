@@ -5,14 +5,18 @@ export default class BaseScene extends Phaser.Scene {
     cursors;
     // keyA;
     isJumping;
+
+    
   
     ROCKET_SPEED_X = 1000;
     ROCKET_SPEED_Y = 0;
     ROCKET_SPAWN_XOFFSET = 50;
     ROCKET_SPAWN_YOFFSET = 10;
   
-    constructor(levelKey) {
+    constructor(levelKey, nextLevel) {
+      
       super({ key: levelKey });
+      this.nextLevelName = nextLevel;
     }
   
     preload() {
@@ -142,8 +146,9 @@ export default class BaseScene extends Phaser.Scene {
       );
   
       // Collisions Code
-      this.physics.add.collider(this.player, this.obstacle, onCollision);
-      
+      this.physics.add.collider(this.player, this.obstacle, this.onCollision,null, this);
+      console.log(this.nextLevelName);
+
   
       this.player.setBounce(0.2);
       this.player.setCollideWorldBounds(true);
@@ -210,11 +215,10 @@ export default class BaseScene extends Phaser.Scene {
       this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
     }
    
-  }
+    onCollision(player, obstacle) {
+      console.log(this);
+      console.log("Trying to load " + this.nextLevelName);
+      player.scene.scene.start(this.nextLevelName);
+    };
 
-  var onCollision = function onCollision(player, obstacle) {
-    console.log(this);
-    console.log("Trying to load level1");
-    player.scene.scene.start("Level1");
-    //Level1.player.scene.scene.start("Level2");
-  };
+  }

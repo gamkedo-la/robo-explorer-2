@@ -1,16 +1,17 @@
 import audioManager from "./AudioManager.js";
 import BaseScene from "./BaseScene.js";
   
-export default class Level1 extends BaseScene { 
+export default class Level2 extends BaseScene { 
     constructor() 
     {
-      super("Level1", "Level2");
+      
+      super("Level2", "TestArea");
     }
   
     create()
     {
         
-        this.platform();
+        // this.platform();
         this.building();
         super.create();
 

@@ -4,12 +4,12 @@ import BaseScene from "./BaseScene.js";
 export default class TestArea extends BaseScene { 
     constructor() 
     {
-      //   super({ key: "Level1", active: true });
-      super("TestArea");
+      super("TestArea", "Level1");
     }
   
     create()
     {
+        
         this.platform();
         super.create();
 
@@ -28,10 +28,3 @@ export default class TestArea extends BaseScene {
           particles.setDepth(999);
     }
   }
-
-  var onCollision = function onCollision(player, obstacle) {
-    console.log(this);
-    console.log("Trying to load level1");
-    player.scene.scene.start("Level1");
-    //Level1.player.scene.scene.start("Level2");
-  };
