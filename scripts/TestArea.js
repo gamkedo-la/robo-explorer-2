@@ -1,6 +1,7 @@
 import audioManager from "./AudioManager.js";
 
-class TestArea extends Phaser.Scene {
+  
+export default class TestArea extends Phaser.Scene {
     cursors;
     // keyA;
     isJumping;
@@ -242,5 +243,3 @@ class TestArea extends Phaser.Scene {
     player.scene.scene.start("Level1");
     //Level1.player.scene.scene.start("Level2");
   };
-  
-  export default TestArea;
