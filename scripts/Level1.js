@@ -160,3 +160,9 @@ export default class Level1 extends Phaser.Scene {
   }
 
     
+  var onCollision2 = function onCollision2(player, obstacle) {
+    console.log(this);
+    console.log("Trying to load level2");
+    player.scene.scene.start("Level2");
+    //Level1.player.scene.scene.start("Level2");
+  };

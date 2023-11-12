@@ -47,12 +47,12 @@ class Level2 extends Phaser.Scene {
   update() {}
 }
 
-var onCollision = function onCollision(player, obstacle) {
-  console.log(this);
-  console.log("Trying to load level1");
-  player.scene.scene.start("Level1");
-  //Level1.player.scene.scene.start("Level2");
-};
+// var onCollision = function onCollision(player, obstacle) {
+//   console.log(this);
+//   console.log("Trying to load level1");
+//   player.scene.scene.start("Level1");
+//   //Level1.player.scene.scene.start("Level2");
+// };
 
 var onCollision2 = function onCollision2(player, obstacle) {
   console.log(this);
