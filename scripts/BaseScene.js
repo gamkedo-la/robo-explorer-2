@@ -33,27 +33,6 @@ export default class BaseScene extends Phaser.Scene {
       this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
     }
   
-    testParticles() {
-      // just experimenting with phaser particle fx
-      // I will move this code to it's own file soon
-      // uses a spritesheet so all particles are on
-      // this one image in an 8x8 grid
-      // see https://newdocs.phaser.io/docs/3.60.0/Phaser.Types.GameObjects.Particles.ParticleEmitterConfig
-      let particleOptions = {
-        frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        angle: { min: 180, max: 360 },
-        speed: { min: 50, max: 200 },
-        frequency: 50,
-        gravityY: 200,
-        scale: { start: 1, end: 1 },
-        alpha: { start: 1, end: 0 },
-        lifespan: { min: 500, max: 2500 },
-        blendMode: "ADD", // lighten
-      };
-      let particles = this.add.particles(500, 550, "particles", particleOptions);
-      particles.setDepth(999);
-    }
-  
     // Test Platforms
     
     
@@ -97,11 +76,8 @@ export default class BaseScene extends Phaser.Scene {
       // Obstacle
   
       this.add.image(960, 135, "Bg");
-  
-      this.testParticles();
-  
-      this.platform();
-      this.building();
+    
+    
        
       this.cursors = this.input.keyboard.createCursorKeys();
       // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);

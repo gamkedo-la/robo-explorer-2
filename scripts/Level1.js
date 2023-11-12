@@ -10,8 +10,14 @@ export default class Level1 extends BaseScene {
   
     create()
     {
+        this.platform();
+        this.building();
         super.create();
+
+       
     }
+
+
   }
 
   var onCollision = function onCollision(player, obstacle) {
