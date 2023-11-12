@@ -15,7 +15,7 @@ export default class PauseScene extends BaseScene {
   update() {
     let keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
     if (keyP.isDown) {
-      this.scene.resume("TestArea");
+      this.scene.resume(globalState.currentScene);
       this.scene.stop();
     }
   }
