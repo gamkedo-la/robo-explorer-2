@@ -171,15 +171,14 @@ export default class BaseScene extends Phaser.Scene {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 300;
 
+    // FIXME: all these addKey() lines should probably 
+    // only be run once at init, not every frame
     let keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); // Move Up
     let keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A); // Move left
     let keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
     let keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     let keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
-    let keySpaceBar = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE1
-    );
-
+    let keySpaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); // fire rocket
     // Number keys
     let keyOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
     let keyTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
@@ -247,8 +246,9 @@ export default class BaseScene extends Phaser.Scene {
       this.isJumping = false;
     }
 
+    
     // fire a rocket
-    if (keySpaceBar.isDown) {
+    if (keySpaceBar.isDown) { // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocket();
       this.spaceDownLastFrame = true;
     } else {
