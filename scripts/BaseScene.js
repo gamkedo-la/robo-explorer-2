@@ -2,17 +2,28 @@ import audioManager from "./AudioManager.js";
 import { SCENE_KEYS } from "./Constants.js";
 
 export default class BaseScene extends Phaser.Scene {
+
   cursors;
-  // keyA;
   isJumping;
   isPaused = false;
-
   ROCKET_SPEED_X = 1000;
   ROCKET_SPEED_Y = 0;
   ROCKET_SPAWN_XOFFSET = 50;
   ROCKET_SPAWN_YOFFSET = 10;
-
   sceneKeyArray = Object.values(SCENE_KEYS);
+  keyUp;
+  keyA;
+  keyD;
+  keyS;
+  keyP;
+  keySpaceBar;
+  keyOne;
+  keyTwo;
+  keyThree;
+  keyNumpadOne;
+  keyNumpadTwo;
+  keyNumpadThree;
+  numKeys;
 
   constructor(levelKey, nextLevel) {
     super({ key: levelKey });
@@ -165,46 +176,34 @@ export default class BaseScene extends Phaser.Scene {
     this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
+
+    this.initInputs();
+  }
+
+  initInputs() {
+    // only need to be set up one time at init (not every frame)
+    console.log("Initializing player input");
+    this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); // Move Up
+    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A); // Move left
+    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
+    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
+    this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
+    this.keySpaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); // fire rocket
+    this.keyOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+    this.keyTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    this.keyThree = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
+    this.keyNumpadOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE);
+    this.keyNumpadTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO);
+    this.keyNumpadThree = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_THREE);
+    this.numKeys = [this.keyOne,this.keyTwo,this.keyThree,this.keyNumpadOne,this.keyNumpadTwo,this.keyNumpadThree];
   }
 
   update() {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 300;
-
-    // FIXME: all these addKey() lines should probably 
-    // only be run once at init, not every frame
-    let keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); // Move Up
-    let keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A); // Move left
-    let keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
-    let keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
-    let keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
-    let keySpaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); // fire rocket
-    // Number keys
-    let keyOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
-    let keyTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
-    let keyThree = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.THREE
-    );
-    let keyNumpadOne = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE
-    );
-    let keyNumpadTwo = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO
-    );
-    let keyNumpadThree = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.NUMPAD_THREE
-    );
-    const numKeys = [
-      keyOne,
-      keyTwo,
-      keyThree,
-      keyNumpadOne,
-      keyNumpadTwo,
-      keyNumpadThree,
-    ];
-
+  
     // Dev tool to move between scenes with num keys
-    numKeys.forEach((key) => {
+    this.numKeys.forEach((key) => {
       if (key.isDown) {
         console.log("num key pressed: " + key.originalEvent.key);
         const keyNumber = parseInt(key.originalEvent.key);
@@ -215,20 +214,20 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // Pausing game
-    if (keyP.isDown) {
+    if (this.keyP.isDown) {
       this.scene.launch("pauseScene");
       this.scene.pause();
     }
 
     // Movement
-    if (this.cursors.left.isDown || keyA.isDown) {
+    if (this.cursors.left.isDown || this.keyA.isDown) {
       this.player.setVelocityX(-160);
-    } else if (this.cursors.right.isDown || keyD.isDown) {
+    } else if (this.cursors.right.isDown || this.keyD.isDown) {
       this.player.setVelocityX(160);
       this.player.anims.play("right", true);
     }
 
-    if (this.cursors.up.isDown || keyUp.isDown) {
+    if (this.cursors.up.isDown || this.keyUp.isDown) {
       this.player.setVelocityY(-430);
       this.player.anims.play("up", true);
 
@@ -236,7 +235,7 @@ export default class BaseScene extends Phaser.Scene {
         audioManager.playSound("jump");
         this.isJumping = true;
       }
-    } else if (this.cursors.down.isDown || keyS.isDown) {
+    } else if (this.cursors.down.isDown || this.keyS.isDown) {
       this.player.setVelocityY(160);
       this.player.anims.play("down", true);
     }
@@ -248,7 +247,7 @@ export default class BaseScene extends Phaser.Scene {
 
     
     // fire a rocket
-    if (keySpaceBar.isDown) { // FIXME: this is never true
+    if (this.keySpaceBar.isDown) { // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocket();
       this.spaceDownLastFrame = true;
     } else {
