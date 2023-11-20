@@ -49,7 +49,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet(
       "player",
-      "assets/Artwork/Player/playerWalkRightLeft.png",
+      "assets/Artwork/Player/playerWalkRightLeftv3.png",
       {
         frameWidth: 132,
         frameHeight: 132,
@@ -127,8 +127,26 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers("player", {
-        start: 1,
-        end: 6,
+        start: 7,
+        end: 12,
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      frameRate: 5,
+      
+    });
+
+    this.anims.create({
+      key: "idle",
+      frames: [{key:"player", frame: 6}],
+      frameRate: 5,
+      
+    });
+
+    this.anims.create({
+      key: "left",
+      frames: this.anims.generateFrameNumbers("player", {
+        start:5,
+        end: 0,
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
@@ -222,9 +240,13 @@ export default class BaseScene extends Phaser.Scene {
     // Movement
     if (this.cursors.left.isDown || this.keyA.isDown) {
       this.player.setVelocityX(-160);
+      this.player.anims.play("left", true);
     } else if (this.cursors.right.isDown || this.keyD.isDown) {
       this.player.setVelocityX(160);
       this.player.anims.play("right", true);
+    } else {
+      this.player.setVelocityX(0);
+      this.player.anims.play("idle");
     }
 
     if (this.cursors.up.isDown || this.keyUp.isDown) {
