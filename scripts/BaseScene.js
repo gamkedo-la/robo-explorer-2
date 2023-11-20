@@ -128,11 +128,11 @@ export default class BaseScene extends Phaser.Scene {
       key: "right",
       frames: this.anims.generateFrameNumbers("player", {
         start: 1,
-        end: 8,
+        end: 6,
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
-      repeat: -1,
+      
     });
 
     // TEST Bomb
