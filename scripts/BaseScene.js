@@ -10,6 +10,8 @@ export default class BaseScene extends Phaser.Scene {
   ROCKET_SPEED_Y = 0;
   ROCKET_SPAWN_XOFFSET = 50;
   ROCKET_SPAWN_YOFFSET = 10;
+  ROCKETLEFT_SPAWN_XOFFSET = -50;
+  ROCKETLEFT_SPAWN_YOFFSET = 10;
   sceneKeyArray = Object.values(SCENE_KEYS);
   keyUp;
   keyA;
@@ -179,17 +181,19 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // Test for creating rocket
+    
+    this.rocketLeft = this.physics.add.sprite(
+      PlayerPositionX,
+      PlayerPositionY,
+      "rocketLeft"
+    );
+
     this.rocket = this.physics.add.sprite(
       PlayerPositionX + 10,
       PlayerPositionY,
       "rocket"
     );
 
-    this.rocketLeft = this.physics.add.sprite(
-      PlayerPositionX + 10,
-      PlayerPositionY,
-      "rocketLeft"
-    );
 
     // Collisions Code
     this.physics.add.collider(
@@ -313,8 +317,8 @@ export default class BaseScene extends Phaser.Scene {
   fireRocketLeft() {
     // console.log("firing a rocket!");
     this.rocketLeft = this.physics.add.sprite(
-      this.player.x + this.ROCKET_SPAWN_XOFFSET,
-      this.player.y + this.ROCKET_SPAWN_YOFFSET,
+      this.player.x + this.ROCKETLEFT_SPAWN_XOFFSET,
+      this.player.y + this.ROCKETLEFT_SPAWN_YOFFSET,
       "rocketLeft"
     );
     this.rocketLeft.setVelocityX(-this.ROCKET_SPEED_X);
