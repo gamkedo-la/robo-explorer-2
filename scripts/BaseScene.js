@@ -274,8 +274,16 @@ export default class BaseScene extends Phaser.Scene {
     }
 
     
-    // fire a rocket
-    if (this.keySpaceBar.isDown) { // FIXME: this is never true
+    // fire a rocket left
+    if (this.keySpaceBar.isDown && this.keyA.isDown) { // FIXME: this is never true
+      if (!this.spaceDownLastFrame) this.fireRocketLeft();
+      this.spaceDownLastFrame = true;
+    } else {
+      this.spaceDownLastFrame = false;
+    }
+
+    // fire a rocket right
+    if (this.keySpaceBar.isDown && this.keyD.isDown) { // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocket();
       this.spaceDownLastFrame = true;
     } else {
@@ -291,6 +299,18 @@ export default class BaseScene extends Phaser.Scene {
       "rocket"
     );
     this.rocket.setVelocityX(this.ROCKET_SPEED_X);
+    this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
+  }
+
+  
+  fireRocketLeft() {
+    // console.log("firing a rocket!");
+    this.rocket = this.physics.add.sprite(
+      this.player.x + this.ROCKET_SPAWN_XOFFSET,
+      this.player.y + this.ROCKET_SPAWN_YOFFSET,
+      "rocket"
+    );
+    this.rocket.setVelocityX(-this.ROCKET_SPEED_X);
     this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
   }
 
