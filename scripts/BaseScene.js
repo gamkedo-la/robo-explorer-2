@@ -136,7 +136,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers("player", {
-        start: 7,
+        start: 8,
         end: 12,
       }),
       // frames: [{ key: "player", frame: 1 }],
@@ -154,7 +154,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "left",
       frames: this.anims.generateFrameNumbers("player", {
-        start:5,
+        start:4,
         end: 0,
       }),
       // frames: [{ key: "player", frame: 1 }],
