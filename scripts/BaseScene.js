@@ -288,6 +288,7 @@ export default class BaseScene extends Phaser.Scene {
     // fire a rocket left
     if (this.keySpaceBar.isDown && this.keyA.isDown) { // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocketLeft();
+      console.log("test Fire Left")
       this.spaceDownLastFrame = true;
     } else {
       this.spaceDownLastFrame = false;
@@ -297,6 +298,7 @@ export default class BaseScene extends Phaser.Scene {
     if (this.keySpaceBar.isDown && this.keyD.isDown) { // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocket();
       this.spaceDownLastFrame = true;
+      console.log("test Fire Right")
     } else {
       this.spaceDownLastFrame = false;
     }
@@ -322,7 +324,7 @@ export default class BaseScene extends Phaser.Scene {
       "rocketLeft"
     );
     this.rocketLeft.setVelocityX(-this.ROCKET_SPEED_X);
-    this.rocketLeft.setVelocityY(this.ROCKET_SPEED_Y);
+    this.rocketLeft.setVelocityY(-this.ROCKET_SPEED_Y);
   }
 
   onCollision(player, obstacle) {
