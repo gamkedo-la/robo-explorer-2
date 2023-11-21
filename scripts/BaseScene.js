@@ -46,6 +46,7 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
+    this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet(
       "player",
@@ -184,6 +185,12 @@ export default class BaseScene extends Phaser.Scene {
       "rocket"
     );
 
+    this.rocketLeft = this.physics.add.sprite(
+      PlayerPositionX + 10,
+      PlayerPositionY,
+      "rocketLeft"
+    );
+
     // Collisions Code
     this.physics.add.collider(
       this.player,
@@ -305,13 +312,13 @@ export default class BaseScene extends Phaser.Scene {
   
   fireRocketLeft() {
     // console.log("firing a rocket!");
-    this.rocket = this.physics.add.sprite(
+    this.rocketLeft = this.physics.add.sprite(
       this.player.x + this.ROCKET_SPAWN_XOFFSET,
       this.player.y + this.ROCKET_SPAWN_YOFFSET,
-      "rocket"
+      "rocketLeft"
     );
-    this.rocket.setVelocityX(-this.ROCKET_SPEED_X);
-    this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
+    this.rocketLeft.setVelocityX(-this.ROCKET_SPEED_X);
+    this.rocketLeft.setVelocityY(this.ROCKET_SPEED_Y);
   }
 
   onCollision(player, obstacle) {
