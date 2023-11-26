@@ -2,7 +2,6 @@ import audioManager from "./AudioManager.js";
 import { SCENE_KEYS } from "./Constants.js";
 
 export default class BaseScene extends Phaser.Scene {
-
   cursors;
   isJumping;
   isPaused = false;
@@ -50,6 +49,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
+    this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.spritesheet(
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
@@ -88,6 +88,7 @@ export default class BaseScene extends Phaser.Scene {
       fill: "#000",
     });
     this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
+    this.add.image(25, 125, "healthbar");
 
     // MUSIC & SOUND
     audioManager.init(this);
@@ -97,7 +98,6 @@ export default class BaseScene extends Phaser.Scene {
     const PlayerPositionX = 50;
 
     // Obstacle
-
     this.add.image(960, 135, "Bg");
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -117,9 +117,9 @@ export default class BaseScene extends Phaser.Scene {
     // });
 
     this.anims.create({
-        key: "up",
-        frames: [{key:"player", frame: 6}],
-        frameRate: 5,
+      key: "up",
+      frames: [{ key: "player", frame: 6 }],
+      frameRate: 5,
     });
 
     this.anims.create({
@@ -136,19 +136,17 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [8,9,10,11,12]
+        frames: [8, 9, 10, 11, 12],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
-      
     });
 
-    
     this.anims.create({
       key: "idle",
-      frames: this.anims.generateFrameNumbers('player', {start: 13, end: 14}),
+      frames: this.anims.generateFrameNumbers("player", { start: 13, end: 14 }),
       frameRate: 5,
-      repeat: -1
+      repeat: -1,
     });
 
     /*
@@ -162,11 +160,10 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "left",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [4,3,2,1,0]
+        frames: [4, 3, 2, 1, 0],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
-      
     });
 
     // TEST Bomb
@@ -188,7 +185,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // Test for creating rocket
-    
+
     this.rocketLeft = this.physics.add.sprite(
       PlayerPositionX,
       PlayerPositionY,
@@ -200,7 +197,6 @@ export default class BaseScene extends Phaser.Scene {
       PlayerPositionY,
       "rocket"
     );
-
 
     // Collisions Code
     this.physics.add.collider(
@@ -230,20 +226,41 @@ export default class BaseScene extends Phaser.Scene {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
-    this.keySpaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); // fire rocket
-    this.keyOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
-    this.keyTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
-    this.keyThree = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
-    this.keyNumpadOne = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE);
-    this.keyNumpadTwo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO);
-    this.keyNumpadThree = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_THREE);
-    this.numKeys = [this.keyOne,this.keyTwo,this.keyThree,this.keyNumpadOne,this.keyNumpadTwo,this.keyNumpadThree];
+    this.keySpaceBar = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    ); // fire rocket
+    this.keyOne = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ONE
+    );
+    this.keyTwo = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.TWO
+    );
+    this.keyThree = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.THREE
+    );
+    this.keyNumpadOne = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE
+    );
+    this.keyNumpadTwo = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO
+    );
+    this.keyNumpadThree = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.NUMPAD_THREE
+    );
+    this.numKeys = [
+      this.keyOne,
+      this.keyTwo,
+      this.keyThree,
+      this.keyNumpadOne,
+      this.keyNumpadTwo,
+      this.keyNumpadThree,
+    ];
   }
 
   update() {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 300;
-  
+
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -270,7 +287,7 @@ export default class BaseScene extends Phaser.Scene {
       this.player.anims.play("right", true);
     } else {
       this.player.setVelocityX(0);
-      this.player.anims.play("idle",true);
+      this.player.anims.play("idle", true);
     }
 
     if (this.cursors.up.isDown || this.keyUp.isDown) {
@@ -291,21 +308,22 @@ export default class BaseScene extends Phaser.Scene {
       this.isJumping = false;
     }
 
-    
     // fire a rocket left
-    if (this.keySpaceBar.isDown && this.keyA.isDown) { // FIXME: this is never true
+    if (this.keySpaceBar.isDown && this.keyA.isDown) {
+      // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocketLeft();
-      console.log("test Fire Left")
+      console.log("test Fire Left");
       this.spaceDownLastFrame = true;
     } else {
       this.spaceDownLastFrame = false;
     }
 
     // fire a rocket right
-    if (this.keySpaceBar.isDown && this.keyD.isDown) { // FIXME: this is never true
+    if (this.keySpaceBar.isDown && this.keyD.isDown) {
+      // FIXME: this is never true
       if (!this.spaceDownLastFrame) this.fireRocket();
       this.spaceDownLastFrame = true;
-      console.log("test Fire Right")
+      console.log("test Fire Right");
     } else {
       this.spaceDownLastFrame = false;
     }
@@ -322,7 +340,6 @@ export default class BaseScene extends Phaser.Scene {
     this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
   }
 
-  
   fireRocketLeft() {
     // console.log("firing a rocket!");
     this.rocketLeft = this.physics.add.sprite(
