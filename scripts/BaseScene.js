@@ -5,12 +5,7 @@ import { SCENE_KEYS } from "./Constants.js";
 export default class BaseScene extends Phaser.Scene {
   cursors;
   isPaused = false;
-  ROCKET_SPEED_X = 1000;
-  ROCKET_SPEED_Y = 0;
-  ROCKET_SPAWN_XOFFSET = 50;
-  ROCKET_SPAWN_YOFFSET = 10;
-  ROCKETLEFT_SPAWN_XOFFSET = -50;
-  ROCKETLEFT_SPAWN_YOFFSET = 10;
+  
   sceneKeyArray = Object.values(SCENE_KEYS);
   keyUp;
   keyA;
@@ -187,18 +182,6 @@ export default class BaseScene extends Phaser.Scene {
 
     // Test for creating rocket
 
-    this.rocketLeft = this.physics.add.sprite(
-      PlayerPositionX,
-      PlayerPositionY,
-      "rocketLeft"
-    );
-
-    this.rocket = this.physics.add.sprite(
-      PlayerPositionX + 10,
-      PlayerPositionY,
-      "rocket"
-    );
-
     // Collisions Code
     this.physics.add.collider(
       this.player,
@@ -212,7 +195,7 @@ export default class BaseScene extends Phaser.Scene {
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.obstacle.setCollideWorldBounds(true);
-    this.rocket.setCollideWorldBounds(true);
+    // this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
 
@@ -279,48 +262,9 @@ export default class BaseScene extends Phaser.Scene {
 
     this.player.handleInput(this.cursors, this, audioManager);
 
-    // fire a rocket left
-    if (this.keySpaceBar.isDown && this.keyA.isDown) {
-      // FIXME: this is never true
-      if (!this.spaceDownLastFrame) this.fireRocketLeft();
-      console.log("test Fire Left");
-      this.spaceDownLastFrame = true;
-    } else {
-      this.spaceDownLastFrame = false;
-    }
-
-    // fire a rocket right
-    if (this.keySpaceBar.isDown && this.keyD.isDown) {
-      // FIXME: this is never true
-      if (!this.spaceDownLastFrame) this.fireRocket();
-      this.spaceDownLastFrame = true;
-      console.log("test Fire Right");
-    } else {
-      this.spaceDownLastFrame = false;
-    }
+   
   }
 
-  fireRocket() {
-    // console.log("firing a rocket!");
-    this.rocket = this.physics.add.sprite(
-      this.player.x + this.ROCKET_SPAWN_XOFFSET,
-      this.player.y + this.ROCKET_SPAWN_YOFFSET,
-      "rocket"
-    );
-    this.rocket.setVelocityX(this.ROCKET_SPEED_X);
-    this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
-  }
-
-  fireRocketLeft() {
-    // console.log("firing a rocket!");
-    this.rocketLeft = this.physics.add.sprite(
-      this.player.x + this.ROCKETLEFT_SPAWN_XOFFSET,
-      this.player.y + this.ROCKETLEFT_SPAWN_YOFFSET,
-      "rocketLeft"
-    );
-    this.rocketLeft.setVelocityX(-this.ROCKET_SPEED_X);
-    this.rocketLeft.setVelocityY(-this.ROCKET_SPEED_Y);
-  }
 
   onCollision(player, obstacle) {
     console.log(this);

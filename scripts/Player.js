@@ -1,17 +1,35 @@
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-    isJumping;
+  sceneRef;
+  isJumping;
+  reloadFrames;
+
+  ROCKET_SPEED_X = 1000;
+  ROCKET_SPEED_Y = 0;
+  ROCKET_SPAWN_XOFFSET = 50;
+  ROCKET_SPAWN_YOFFSET = 10;
+  ROCKETLEFT_SPAWN_XOFFSET = -50;
+  ROCKETLEFT_SPAWN_YOFFSET = 10;
+
+  ROCKET_RELOADFRAMES = 15;
+
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
+    this.sceneRef = scene;
+    this.sceneRef.add.existing(this);
+    this.sceneRef.physics.add.existing(this);
 
-   this.isJumping = false;
+    this.isJumping = false;
+    this.reloadFrames = 0;
   }
 
-  handleInput(cursors, 
+  handleInput(
+    cursors,
     inputController, // Todo separate key A/keyup from basecene
     audioManager
-    ) { 
+  ) {
+    if(this.reloadFrames > 0 ){
+       this.reloadFrames--;
+    }
     // Movement
     if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setVelocityX(-160);
@@ -41,5 +59,47 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       audioManager.stopSound("jump");
       this.isJumping = false;
     }
+
+    // fire a rocket left
+    if (inputController.keySpaceBar.isDown && inputController.keyA.isDown) {
+      // FIXME: this is never true
+      if (!inputController.spaceDownLastFrame) this.fireRocket(true);
+      console.log("test Fire Left");
+      inputController.spaceDownLastFrame = true;
+    } else {
+      inputController.spaceDownLastFrame = false;
+    }
+
+    // fire a rocket right
+    if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
+      // FIXME: this is never true
+      if (!inputController.spaceDownLastFrame) this.fireRocket(false);
+      inputController.spaceDownLastFrame = true;
+      console.log("test Fire Right");
+    } else {
+      inputController.spaceDownLastFrame = false;
+    }
+  } // end of handleInput function
+
+  fireRocket(toLeft) {
+    if(this.reloadFrames > 0){
+        return;
+    }
+
+    this.reloadFrames = this.ROCKET_RELOADFRAMES;
+    let xOffset = (toLeft ? this.ROCKETLEFT_SPAWN_XOFFSET : this.ROCKET_SPAWN_XOFFSET);
+    let rocketImage = (toLeft ?  "rocketLeft" : "rocket");
+    let xSpeed = (toLeft ? -this.ROCKET_SPEED_X : this.ROCKET_SPEED_X);
+
+    // console.log("firing a rocket!");
+    this.rocket = this.sceneRef.physics.add.sprite(
+      this.x + xOffset,
+      this.y + this.ROCKET_SPAWN_YOFFSET,
+      rocketImage
+    );
+    this.rocket.setVelocityX(xSpeed);
+    this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
   }
-}
+
+  
+} // The end of class
