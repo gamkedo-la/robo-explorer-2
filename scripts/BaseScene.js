@@ -1,9 +1,9 @@
 import audioManager from "./AudioManager.js";
+import Player from "./Player.js";
 import { SCENE_KEYS } from "./Constants.js";
 
 export default class BaseScene extends Phaser.Scene {
   cursors;
-  isJumping;
   isPaused = false;
   ROCKET_SPEED_X = 1000;
   ROCKET_SPEED_Y = 0;
@@ -102,7 +102,8 @@ export default class BaseScene extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
-    this.player = this.physics.add.sprite(
+    this.player = new Player(
+      this, 
       PlayerPositionX,
       PlayerPositionY,
       "player"
@@ -258,8 +259,6 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   update() {
-    this.player.body.velocity.x = 0;
-    this.player.body.velocity.y = 300;
 
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
@@ -278,35 +277,7 @@ export default class BaseScene extends Phaser.Scene {
       this.scene.pause();
     }
 
-    // Movement
-    if (this.cursors.left.isDown || this.keyA.isDown) {
-      this.player.setVelocityX(-160);
-      this.player.anims.play("left", true);
-    } else if (this.cursors.right.isDown || this.keyD.isDown) {
-      this.player.setVelocityX(160);
-      this.player.anims.play("right", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("idle", true);
-    }
-
-    if (this.cursors.up.isDown || this.keyUp.isDown) {
-      this.player.setVelocityY(-430);
-      this.player.anims.play("up", true);
-
-      if (!this.isJumping) {
-        audioManager.playSound("jump");
-        this.isJumping = true;
-      }
-    } else if (this.cursors.down.isDown || this.keyS.isDown) {
-      this.player.setVelocityY(160);
-      this.player.anims.play("down", true);
-    }
-
-    if (this.cursors.up.isUp) {
-      audioManager.stopSound("jump");
-      this.isJumping = false;
-    }
+    this.player.handleInput(this.cursors, this, audioManager);
 
     // fire a rocket left
     if (this.keySpaceBar.isDown && this.keyA.isDown) {
