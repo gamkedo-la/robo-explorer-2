@@ -165,12 +165,12 @@ export default class BaseScene extends Phaser.Scene {
     // FIRING Rockets
     this.anims.create({
       key: "fire",
-      // frames: this.anims.generateFrameNumbers("player", {
-      //   frames: [26, 27, 28],
-      // }),
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [26, 27, 28],
+      }),
       // frames: [{ key: "player", frame: 1 }],
-      frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
-      frameRate: 5,
+      // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
+      frameRate: 10,
     });
 
     // TEST Bomb
