@@ -75,7 +75,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       // FIXME: this is never true
       if (!inputController.spaceDownLastFrame) this.fireRocket(false);
       inputController.spaceDownLastFrame = true;
+      
       console.log("test Fire Right");
+      this.anims.play("fire", true);
     } else {
       inputController.spaceDownLastFrame = false;
     }
