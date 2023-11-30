@@ -32,7 +32,9 @@ export default class BaseScene extends Phaser.Scene {
       frameHeight: 32,
     });
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
-
+    
+    this.load.image("clouds", "assets/Artwork/FX/clouds.png");
+    
     this.load.image(
       "roadsand",
       "assets/Artwork/Environment/Levels/IntroScene/roadsand.png"
@@ -77,6 +79,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   create() {
+
+    // clouds
+    this.cloudsbg = this.add.image(0, 0, "clouds");
+    this.cloudsbg.setDepth(0); // handy for future use
+    this.cloudsbg.setScale(2); // 2x pixels
+    this.cloudsbg.alpha = 0.75; // see-through
+    this.cloudsbg.x = 300; // start on screen
+    this.cloudsbg.y = -56; // hardcoded to not overlap road
+
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -94,6 +105,7 @@ export default class BaseScene extends Phaser.Scene {
 
     // Obstacle
     this.add.image(960, 135, "Bg");
+
 
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
@@ -253,8 +265,15 @@ export default class BaseScene extends Phaser.Scene {
     ];
   }
 
+  animateClouds() {
+    if (!this.cloudsbg) return;
+    this.cloudsbg.x += 0.1;
+  }
+  
   update() {
 
+    this.animateClouds();
+    
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
