@@ -78,15 +78,19 @@ export default class BaseScene extends Phaser.Scene {
     bomb.disableBody(true, true);
   }
 
-  create() {
-
-    // clouds
+  initClouds() {
+    // TODO more than one layer moving at dferent speeds
     this.cloudsbg = this.add.image(0, 0, "clouds");
     this.cloudsbg.setDepth(0); // handy for future use
     this.cloudsbg.setScale(2); // 2x pixels
-    this.cloudsbg.alpha = 0.75; // see-through
+    this.cloudsbg.alpha = 1; // opacity
     this.cloudsbg.x = 300; // start on screen
     this.cloudsbg.y = -56; // hardcoded to not overlap road
+  }
+
+  create() {
+
+    this.initClouds();
 
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
