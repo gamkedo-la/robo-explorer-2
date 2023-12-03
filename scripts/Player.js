@@ -3,8 +3,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   isJumping;
   reloadFrames;
 
-  health = 100;
-  MAX_HEALTH = 100;
+  health = 22;
+  MAX_HEALTH = 22;
 
   ROCKET_SPEED_X = 1000;
   ROCKET_SPEED_Y = 0;

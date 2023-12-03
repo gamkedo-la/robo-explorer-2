@@ -1,11 +1,12 @@
 import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import { SCENE_KEYS } from "./Constants.js";
+import Healthbar from "./UI/Healthbar.js";
 
 export default class BaseScene extends Phaser.Scene {
   cursors;
   isPaused = false;
-  
+
   sceneKeyArray = Object.values(SCENE_KEYS);
   keyUp;
   keyA;
@@ -21,6 +22,9 @@ export default class BaseScene extends Phaser.Scene {
   keyNumpadThree;
   numKeys;
 
+  // UI elements
+  healthbar;
+
   constructor(levelKey, nextLevel) {
     super({ key: levelKey });
     this.nextLevelName = nextLevel;
@@ -32,9 +36,9 @@ export default class BaseScene extends Phaser.Scene {
       frameHeight: 32,
     });
     // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
-    
+
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
-    
+
     this.load.image(
       "roadsand",
       "assets/Artwork/Environment/Levels/IntroScene/roadsand.png"
@@ -47,6 +51,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
+    this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
     this.load.spritesheet(
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
@@ -89,7 +94,6 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   create() {
-
     this.initClouds();
 
     // UI
@@ -98,7 +102,15 @@ export default class BaseScene extends Phaser.Scene {
       fill: "#000",
     });
     this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
-    this.add.image(25, 125, "healthbar");
+    this.healthbar = new Healthbar(
+      this,
+      25,
+      125,
+      "healthbar",
+      "healthUnit",
+      22,
+      30
+    );
 
     // MUSIC & SOUND
     audioManager.init(this);
@@ -110,15 +122,9 @@ export default class BaseScene extends Phaser.Scene {
     // Obstacle
     this.add.image(960, 135, "Bg");
 
-
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
-    this.player = new Player(
-      this, 
-      PlayerPositionX,
-      PlayerPositionY,
-      "player"
-    );
+    this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
 
     // this.anims.create({
     //   key: "up",
@@ -182,12 +188,12 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [26, 27,28],
+        frames: [26, 27, 28],
       }),
       // frames: [{ key: "player", frame: 1 }],
       // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
       frameRate: 10,
-      repeat: -1
+      repeat: -1,
     });
 
     // TEST Bomb
@@ -273,11 +279,10 @@ export default class BaseScene extends Phaser.Scene {
     if (!this.cloudsbg) return;
     this.cloudsbg.x += 0.1;
   }
-  
-  update() {
 
+  update() {
     this.animateClouds();
-    
+
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -297,9 +302,10 @@ export default class BaseScene extends Phaser.Scene {
 
     this.player.handleInput(this.cursors, this, audioManager);
 
-   
+    // Update UI
+    this.healthbar.setValue(this.player.health);
+    this.healthbar.updateHealthFillImage();
   }
-
 
   onCollision(player, obstacle) {
     console.log(this);
