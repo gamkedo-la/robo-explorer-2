@@ -3,6 +3,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   isJumping;
   reloadFrames;
 
+  health = 100;
+  MAX_HEALTH = 100;
+
   ROCKET_SPEED_X = 1000;
   ROCKET_SPEED_Y = 0;
   ROCKET_SPAWN_XOFFSET = 50;
@@ -27,8 +30,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     inputController, // Todo separate key A/keyup from basecene
     audioManager
   ) {
-    if(this.reloadFrames > 0 ){
-       this.reloadFrames--;
+    if (this.reloadFrames > 0) {
+      this.reloadFrames--;
     }
     // Movement
     if (cursors.left.isDown || inputController.keyA.isDown) {
@@ -73,27 +76,28 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // fire a rocket right
     if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
       // FIXME: this is never true
-     
+
       if (!inputController.spaceDownLastFrame) this.fireRocket(false);
       inputController.spaceDownLastFrame = true;
-      
+
       console.log("test Fire Right");
       this.anims.play("fire", true);
-      
     } else {
       inputController.spaceDownLastFrame = false;
     }
   } // end of handleInput function
 
   fireRocket(toLeft) {
-    if(this.reloadFrames > 0){
-        return;
+    if (this.reloadFrames > 0) {
+      return;
     }
 
     this.reloadFrames = this.ROCKET_RELOADFRAMES;
-    let xOffset = (toLeft ? this.ROCKETLEFT_SPAWN_XOFFSET : this.ROCKET_SPAWN_XOFFSET);
-    let rocketImage = (toLeft ?  "rocketLeft" : "rocket");
-    let xSpeed = (toLeft ? -this.ROCKET_SPEED_X : this.ROCKET_SPEED_X);
+    let xOffset = toLeft
+      ? this.ROCKETLEFT_SPAWN_XOFFSET
+      : this.ROCKET_SPAWN_XOFFSET;
+    let rocketImage = toLeft ? "rocketLeft" : "rocket";
+    let xSpeed = toLeft ? -this.ROCKET_SPEED_X : this.ROCKET_SPEED_X;
 
     // console.log("firing a rocket!");
     this.rocket = this.sceneRef.physics.add.sprite(
@@ -105,5 +109,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
   }
 
-  
+  takeDamage(amount) {
+    this.health -= amount;
+    if (this.health <= 0) {
+      this.health = 0;
+    }
+  }
+
+  recoverHealth(amount) {
+    this.health += amount;
+    if (this.health >= this.MAX_HEALTH) {
+      this.health = this.MAX_HEALTH;
+    }
+  }
 } // The end of class
