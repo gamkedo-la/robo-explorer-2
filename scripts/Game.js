@@ -1,5 +1,6 @@
 import audioManager from "./AudioManager.js";
 // import platform from "./Platform.js"
+import IntroCutScene from "./IntroCutScene.js";
 import TestArea from "./TestArea.js";
 import Level1 from "./Level1.js";
 import Level2 from "./Level2.js";
@@ -17,7 +18,7 @@ var config = {
       debug: false,
     },
   },
-  scene: [TestArea, Level1, Level2, PauseScene],
+  scene: [IntroCutScene,TestArea, Level1, Level2, PauseScene],
 };
 
 var game = new Phaser.Game(config);
