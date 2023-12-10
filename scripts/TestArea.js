@@ -9,8 +9,10 @@ export default class TestArea extends BaseScene {
   create() {
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
-
+    
     this.platform();
+    this.spikes();
+    
     super.create();
 
     let particleOptions = {

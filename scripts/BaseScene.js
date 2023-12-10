@@ -52,6 +52,7 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
     this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
+    this.load.image("spikes", "assets/Artwork/Environment/Items/spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
@@ -89,6 +90,16 @@ export default class BaseScene extends Phaser.Scene {
     building.create(1000, 100, "buildingVan").setScale(1).refreshBody();
     console.log("Test if Building Van will work!");
   }
+
+  // TRAPS and ENEMIES
+
+  spikes(){
+    var spike;
+    spike = this.physics.add.staticGroup();
+    spike.create(100, 550, "spikes").setScale(1).refreshBody();
+    console.log("Test if Spikes is working!");
+  }
+
 
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
@@ -145,6 +156,8 @@ export default class BaseScene extends Phaser.Scene {
 
     // Obstacle
     this.add.image(960, 135, "Bg");
+
+  
 
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);

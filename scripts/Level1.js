@@ -12,6 +12,7 @@ export default class Level1 extends BaseScene {
         
         this.platform();
         this.building();
+        this.spikes();
         super.create();
 
        
