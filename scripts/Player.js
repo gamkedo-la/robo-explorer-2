@@ -110,6 +110,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   takeDamage(amount) {
+    console.log("taking " + amount + " damage");
     this.health -= amount;
     if (this.health <= 0) {
       this.health = 0;
@@ -117,6 +118,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   recoverHealth(amount) {
+    console.log("healing " + amount + " HP");
     this.health += amount;
     if (this.health >= this.MAX_HEALTH) {
       this.health = this.MAX_HEALTH;

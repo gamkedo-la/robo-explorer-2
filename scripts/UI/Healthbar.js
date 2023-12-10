@@ -25,7 +25,7 @@ export default class Healthbar extends Phaser.Physics.Arcade.Sprite {
   }
 
   updateHealthFillImage() {
-    this.healthUnits.forEach((image) => image.destroy);
+    this.healthUnits.forEach((image) => image.destroy());
     let startY = this.y + 36;
     let unitSize = 4;
 

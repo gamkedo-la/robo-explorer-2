@@ -73,7 +73,7 @@ export default class BaseScene extends Phaser.Scene {
   cutscene1() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
-    storyScene1.create(400, 490, "comicStrip1").setScale(.3).refreshBody();
+    storyScene1.create(400, 490, "comicStrip1").setScale(0.3).refreshBody();
     console.log("Test if cutscene is working");
   }
 
@@ -93,33 +93,31 @@ export default class BaseScene extends Phaser.Scene {
 
   // TRAPS and ENEMIES
 
-  spikes(){
+  spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
     spike.create(100, 550, "spikes").setScale(1).refreshBody();
     console.log("Test if Spikes is working!");
   }
 
-
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
   }
 
   initClouds() {
-    
     // we use two images so we can tile them as the camera moves
     // and not get any gaps or seams as it loops around
-    
-    this.cloudsWidth = 512*2; // hardcoded image size to tile
+
+    this.cloudsWidth = 512 * 2; // hardcoded image size to tile
     this.cloudsSpeed = -0.5; // only works in negative direction
-    
+
     this.cloudsbg = this.add.image(0, 0, "clouds");
     this.cloudsbg.setDepth(0); // handy for future use
     this.cloudsbg.setScale(2); // 2x pixels
     this.cloudsbg.alpha = 1; // opacity
     this.cloudsbg.x = 0; // start on screen
     this.cloudsbg.y = -56; // hardcoded to not overlap road
-    
+
     this.cloudsbg2 = this.add.image(0, 0, "clouds");
     this.cloudsbg2.setDepth(0);
     this.cloudsbg2.setScale(2);
@@ -156,8 +154,6 @@ export default class BaseScene extends Phaser.Scene {
 
     // Obstacle
     this.add.image(960, 135, "Bg");
-
-  
 
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
@@ -293,6 +289,12 @@ export default class BaseScene extends Phaser.Scene {
     this.keyThree = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.THREE
     );
+    this.keyFour = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.FOUR
+    );
+    this.keyFive = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.FIVE
+    );
     this.keyNumpadOne = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE
     );
@@ -315,8 +317,10 @@ export default class BaseScene extends Phaser.Scene {
   animateClouds() {
     this.cloudsbg.x += this.cloudsSpeed;
     this.cloudsbg2.x += this.cloudsSpeed;
-    if (this.cloudsbg.x < -this.cloudsWidth/2) this.cloudsbg.x += this.cloudsWidth*2;
-    if (this.cloudsbg2.x < -this.cloudsWidth/2) this.cloudsbg2.x += this.cloudsWidth*2;
+    if (this.cloudsbg.x < -this.cloudsWidth / 2)
+      this.cloudsbg.x += this.cloudsWidth * 2;
+    if (this.cloudsbg2.x < -this.cloudsWidth / 2)
+      this.cloudsbg2.x += this.cloudsWidth * 2;
   }
 
   update() {
@@ -332,6 +336,18 @@ export default class BaseScene extends Phaser.Scene {
         this.scene.start(nextScene);
       }
     });
+
+    if (this.keyFour.isDown) {
+      this.player.takeDamage(1);
+      this.healthbar.setValue(this.player.health);
+      console.log(this.player.health);
+    }
+
+    if (this.keyFive.isDown) {
+      this.player.recoverHealth(1);
+      this.healthbar.setValue(this.player.health);
+      console.log(this.player.health);
+    }
 
     // Pausing game
     if (this.keyP.isDown) {
