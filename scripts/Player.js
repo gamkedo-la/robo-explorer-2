@@ -1,6 +1,9 @@
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
+  
+  // JUMPING
   isJumping;
+  jumpForce = 200;
   reloadFrames;
 
   health = 22;
@@ -35,18 +38,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     // Movement
     if (cursors.left.isDown || inputController.keyA.isDown) {
-      this.setVelocityX(-160);
+      this.setVelocityX(-160); // Move Left
       this.anims.play("left", true);
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
-      this.setVelocityX(160);
+      this.setVelocityX(160); // Move right
       this.anims.play("right", true);
     } else {
-      this.setVelocityX(0);
+      this.setVelocityX(0); 
       this.anims.play("idle", true);
-    }
+    }// Stop moving
 
     if (cursors.up.isDown || inputController.keyUp.isDown) {
-      this.setVelocityY(-430);
+      this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
 
       if (!this.isJumping) {
