@@ -14,6 +14,7 @@ export default class BaseScene extends Phaser.Scene {
   keyS;
   keyP;
   keySpaceBar;
+  keyShift;
   keyOne;
   keyTwo;
   keyThree;
@@ -184,6 +185,7 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1,
     });
 
+    // WALK RIGHT ANIMATION
     this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers("player", {
@@ -208,10 +210,22 @@ export default class BaseScene extends Phaser.Scene {
        repeat: -1
      });*/
 
+     // WALK LEFT ANIMATION
+
     this.anims.create({
       key: "left",
       frames: this.anims.generateFrameNumbers("player", {
         frames: [4, 3, 2, 1, 0],
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      frameRate: 5,
+    });
+
+    // RUN RIGHT ANIMATION
+    this.anims.create({
+      key: "runRight",
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [39, 40],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
@@ -277,6 +291,7 @@ export default class BaseScene extends Phaser.Scene {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
+    this.keyShift = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT); // Press shift to run
     this.keySpaceBar = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     ); // fire rocket
