@@ -210,7 +210,7 @@ export default class BaseScene extends Phaser.Scene {
        repeat: -1
      });*/
 
-     // WALK LEFT ANIMATION
+    // WALK LEFT ANIMATION
 
     this.anims.create({
       key: "left",
@@ -291,7 +291,9 @@ export default class BaseScene extends Phaser.Scene {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
-    this.keyShift = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT); // Press shift to run
+    this.keyShift = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SHIFT
+    ); // Press shift to run
     this.keySpaceBar = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     ); // fire rocket
@@ -375,6 +377,10 @@ export default class BaseScene extends Phaser.Scene {
     // Update UI
     this.healthbar.setValue(this.player.health);
     this.healthbar.updateHealthFillImage();
+
+    if (this.healthbar.getValue() <= 0) {
+      this.scene.start(SCENE_KEYS.GAME_OVER);
+    }
   }
 
   onCollision(player, obstacle) {
