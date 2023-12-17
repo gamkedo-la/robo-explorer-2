@@ -192,7 +192,7 @@ export default class BaseScene extends Phaser.Scene {
         frames: [8, 9, 10, 11, 12],
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 5,
+      frameRate: 8,
     });
 
     this.anims.create({
@@ -218,17 +218,17 @@ export default class BaseScene extends Phaser.Scene {
         frames: [4, 3, 2, 1, 0],
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 5,
+      frameRate: 8,
     });
 
     // RUN RIGHT ANIMATION
     this.anims.create({
       key: "runRight",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [39, 40, 41, 42, 43],
+        frames: [39, 40, 41, 42, 43,44,45],
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 5,
+      frameRate: 10,
     });
 
     // FIRING Rockets
