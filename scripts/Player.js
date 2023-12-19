@@ -90,7 +90,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       // FIXME: this is never true
       if (!inputController.spaceDownLastFrame) this.fireRocket(true);
       console.log("test Fire Left");
+      
       inputController.spaceDownLastFrame = true;
+      this.anims.play("fire", true);
     } else {
       inputController.spaceDownLastFrame = false;
     }
@@ -98,14 +100,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // fire a rocket right
     if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
       // FIXME: this is never true
-
+      
       if (!inputController.spaceDownLastFrame) this.fireRocket(false);
+    
       inputController.spaceDownLastFrame = true;
-
-      console.log("test Fire Right");
       this.anims.play("fire", true);
+      console.log("test Fire Right");
+      
     } else {
       inputController.spaceDownLastFrame = false;
+    
     }
   } // end of handleInput function
 
