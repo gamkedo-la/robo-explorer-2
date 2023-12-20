@@ -197,7 +197,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.anims.create({
       key: "idle",
-      frames: this.anims.generateFrameNumbers("player", { start: 13, end: 14 }),
+      frames: this.anims.generateFrameNumbers("player", { start: 16, end: 18 }),
       frameRate: 5,
       repeat: -1,
     });
@@ -225,7 +225,17 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "runRight",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [39, 40, 41, 42, 43,44,45,46],
+        frames: [48, 49, 50, 51, 52,53,54,55],
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      frameRate: 10,
+    });
+
+    // RUN LEFT ANIMATION
+    this.anims.create({
+      key: "runLeft",
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [56, 57, 58, 59, 60,61,62,63],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 10,
