@@ -6,6 +6,7 @@ export default class PauseScene extends BaseScene {
   }
 
   create() {
+	this.add.rectangle(400, 300, 800, 600, 0xEEEEEE);
     this.add.text(200, 200, "PAUSED", {
       fontSize: "32px",
       fill: "#000",
