@@ -1,3 +1,5 @@
+import BaseScene from "./BaseScene.js";
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
   
@@ -79,6 +81,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   //   if (this.body.touching.down) {
   //     this.isJumping = false;
   //  }
+
+  if (this.body.touching.down) {
+    this.isJumping = false;
+    console.log("Test jump limit")
+  }
+
     if (jumWKey) {
       
       this.setVelocityY(-this.jumpForce);

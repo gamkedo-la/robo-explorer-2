@@ -390,7 +390,13 @@ export default class BaseScene extends Phaser.Scene {
       this.scene.pause();
     }
 
+    // if(this.player.body.touching.down){
+    //   console.log("jump limit test");
+    //   this.isJumping = false;
+    // }
     this.player.handleInput(this.cursors, this, audioManager);
+
+   
 
     // Update UI
     this.healthbar.setValue(this.player.health);
