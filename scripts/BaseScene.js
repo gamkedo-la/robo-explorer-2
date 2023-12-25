@@ -155,7 +155,7 @@ export default class BaseScene extends Phaser.Scene {
     audioManager.init(this);
 
     // PLAYER
-    const PlayerPositionY = 10;
+    const PlayerPositionY = 400;
     const PlayerPositionX = 50;
 
     // Obstacle
