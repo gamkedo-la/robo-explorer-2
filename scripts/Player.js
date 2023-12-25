@@ -26,7 +26,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.isJumping = false;
     this.reloadFrames = 0;
+   
   }
+
 
   handleInput(
     cursors,
@@ -70,10 +72,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("idle", true);
     }// Stop moving
     */
-    let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
+    // let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
+
+    let jumWKey = cursors.up.isDown || inputController.keyUp.isDown  ;
+
+  //   if (this.body.touching.down) {
+  //     this.isJumping = false;
+  //  }
     if (jumWKey) {
+      
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
+      
 
       if (!this.isJumping) {
         audioManager.playSound("jump");

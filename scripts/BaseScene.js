@@ -98,7 +98,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
     console.log("Test if Spikes is working!");
-    return spike.create(100, 550, "spikes").setScale(1).refreshBody();
+    return spike.create(300, 550, "spikes").setScale(1).refreshBody();
   }
 
   collectBomb(player, bomb) {
@@ -360,7 +360,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.animateClouds();
-
+   
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
