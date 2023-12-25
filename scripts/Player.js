@@ -76,31 +76,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     */
     // let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
 
-    let jumWKey = cursors.up.isDown || inputController.keyUp.isDown  ;
+    let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
+      
+      
+      
+    
 
   //   if (this.body.touching.down) {
   //     this.isJumping = false;
   //  }
 
-  if (this.body.touching.down) {
-    this.isJumping = false;
-    console.log("Test jump limit")
-  }
+  // if (this.body.touching.down) {
+  //   this.isJumping = false;
+  //   console.log("Test jump limit")
+  // }
 
-    if (jumWKey) {
-      
-      this.setVelocityY(-this.jumpForce);
-      this.anims.play("up", true);
-      
-
-      if (!this.isJumping) {
-        audioManager.playSound("jump");
-        this.isJumping = true;
-      }
-    } else if (cursors.down.isDown || inputController.keyS.isDown) {
-      this.setVelocityY(160);
-      this.anims.play("down", true);
-    }
+    
 
     if (cursors.up.isUp) {
       audioManager.stopSound("jump");
@@ -132,6 +123,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else {
       inputController.spaceDownLastFrame = false;
     
+    }
+    if (jumpWKey) {
+    
+      this.setVelocityY(-this.jumpForce);
+      this.anims.play("up", true);
+      
+
+      if (!this.isJumping) {
+        audioManager.playSound("jump");
+        this.isJumping = true;
+      }
+    } else if (cursors.down.isDown || inputController.keyS.isDown) {
+      this.setVelocityY(160);
+      this.anims.play("down", true);
     }
   } // end of handleInput function
 

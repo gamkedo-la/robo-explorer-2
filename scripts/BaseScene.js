@@ -360,7 +360,10 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.animateClouds();
-   
+    if (this.player.body.touching.down) {
+      this.isJumping = false;
+       console.log("Test jump limit")
+     }
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
