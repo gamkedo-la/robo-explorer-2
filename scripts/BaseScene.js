@@ -250,11 +250,11 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [26, 27, 28],
+        frames: [34],
       }),
       // frames: [{ key: "player", frame: 1 }],
       // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
-      frameRate: 3,
+      frameRate: -1,
       // repeat: -1,
     });
 
@@ -360,10 +360,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.animateClouds();
-    if (this.player.body.touching.down) {
-      this.isJumping = false;
-       console.log("Test jump limit")
-     }
+  
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -398,7 +395,10 @@ export default class BaseScene extends Phaser.Scene {
     //   this.isJumping = false;
     // }
     this.player.handleInput(this.cursors, this, audioManager);
-
+    if (this.player.body.touching.down) {
+      this.isJumping = false;
+       console.log("Test jump limit")
+     }
    
 
     // Update UI

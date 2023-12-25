@@ -31,6 +31,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    
   }
 
+ 
 
   handleInput(
     cursors,
@@ -76,8 +77,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     */
     // let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
 
-    let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
-      
+   
       
       
     
@@ -86,16 +86,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   //     this.isJumping = false;
   //  }
 
-  // if (this.body.touching.down) {
-  //   this.isJumping = false;
-  //   console.log("Test jump limit")
-  // }
+  
 
     
 
     if (cursors.up.isUp) {
       audioManager.stopSound("jump");
-      this.isJumping = false;
+      
+         this.isJumping = false;
+       
+      
     }
 
     // fire a rocket left
@@ -124,7 +124,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       inputController.spaceDownLastFrame = false;
     
     }
-    if (jumpWKey) {
+
+    let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
+      
+    if (jumpWKey ) {
     
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
@@ -138,7 +141,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityY(160);
       this.anims.play("down", true);
     }
-  } // end of handleInput function
+  
+
+  }// end of handleInput function
 
   fireRocket(toLeft) {
     if (this.reloadFrames > 0) {
