@@ -74,7 +74,7 @@ export default class BaseScene extends Phaser.Scene {
   cutscene1() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
-    storyScene1.create(400, 490, "comicStrip1").setScale(0.3).refreshBody();
+    storyScene1.create(400, 300, "comicStrip1").setScale(0.2).refreshBody();
     console.log("Test if cutscene is working");
   }
 
@@ -394,11 +394,10 @@ export default class BaseScene extends Phaser.Scene {
     //   console.log("jump limit test");
     //   this.isJumping = false;
     // }
+
+    
     this.player.handleInput(this.cursors, this, audioManager);
-    if (this.player.body.touching.down) {
-      this.isJumping = false;
-       console.log("Test jump limit")
-     }
+    
    
 
     // Update UI
