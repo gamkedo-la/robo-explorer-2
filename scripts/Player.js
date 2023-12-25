@@ -70,8 +70,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("idle", true);
     }// Stop moving
     */
-
-    if (cursors.up.isDown || inputController.keyUp.isDown) {
+    let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
+    if (jumWKey) {
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
 
