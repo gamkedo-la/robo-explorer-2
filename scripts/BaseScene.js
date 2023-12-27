@@ -74,7 +74,7 @@ export default class BaseScene extends Phaser.Scene {
   cutscene1() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
-    storyScene1.create(400, 490, "comicStrip1").setScale(0.3).refreshBody();
+    storyScene1.create(400, 300, "comicStrip1").setScale(0.2).refreshBody();
     console.log("Test if cutscene is working");
   }
 
@@ -97,12 +97,17 @@ export default class BaseScene extends Phaser.Scene {
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
-    spike.create(100, 550, "spikes").setScale(1).refreshBody();
     console.log("Test if Spikes is working!");
+    return spike.create(300, 550, "spikes").setScale(1).refreshBody();
   }
 
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
+  }
+
+  hitBySpike(player, spike) {
+    player.takeDamage(1);
+    this.healthbar.setValue(this.player.health);
   }
 
   initClouds() {
@@ -150,7 +155,7 @@ export default class BaseScene extends Phaser.Scene {
     audioManager.init(this);
 
     // PLAYER
-    const PlayerPositionY = 10;
+    const PlayerPositionY = 400;
     const PlayerPositionX = 50;
 
     // Obstacle
@@ -225,7 +230,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "runRight",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [48, 49, 50, 51, 52,53,54,55],
+        frames: [48, 49, 50, 51, 52, 53, 54, 55],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 10,
@@ -235,7 +240,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "runLeft",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [56, 57, 58, 59, 60,61,62,63],
+        frames: [56, 57, 58, 59, 60, 61, 62, 63],
       }),
       // frames: [{ key: "player", frame: 1 }],
       frameRate: 10,
@@ -245,11 +250,11 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [26,27,28],
+        frames: [34],
       }),
       // frames: [{ key: "player", frame: 1 }],
       // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
-      frameRate: 3,
+      frameRate: -1,
       // repeat: -1,
     });
 
@@ -271,6 +276,8 @@ export default class BaseScene extends Phaser.Scene {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
 
+    let spike = this.spikes();
+
     // Test for creating rocket
 
     // Collisions Code
@@ -289,6 +296,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
+    this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
 
     this.initInputs();
   }
@@ -352,7 +360,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.animateClouds();
-
+  
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -382,7 +390,15 @@ export default class BaseScene extends Phaser.Scene {
       this.scene.pause();
     }
 
+    // if(this.player.body.touching.down){
+    //   console.log("jump limit test");
+    //   this.isJumping = false;
+    // }
+
+    
     this.player.handleInput(this.cursors, this, audioManager);
+    
+   
 
     // Update UI
     this.healthbar.setValue(this.player.health);

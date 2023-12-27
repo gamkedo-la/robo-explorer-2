@@ -1,3 +1,5 @@
+import BaseScene from "./BaseScene.js";
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
   
@@ -26,7 +28,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.isJumping = false;
     this.reloadFrames = 0;
+   
   }
+
+ 
 
   handleInput(
     cursors,
@@ -70,23 +75,27 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("idle", true);
     }// Stop moving
     */
+    // let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
 
-    if (cursors.up.isDown || inputController.keyUp.isDown) {
-      this.setVelocityY(-this.jumpForce);
-      this.anims.play("up", true);
+   
+      
+      
+    
 
-      if (!this.isJumping) {
-        audioManager.playSound("jump");
-        this.isJumping = true;
-      }
-    } else if (cursors.down.isDown || inputController.keyS.isDown) {
-      this.setVelocityY(160);
-      this.anims.play("down", true);
-    }
+  //   if (this.body.touching.down) {
+  //     this.isJumping = false;
+  //  }
+
+  
+
+    
 
     if (cursors.up.isUp) {
       audioManager.stopSound("jump");
-      this.isJumping = false;
+      
+         this.isJumping = false;
+       
+      
     }
 
     // fire a rocket left
@@ -115,7 +124,26 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       inputController.spaceDownLastFrame = false;
     
     }
-  } // end of handleInput function
+
+    let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
+      
+    if (jumpWKey ) {
+    
+      this.setVelocityY(-this.jumpForce);
+      this.anims.play("up", true);
+      
+
+      if (!this.isJumping) {
+        audioManager.playSound("jump");
+        this.isJumping = true;
+      }
+    } else if (cursors.down.isDown || inputController.keyS.isDown) {
+      this.setVelocityY(160);
+      this.anims.play("down", true);
+    }
+  
+
+  }// end of handleInput function
 
   fireRocket(toLeft) {
     if (this.reloadFrames > 0) {
