@@ -127,7 +127,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
       
-    if (jumpWKey ) {
+    if (jumpWKey) {
     
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
