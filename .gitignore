@@ -20,3 +20,4 @@ scripts/tsgen/test/output.txt
 
 plugins/spine*/spine-runtimes/
 .vs/slnx.sqlite
+.vs/VSWorkspaceState.json
