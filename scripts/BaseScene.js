@@ -63,7 +63,7 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Player/playerSpriteSheet.png",
       {
         frameWidth: 132,
-        frameHeight: 132,
+        frameHeight: 131,
       }
     );
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
@@ -177,7 +177,8 @@ export default class BaseScene extends Phaser.Scene {
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
        frames: this.anims.generateFrameNumbers("player", {
-        frames: [14],
+        // frames: [14], working
+        frames: [65]
          
        }),
       frameRate: 15,
