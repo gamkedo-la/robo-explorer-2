@@ -175,8 +175,12 @@ export default class BaseScene extends Phaser.Scene {
 
     this.anims.create({
       key: "up",
-      frames: [{ key: "player", frame: 6 }],
-      frameRate: 5,
+      //frames: [{ key: "player", frames: 64 }],
+       frames: this.anims.generateFrameNumbers("player", {
+        frames: [63],
+         
+       }),
+      frameRate: 15,
     });
 
     this.anims.create({
@@ -246,6 +250,19 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 10,
     });
 
+
+    // JUMP Animation
+    /*
+    this.anims.create({
+      key: "playerJump",
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [64, 65],
+      }),
+      
+      frameRate: 8,
+    });
+
+*/
     // FIRING Rockets
     this.anims.create({
       key: "fire",
