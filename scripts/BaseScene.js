@@ -265,11 +265,23 @@ export default class BaseScene extends Phaser.Scene {
     });
 
 */
-    // FIRING Rockets
+    // FIRING Rockets Right
     this.anims.create({
-      key: "fire",
+      key: "fireRight",
       frames: this.anims.generateFrameNumbers("player", {
         frames: [34],
+      }),
+      // frames: [{ key: "player", frame: 1 }],
+      // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
+      frameRate: -1,
+      // repeat: -1,
+    });
+
+
+    this.anims.create({
+      key: "fireLeft",
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [35],
       }),
       // frames: [{ key: "player", frame: 1 }],
       // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
