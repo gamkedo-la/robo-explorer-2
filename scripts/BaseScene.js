@@ -46,7 +46,7 @@ export default class BaseScene extends Phaser.Scene {
     );
     this.load.image(
       "comicStrip1",
-      "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/comicStrip1.png"
+      "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/comicStrip2.png"
     );
     this.load.image(
       "buildingVan",
