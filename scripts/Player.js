@@ -131,14 +131,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (jumpWKey) {
     
       this.setVelocityY(-this.jumpForce);
+    /*NOT WORKING
+      if(cursors.left.isDown && cursors.up.isDown){
+        this.anims.play("upLeft", true);
+      }else{
+        this.anims.play("up", true);
+      }
+      */
       this.anims.play("up", true);
-      // this.anims.play("playerJump", true);
 
       if (!this.isJumping) {
         audioManager.playSound("jump");
         this.isJumping = true;
+       
       }
     } else if (cursors.down.isDown || inputController.keyS.isDown) {
+    
       this.setVelocityY(160);
       this.anims.play("down", true);
     }
