@@ -45,8 +45,8 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/IntroScene/roadsand.png"
     );
     this.load.image(
-      "comicStrip1",
-      "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/comicStrip2.png"
+      "ComicStory3",
+      "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/ComicStory3.png"
     );
     this.load.image(
       "buildingVan",
@@ -74,7 +74,7 @@ export default class BaseScene extends Phaser.Scene {
   cutscene1() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
-    storyScene1.create(400, 300, "comicStrip1").setScale(0.2).refreshBody();
+    storyScene1.create(390.5, 300, "ComicStory3").setScale(0.38).refreshBody();
     console.log("Test if cutscene is working");
   }
 
