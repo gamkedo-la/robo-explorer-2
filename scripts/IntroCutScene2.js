@@ -7,7 +7,7 @@ export default class IntroCutScene extends BaseScene {
   }
 
   create() {
-    this.cutscene1();
+    this.cutscene2();
     super.create();
   }
    
