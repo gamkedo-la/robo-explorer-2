@@ -3,7 +3,7 @@ import BaseScene from "./BaseScene.js";
 
 export default class IntroCutScene extends BaseScene {
   constructor() {
-    super("IntroCutScene", "IntroCutScene2");
+    super("IntroCutScene2", "TestArea");
   }
 
   create() {
