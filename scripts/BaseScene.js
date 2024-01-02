@@ -62,6 +62,9 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
+
+    // ENEMIES
+    this.load.image("killerBee", "assets/Artwork/Enemies/Enemy1/killerBee2.png");
     this.load.spritesheet(
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
@@ -110,6 +113,15 @@ export default class BaseScene extends Phaser.Scene {
     spike = this.physics.add.staticGroup();
     console.log("Test if Spikes is working!");
     return spike.create(300, 550, "spikes").setScale(1).refreshBody();
+  }
+
+
+  
+  killerBee() {
+    var killerBee;
+    killerBee = this.physics.add.staticGroup();
+    console.log("Test if KillerBee is working!");
+    return killerBee.create(300, 450, "killerBee").setScale(1).refreshBody();
   }
 
   collectBomb(player, bomb) {

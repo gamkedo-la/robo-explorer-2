@@ -13,7 +13,7 @@ export default class TestArea extends BaseScene {
     this.platform();
     
     // this.spikes();
-    
+    this.killerBee();
     super.create();
 
     let particleOptions = {
