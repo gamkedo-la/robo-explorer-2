@@ -116,13 +116,6 @@ export default class BaseScene extends Phaser.Scene {
   }
 
 
-  
-  killerBee() {
-    var killerBee;
-    killerBee = this.physics.add.staticGroup();
-    console.log("Test if KillerBee is working!");
-    return killerBee.create(300, 450, "killerBee").setScale(0.3).refreshBody();
-  }
 
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
@@ -330,7 +323,7 @@ export default class BaseScene extends Phaser.Scene {
 
     // TEST Bomb
     this.obstacle = this.physics.add.sprite(
-      PlayerPositionX + 710,
+      PlayerPositionX + 610,
       PlayerPositionY,
       "bomb"
     );
@@ -345,6 +338,20 @@ export default class BaseScene extends Phaser.Scene {
     bomb.children.iterate(function (child) {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
+
+    // ENEMY BEE
+    let killerBee;
+    killerBee = this.physics.add.group({
+      key: "killerBee",
+      repeat: 5,
+      setXY: { x: 12, y: 0, stepX: 70 },
+    });
+
+    killerBee.children.iterate(function (child) {
+      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
+
+
 
     let spike = this.spikes();
 
