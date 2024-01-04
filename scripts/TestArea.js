@@ -11,7 +11,8 @@ export default class TestArea extends BaseScene {
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
     this.platform();
-    
+     
+    this.platform2();
     // this.spikes();
     this.killerBee();
     super.create();
