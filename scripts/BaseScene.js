@@ -108,6 +108,13 @@ export default class BaseScene extends Phaser.Scene {
 
   // TRAPS and ENEMIES
 
+  killerBee() {
+    var spike;
+    spike = this.physics.add.staticGroup();
+    console.log("Test if Spikes is working!");
+    return spike.create(300, 550, "spikes").setScale(1).refreshBody();
+  }
+
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
@@ -340,16 +347,16 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // ENEMY BEE
-    let killerBee;
-    killerBee = this.physics.add.group({
-      key: "killerBee",
-      repeat: 5,
-      setXY: { x: 12, y: 0, stepX: 70 },
-    });
+    // let killerBee;
+    // killerBee = this.physics.add.group({
+    //   key: "killerBee",
+    //   repeat: 5,
+    //   setXY: { x: 12, y: 0, stepX: 70 },
+    // });
 
-    killerBee.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    });
+    // killerBee.children.iterate(function (child) {
+    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    // });
 
 
 
