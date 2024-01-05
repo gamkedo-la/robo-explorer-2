@@ -97,17 +97,21 @@ export default class BaseScene extends Phaser.Scene {
 //PLATFORMS
   platform() {
     var platforms;
-    platforms = this.physics.add.staticGroup();
-    platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
-    console.log("Test if platform function is working");
-  }
-
-  platform2() {
     var platforms2;
+    platforms = this.physics.add.staticGroup();
     platforms2 = this.physics.add.staticGroup();
+    platforms2 = this.physics.add.staticGroup();
+    platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
     platforms2.create(800, 100, "platform2").setScale(1).refreshBody();
     console.log("Test if platform function is working");
   }
+
+  // platform2() {
+  //   var platforms2;
+  //   platforms2 = this.physics.add.staticGroup();
+  //   platforms2.create(800, 100, "platform2").setScale(1).refreshBody();
+  //   console.log("Test if platform function is working");
+  // }
 
   building() {
     var building;
@@ -212,10 +216,11 @@ export default class BaseScene extends Phaser.Scene {
       //frames: [{ key: "player", frames: 64 }],
        frames: this.anims.generateFrameNumbers("player", {
         
-        frames: [66]
+        frames: [64,65,66]
          
        }),
-      frameRate: 100,
+      frameRate: 10,
+    
    
     });
 

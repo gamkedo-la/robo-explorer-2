@@ -12,7 +12,7 @@ export default class TestArea extends BaseScene {
     
     this.platform();
      
-    this.platform2();
+    
     // this.spikes();
     this.killerBee();
     super.create();
