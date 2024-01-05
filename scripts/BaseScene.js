@@ -94,17 +94,6 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if cutscene2 is working");
   }
 
-//PLATFORMS
-  platform() {
-    var platforms;
-    var platforms2;
-    platforms = this.physics.add.staticGroup();
-    platforms2 = this.physics.add.staticGroup();
-    platforms2 = this.physics.add.staticGroup();
-    platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
-    platforms2.create(800, 100, "platform2").setScale(1).refreshBody();
-    console.log("Test if platform function is working");
-  }
 
   // platform2() {
   //   var platforms2;
@@ -137,6 +126,17 @@ export default class BaseScene extends Phaser.Scene {
   }
 
 
+//PLATFORMS
+platform() {
+  var platforms;
+  var platforms2;
+  platforms = this.physics.add.staticGroup();
+  
+  platforms2 = this.physics.add.staticGroup();
+  platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
+  platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
+  console.log("Test if platform function is working");
+}
 
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
