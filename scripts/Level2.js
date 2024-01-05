@@ -11,7 +11,7 @@ export default class Level2 extends BaseScene {
     create()
     {
         
-        // this.platform();
+        
         this.building();
         super.create();
 

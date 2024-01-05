@@ -112,7 +112,7 @@ export default class BaseScene extends Phaser.Scene {
   building() {
     var building;
     building = this.physics.add.staticGroup();
-    building.create(1000, 100, "buildingVan").setScale(1).refreshBody();
+    building.create(800, 100, "buildingVan").setScale(1).refreshBody();
     console.log("Test if Building Van will work!");
   }
 
@@ -211,7 +211,7 @@ export default class BaseScene extends Phaser.Scene {
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
        frames: this.anims.generateFrameNumbers("player", {
-        // frames: [14], working
+        
         frames: [66]
          
        }),
@@ -226,10 +226,10 @@ export default class BaseScene extends Phaser.Scene {
       //frames: [{ key: "player", frames: 64 }],
        frames: this.anims.generateFrameNumbers("player", {
         // frames: [14], working
-        frames: [66]
+        frames: [65]
          
        }),
-      frameRate: 100,
+      frameRate: 1,
    
     });
 
@@ -378,6 +378,7 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(
       this.player,
       this.obstacle,
+      
       this.onCollision,
       null,
       this
