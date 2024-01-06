@@ -193,4 +193,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.health = this.MAX_HEALTH;
     }
   }
+
+  collisionPlatform(){
+    this.physics.add.collider(this.player, platform);
+  }
+  
 } // The end of class

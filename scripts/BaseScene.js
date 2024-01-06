@@ -115,7 +115,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
     console.log("Test if Killerbee is working!");
-    return spike.create(300, 550, "killerBee").setScale(.5).refreshBody();
+    return spike.create(500, 550, "killerBee").setScale(.5).refreshBody();
   }
 
   spikes() {
@@ -129,11 +129,11 @@ export default class BaseScene extends Phaser.Scene {
 //PLATFORMS
 platform() {
   var platforms;
-  var platforms2;
+ 
   platforms = this.physics.add.staticGroup();
-  
-  platforms2 = this.physics.add.staticGroup();
   platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
+ var platforms2;
+  platforms2 = this.physics.add.staticGroup();
   platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
   console.log("Test if platform function is working");
 }
@@ -388,6 +388,8 @@ platform() {
       null,
       this
     );
+
+   
     console.log(this.nextLevelName);
 
     this.player.setBounce(0.2);
