@@ -45,6 +45,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (    inputController.keyShift.isDown && inputController.keyA.isDown) {
       this.setVelocityX(-160); // Move Left
       this.anims.play("runLeft", true);
+
     }else if (cursors.left.isDown || inputController.keyA.isDown){
       this.setVelocityX(-190); // Move Left
       this.anims.play("left", true);
@@ -52,6 +53,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     else if (inputController.keyShift.isDown && inputController.keyD.isDown){
       this.setVelocityX(190); // Move right
       this.anims.play("runRight", true);
+      
     }else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setVelocityX(160); // Move right
       this.anims.play("right", true);

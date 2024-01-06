@@ -28,7 +28,7 @@ export default class TestArea extends BaseScene {
       lifespan: { min: 500, max: 2500 },
       blendMode: "ADD", // lighten
     };
-    let particles = this.add.particles(500, 550, "particles", particleOptions);
+    let particles = this.add.particles(10, 550, "particles", particleOptions);
     particles.setDepth(999);
   }
 }
