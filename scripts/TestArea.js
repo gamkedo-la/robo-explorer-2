@@ -41,7 +41,7 @@ export default class TestArea extends BaseScene {
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
     this.platform();
-    this.animateClouds();
+     
     
     // this.spikes();
     this.killerBee();
@@ -63,5 +63,7 @@ export default class TestArea extends BaseScene {
   }
 
   
- 
+  // update() {
+  //   this.animateClouds();
+  // }
 }

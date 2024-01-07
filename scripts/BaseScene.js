@@ -236,7 +236,7 @@ platform() {
         frames: [8, 9, 10, 11, 12],
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 8,
+      frameRate: 10,
     });
 
     this.anims.create({
@@ -262,7 +262,7 @@ platform() {
         frames: [4, 3, 2, 1, 0],
       }),
       // frames: [{ key: "player", frame: 1 }],
-      frameRate: 8,
+      frameRate: 10,
     });
 
     // RUN RIGHT ANIMATION
