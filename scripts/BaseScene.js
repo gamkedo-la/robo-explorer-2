@@ -115,7 +115,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
     console.log("Test if Killerbee is working!");
-    return spike.create(500, 550, "killerBee").setScale(.5).refreshBody();
+    return spike.create(500, 550, "killerBee").setScale(.2).refreshBody();
   }
 
   spikes() {
