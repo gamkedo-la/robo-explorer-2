@@ -122,7 +122,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
     console.log("Test if Spikes is working!");
-    return spike.create(300, 550, "spikes").setScale(1).refreshBody();
+    return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
 
