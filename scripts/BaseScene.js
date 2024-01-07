@@ -6,6 +6,7 @@ import Healthbar from "./UI/Healthbar.js";
 export default class BaseScene extends Phaser.Scene {
   cursors;
   isPaused = false;
+  muteButtonIsDown = false;
 
   sceneKeyArray = Object.values(SCENE_KEYS);
   keyUp;
@@ -62,10 +63,16 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
-    this.load.image("platform2", "assets/Artwork/Environment/Levels/IntroScene/roadPlatform.png");
+    this.load.image(
+      "platform2",
+      "assets/Artwork/Environment/Levels/IntroScene/roadPlatform.png"
+    );
 
     // ENEMIES
-    this.load.image("killerBee", "assets/Artwork/Enemies/Enemy1/killerBee2.png");
+    this.load.image(
+      "killerBee",
+      "assets/Artwork/Enemies/Enemy1/killerBee2.png"
+    );
     this.load.spritesheet(
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
@@ -94,7 +101,6 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if cutscene2 is working");
   }
 
-
   // platform2() {
   //   var platforms2;
   //   platforms2 = this.physics.add.staticGroup();
@@ -115,7 +121,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
     console.log("Test if Killerbee is working!");
-    return spike.create(500, 550, "killerBee").setScale(.2).refreshBody();
+    return spike.create(500, 550, "killerBee").setScale(0.2).refreshBody();
   }
 
   spikes() {
@@ -125,18 +131,17 @@ export default class BaseScene extends Phaser.Scene {
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
+  //PLATFORMS
+  platform() {
+    var platforms;
 
-//PLATFORMS
-platform() {
-  var platforms;
- 
-  platforms = this.physics.add.staticGroup();
-  platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
- var platforms2;
-  platforms2 = this.physics.add.staticGroup();
-  platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
-  console.log("Test if platform function is working");
-}
+    platforms = this.physics.add.staticGroup();
+    platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
+    var platforms2;
+    platforms2 = this.physics.add.staticGroup();
+    platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
+    console.log("Test if platform function is working");
+  }
 
   collectBomb(player, bomb) {
     bomb.disableBody(true, true);
@@ -147,10 +152,7 @@ platform() {
     this.healthbar.setValue(this.player.health);
   }
 
-
   create() {
-
-
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -193,14 +195,10 @@ platform() {
     this.anims.create({
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
-       frames: this.anims.generateFrameNumbers("player", {
-        
-        frames: [64,65,66]
-         
-       }),
+      frames: this.anims.generateFrameNumbers("player", {
+        frames: [64, 65, 66],
+      }),
       frameRate: 10,
-    
-   
     });
 
     // JUMP LEFT
@@ -208,15 +206,12 @@ platform() {
     this.anims.create({
       key: "upLeft",
       //frames: [{ key: "player", frames: 64 }],
-       frames: this.anims.generateFrameNumbers("player", {
+      frames: this.anims.generateFrameNumbers("player", {
         // frames: [14], working
-        frames: [65]
-         
-       }),
+        frames: [65],
+      }),
       frameRate: 1,
-   
     });
-
 
     this.anims.create({
       key: "down",
@@ -285,7 +280,6 @@ platform() {
       frameRate: 10,
     });
 
-
     // JUMP Animation
     /*
     this.anims.create({
@@ -309,7 +303,6 @@ platform() {
       frameRate: -1,
       // repeat: -1,
     });
-
 
     this.anims.create({
       key: "fireLeft",
@@ -352,8 +345,6 @@ platform() {
     //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     // });
 
-
-
     let spike = this.spikes();
 
     // Test for creating rocket
@@ -362,13 +353,12 @@ platform() {
     this.physics.add.collider(
       this.player,
       this.obstacle,
-      
+
       this.onCollision,
       null,
       this
     );
 
-   
     console.log(this.nextLevelName);
 
     this.player.setBounce(0.2);
@@ -390,6 +380,7 @@ platform() {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Move down
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P); // Pause game
+    this.keyM = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M); // Mute game
     this.keyShift = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SHIFT
     ); // Press shift to run
@@ -430,11 +421,7 @@ platform() {
     ];
   }
 
-
-
   update() {
-    
-  
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -464,15 +451,22 @@ platform() {
       this.scene.pause();
     }
 
+    // Muting the game
+    if (this.keyM.isDown && !this.muteButtonIsDown) {
+      globalState.muted = !globalState.muted;
+      this.muteButtonIsDown = true;
+    }
+
+    if (this.keyM.isUp) {
+      this.muteButtonIsDown = false;
+    }
+
     // if(this.player.body.touching.down){
     //   console.log("jump limit test");
     //   this.isJumping = false;
     // }
 
-    
     this.player.handleInput(this.cursors, this, audioManager);
-    
-   
 
     // Update UI
     this.healthbar.setValue(this.player.health);
