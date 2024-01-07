@@ -6,12 +6,42 @@ export default class TestArea extends BaseScene {
     super("TestArea", "Level1");
   }
 
+  animateClouds() {
+    this.cloudsbg.x += this.cloudsSpeed;
+    this.cloudsbg2.x += this.cloudsSpeed;
+    if (this.cloudsbg.x < -this.cloudsWidth / 2)
+      this.cloudsbg.x += this.cloudsWidth * 2;
+    if (this.cloudsbg2.x < -this.cloudsWidth / 2)
+      this.cloudsbg2.x += this.cloudsWidth * 2;
+  }
+  initClouds() {
+    // we use two images so we can tile them as the camera moves
+    // and not get any gaps or seams as it loops around
+
+    this.cloudsWidth = 512 * 2; // hardcoded image size to tile
+    this.cloudsSpeed = -0.5; // only works in negative direction
+
+    this.cloudsbg = this.add.image(0, 0, "clouds");
+    this.cloudsbg.setDepth(0); // handy for future use
+    this.cloudsbg.setScale(2); // 2x pixels
+    this.cloudsbg.alpha = 1; // opacity
+    this.cloudsbg.x = 0; // start on screen
+    this.cloudsbg.y = -56; // hardcoded to not overlap road
+
+    this.cloudsbg2 = this.add.image(0, 0, "clouds");
+    this.cloudsbg2.setDepth(0);
+    this.cloudsbg2.setScale(2);
+    this.cloudsbg2.alpha = 1;
+    this.cloudsbg2.x = this.cloudsWidth;
+    this.cloudsbg2.y = -56;
+  }
   create() {
+    this.initClouds();
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
     this.platform();
-     
+    this.animateClouds();
     
     // this.spikes();
     this.killerBee();
@@ -31,4 +61,7 @@ export default class TestArea extends BaseScene {
     let particles = this.add.particles(10, 550, "particles", particleOptions);
     particles.setDepth(999);
   }
+
+  
+ 
 }
