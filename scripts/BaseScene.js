@@ -77,7 +77,7 @@ export default class BaseScene extends Phaser.Scene {
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
       {
-        frameWidth: 132,
+        frameWidth: 132.5,
         frameHeight: 131,
       }
     );
@@ -216,7 +216,7 @@ export default class BaseScene extends Phaser.Scene {
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [64, 65, 66],
+        frames: [67],
       }),
       frameRate: 10,
     });
