@@ -81,6 +81,14 @@ export default class BaseScene extends Phaser.Scene {
         frameHeight: 131,
       }
     );
+    this.load.spritesheet(
+      "platform",
+      "assets/Artwork/Environment/Items/platform.png",
+      {
+        frameWidth: 96,
+        frameHeight: 64,
+      }
+    );
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
   }
 
@@ -141,6 +149,18 @@ export default class BaseScene extends Phaser.Scene {
     platforms2 = this.physics.add.staticGroup();
     platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
     console.log("Test if platform function is working");
+  }
+
+  movingPlatform() {
+    var movingPlatforms;
+
+    movingPlatforms = this.physics.add.staticGroup();
+    var movingPlatform = movingPlatforms.create(700, 300, "platform").setScale(1).refreshBody().setImmovable(true);
+    movingPlatform.anims.play("platformLight", true);
+
+    console.log("Test if movingPlatform function is working");
+
+    return movingPlatform;
   }
 
   collectBomb(player, bomb) {
@@ -345,7 +365,17 @@ export default class BaseScene extends Phaser.Scene {
     //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     // });
 
+    // PLATFORM LIGHT ANIMATION
+    this.anims.create({
+      key: "platformLight",
+      frames: this.anims.generateFrameNumbers("platform"),
+      frameRate: 2,
+      repeat: -1
+    });
+
     let spike = this.spikes();
+
+    let movingPlatform = this.movingPlatform();
 
     // Test for creating rocket
 
@@ -368,6 +398,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
+    this.physics.add.collider(this.player, [ movingPlatform ]);
 
     this.initInputs();
   }
