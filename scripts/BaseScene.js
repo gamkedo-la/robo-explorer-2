@@ -228,9 +228,9 @@ export default class BaseScene extends Phaser.Scene {
       //frames: [{ key: "player", frames: 64 }],
       frames: this.anims.generateFrameNumbers("player", {
         // frames: [14], working
-        frames: [65],
+        frames: [72],
       }),
-      frameRate: 1,
+      frameRate: 10,
     });
 
     this.anims.create({
