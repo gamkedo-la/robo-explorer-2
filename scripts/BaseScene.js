@@ -77,7 +77,7 @@ export default class BaseScene extends Phaser.Scene {
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
       {
-        frameWidth: 132.5,
+        frameWidth: 132,
         frameHeight: 131,
       }
     );
