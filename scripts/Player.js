@@ -1,4 +1,5 @@
 import BaseScene from "./BaseScene.js";
+import fx from "./Fx.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
@@ -64,10 +65,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // fire a rocket left
     if (inputController.keySpaceBar.isDown && inputController.keyA.isDown) {
-      // FIXME: this is never true
       if (!inputController.spaceDownLastFrame) this.fireRocket(true);
       console.log("test Fire Left");
-
       inputController.spaceDownLastFrame = true;
       this.anims.play("fireLeft", true);
     } else {
@@ -76,13 +75,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // fire a rocket right
     if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
-      // FIXME: this is never true
-
       if (!inputController.spaceDownLastFrame) this.fireRocket(false);
-
+      console.log("test Fire Right");
       inputController.spaceDownLastFrame = true;
       this.anims.play("fireRight", true);
-      console.log("test Fire Right");
     } else {
       inputController.spaceDownLastFrame = false;
     }
@@ -93,6 +89,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.setFlipX(false);
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
+
+      fx.smoke(this.x,this.y,this.sceneRef); // rocket pack smoke
 
       if (!this.isJumping) {
         audioManager.playSound("jump");
