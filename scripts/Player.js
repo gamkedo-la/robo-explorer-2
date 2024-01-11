@@ -2,7 +2,7 @@ import BaseScene from "./BaseScene.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
-  
+
   // JUMPING
   isJumping;
   jumpForce = 200;
@@ -28,10 +28,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.isJumping = false;
     this.reloadFrames = 0;
-   
   }
-
- 
 
   handleInput(
     cursors,
@@ -42,62 +39,27 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.reloadFrames--;
     }
     // WALK Movement
-    if (    inputController.keyShift.isDown && inputController.keyA.isDown) {
+    if (inputController.keyShift.isDown && inputController.keyA.isDown) {
       this.setVelocityX(-160); // Move Left
       this.anims.play("runLeft", true);
-
-    }else if (cursors.left.isDown || inputController.keyA.isDown){
+    } else if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setVelocityX(-190); // Move Left
       this.anims.play("left", true);
-    } 
-    else if (inputController.keyShift.isDown && inputController.keyD.isDown){
+    } else if (inputController.keyShift.isDown && inputController.keyD.isDown) {
       this.setVelocityX(190); // Move right
       this.anims.play("runRight", true);
-      
-    }else if (cursors.right.isDown || inputController.keyD.isDown) {
+    } else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setVelocityX(160); // Move right
       this.anims.play("right", true);
-    }
-   else {
-      this.setVelocityX(0); 
-      this.anims.play("idle", true);
-    }// Stop moving
-
-    /*
-
-    // Run movement
-    if (cursors.left.isDown || inputController.keyA.isDown && inputController.keyShift.isDown) {
-      this.setVelocityX(-160); // Move Left
-      this.anims.play("runLeft", true);
-    } else if (cursors.right.isDown || inputController.keyD.isDown && inputController.keyShift.isDown) {
-      this.setVelocityX(160); // Move right
-      this.anims.play("runRight", true);
     } else {
-      this.setVelocityX(0); 
+      this.setVelocityX(0);
       this.anims.play("idle", true);
-    }// Stop moving
-    */
-    // let jumWKey = cursors.up.isDown || inputController.keyUp.isDown && this.body.touching.down;
-
-   
-      
-      
-    
-
-  //   if (this.body.touching.down) {
-  //     this.isJumping = false;
-  //  }
-
-  
-
-    
+    } // Stop moving
 
     if (cursors.up.isUp) {
       audioManager.stopSound("jump");
-      
-         this.isJumping = false;
-       
-      
+
+      this.isJumping = false;
     }
 
     // fire a rocket left
@@ -105,10 +67,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       // FIXME: this is never true
       if (!inputController.spaceDownLastFrame) this.fireRocket(true);
       console.log("test Fire Left");
-     
+
       inputController.spaceDownLastFrame = true;
       this.anims.play("fireLeft", true);
-     
     } else {
       inputController.spaceDownLastFrame = false;
     }
@@ -116,52 +77,31 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // fire a rocket right
     if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
       // FIXME: this is never true
-      
+
       if (!inputController.spaceDownLastFrame) this.fireRocket(false);
-    
+
       inputController.spaceDownLastFrame = true;
       this.anims.play("fireRight", true);
       console.log("test Fire Right");
-      
     } else {
       inputController.spaceDownLastFrame = false;
-    
     }
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
-    
-      
+
     if (jumpWKey) {
       this.setFlipX(false);
       this.setVelocityY(-this.jumpForce);
-    /*NOT WORKING
-      if(cursors.left.isDown && cursors.up.isDown){
-        this.anims.play("upLeft", true);
-      }else{
-        this.anims.play("up", true);
-      }
-      */
-      
-
       this.anims.play("up", true);
 
       if (!this.isJumping) {
         audioManager.playSound("jump");
         this.isJumping = true;
-        
       }
-    // }else if(cursors.up.isDown && inputController.keyUp.isDown && inputController.keyA.isDown){
-    //   this.setFlipX(true);
-    
     } else if (cursors.down.isDown || inputController.keyS.isDown) {
-     
       this.setVelocityY(160);
-      // this.anims.play("down", true);
-      // this.anims.play("upLeft", true);
     }
-  
-
-  }// end of handleInput function
+  } // end of handleInput function
 
   fireRocket(toLeft) {
     if (this.reloadFrames > 0) {
@@ -201,8 +141,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  collisionPlatform(){
+  collisionPlatform() {
     this.physics.add.collider(this.player, platform);
   }
-  
 } // The end of class
