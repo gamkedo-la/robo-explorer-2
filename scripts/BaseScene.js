@@ -222,7 +222,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // JUMP LEFT
-
+    /*
     this.anims.create({
       key: "upLeft",
       //frames: [{ key: "player", frames: 64 }],
@@ -231,7 +231,7 @@ export default class BaseScene extends Phaser.Scene {
         frames: [72],
       }),
       frameRate: 10,
-    });
+    });*/
 
     this.anims.create({
       key: "down",
