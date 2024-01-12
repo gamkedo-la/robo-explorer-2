@@ -106,6 +106,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     } else if (jumpWKey && inputController.keyA.isDown) {
       this.setFlipX(true); 
+      fx.smoke(this.x,this.y,this.sceneRef); // rocket pack smoke
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
     }
