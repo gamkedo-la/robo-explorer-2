@@ -85,7 +85,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
 
-    if (jumpWKey) {
+    if (jumpWKey && inputController.keyD.isDown) {
       this.setFlipX(false);
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
@@ -96,9 +96,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         audioManager.playSound("jump");
         this.isJumping = true;
       }
-    } else if (cursors.down.isDown || inputController.keyS.isDown) {
+
+    } else if (jumpWKey && inputController.keyA.isDown) {
+      this.setFlipX(true); 
+      this.setVelocityY(-this.jumpForce);
+      this.anims.play("up", true);
+    }
+    else if (cursors.down.isDown || inputController.keyS.isDown ) {
+      
       this.setVelocityY(160);
     }
+    
   } // end of handleInput function
 
   fireRocket(toLeft) {
