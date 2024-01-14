@@ -6,6 +6,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   // JUMPING
   isJumping;
+  isInAir;
   jumpForce = 200;
   reloadFrames;
 
@@ -42,31 +43,37 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // WALK Movement
     if (inputController.keyShift.isDown && inputController.keyA.isDown) {
       this.setFlipX(true);
-
       this.setVelocityX(-160); // Move Left
-      // this.anims.play("runLeft", true);
-      this.anims.play("runRight", true);
+      if (this.isInAir == false) {
+        this.anims.play("runRight", true);
+      }
     } else if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setFlipX(true);
       this.setVelocityX(-190); // Move Left
-      // this.anims.play("left", true);
-      this.anims.play("right", true);
+      if (this.isInAir == false) {
+        this.anims.play("right", true);
+      }
     } else if (inputController.keyShift.isDown && inputController.keyD.isDown) {
       this.setFlipX(false);
       this.setVelocityX(190); // Move right
-      this.anims.play("runRight", true);
+      if (this.isInAir == false) {
+        this.anims.play("runRight", true);
+      }
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setFlipX(false);
       this.setVelocityX(160); // Move right
-      this.anims.play("right", true);
+      if (this.isInAir == false) {
+        this.anims.play("right", true);
+      }
     } else {
       this.setVelocityX(0);
-      this.anims.play("idle", true);
+      if(this.isInAir == false){
+        this.anims.play("idle", true);
+      }
     } // Stop moving
 
-    if (cursors.up.isUp) {
+    if (cursors.up.isUp || inputController.keyUp.isUp) {
       audioManager.stopSound("jump");
-
       this.isJumping = false;
     }
 
@@ -91,30 +98,29 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
+    if (jumpWKey) {
+      this.isInAir = true;
+    }
 
     if (jumpWKey && inputController.keyD.isDown) {
       this.setFlipX(false);
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
 
-      fx.smoke(this.x,this.y,this.sceneRef); // rocket pack smoke
+      fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
 
       if (!this.isJumping) {
         audioManager.playSound("jump");
         this.isJumping = true;
       }
-
     } else if (jumpWKey && inputController.keyA.isDown) {
-      this.setFlipX(true); 
-      fx.smoke(this.x + 40,this.y,this.sceneRef); // rocket pack smoke
+      this.setFlipX(true);
+      fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
       this.setVelocityY(-this.jumpForce);
       this.anims.play("up", true);
-    }
-    else if (cursors.down.isDown || inputController.keyS.isDown ) {
-      
+    } else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
-    
   } // end of handleInput function
 
   fireRocket(toLeft) {
@@ -156,6 +162,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   collisionPlatform() {
+    this.isInAir = false;
     this.physics.add.collider(this.player, platform);
   }
 } // The end of class

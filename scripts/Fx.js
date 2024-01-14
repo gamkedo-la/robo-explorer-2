@@ -7,7 +7,7 @@
 let fx = {
 
     init:function(scn) {
-        console.log("fx.init");
+        // console.log("fx.init");
         this.scene = scn;
         this.ps_smoke = this.scene.add.particles(0,0,"particles",
         {
@@ -24,7 +24,7 @@ let fx = {
         this.ps_smoke.setDepth(0)
     },
     smoke:function(x,y,scn) {
-        console.log("fx.smoke at "+x.toFixed(1)+","+y.toFixed(1));
+        // console.log("fx.smoke at "+x.toFixed(1)+","+y.toFixed(1));
         if (!this.scene) this.init(scn);
         this.ps_smoke.emitParticleAt(x-20,y+12); // offset for backpack location FIXME
     },

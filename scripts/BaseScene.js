@@ -216,7 +216,7 @@ export default class BaseScene extends Phaser.Scene {
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [67],
+        frames: [64,65,66,67],
       }),
       frameRate: 10,
     });
@@ -389,10 +389,21 @@ export default class BaseScene extends Phaser.Scene {
       this
     );
 
+    this.physics.world.on('worldbounds', (body, up, down, left, right) =>
+        {
+            const { gameObject } = body;
+
+            if (down) { 
+              this.player.isInAir = false; 
+              console.log("Touching Bottom");
+            }
+            
+        });
+
     console.log(this.nextLevelName);
 
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    // this.player.setBounce(0.2);
+    this.player.setCollideWorldBounds(true,1,1,true);
     this.obstacle.setCollideWorldBounds(true);
     // this.rocket.setCollideWorldBounds(true);
 
