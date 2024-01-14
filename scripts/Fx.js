@@ -23,6 +23,9 @@ let fx = {
         });
         this.ps_smoke.setDepth(0)
     },
+    forceReset() {
+        this.scene = null;
+    },
     smoke:function(x,y,scn) {
         // console.log("fx.smoke at "+x.toFixed(1)+","+y.toFixed(1));
         if (!this.scene) this.init(scn);

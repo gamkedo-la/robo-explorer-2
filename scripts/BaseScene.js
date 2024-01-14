@@ -2,6 +2,7 @@ import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
+import fx from "./Fx.js";
 
 export default class BaseScene extends Phaser.Scene {
   cursors;
@@ -522,6 +523,7 @@ export default class BaseScene extends Phaser.Scene {
   onCollision(player, obstacle) {
     console.log(this);
     console.log("Trying to load " + this.nextLevelName);
+    fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
   }
 }
