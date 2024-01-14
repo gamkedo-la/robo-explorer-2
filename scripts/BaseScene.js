@@ -402,8 +402,8 @@ export default class BaseScene extends Phaser.Scene {
 
     console.log(this.nextLevelName);
 
-    // this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true,1,1,true);
+    this.player.setBounce(0);
+    this.player.setCollideWorldBounds(true,0,0,true);
     this.obstacle.setCollideWorldBounds(true);
     // this.rocket.setCollideWorldBounds(true);
 
