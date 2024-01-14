@@ -43,7 +43,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.image(
       "roadsand",
-      "assets/Artwork/Environment/Levels/IntroScene/roadsand.png"
+      "assets/Artwork/Environment/Levels/IntroScene/roadSand.png"
     );
     this.load.image(
       "ComicStory3",
@@ -57,8 +57,8 @@ export default class BaseScene extends Phaser.Scene {
       "buildingVan",
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
-    this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
-    this.load.image("spikes", "assets/Artwork/Environment/Items/spikes.png");
+    this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
+    this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
@@ -71,7 +71,7 @@ export default class BaseScene extends Phaser.Scene {
     // ENEMIES
     this.load.image(
       "killerBee",
-      "assets/Artwork/Enemies/Enemy1/killerBee2.png"
+      "assets/Artwork/Enemies/Enemy1/KillerBee2.png"
     );
     this.load.spritesheet(
       "player",
