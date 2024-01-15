@@ -153,6 +153,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   movingPlatform() {
+     
     var movingPlatforms;
 
     movingPlatforms = this.physics.add.staticGroup();
