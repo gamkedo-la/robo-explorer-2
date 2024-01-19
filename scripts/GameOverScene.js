@@ -1,4 +1,5 @@
 import { SCENE_KEYS } from "./Constants.js";
+import fx from "./Fx.js";
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -33,6 +34,7 @@ export default class GameOverScene extends Phaser.Scene {
 
   update() {
     if (this.keyEnter.isDown) {
+      fx.forceReset();
       this.scene.start(SCENE_KEYS.LEVEL_1);
     }
   }
