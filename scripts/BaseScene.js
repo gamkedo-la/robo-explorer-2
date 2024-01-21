@@ -146,7 +146,7 @@ export default class BaseScene extends Phaser.Scene {
     var boss1;
     boss1 = this.physics.add.staticGroup();
     console.log("Test if Boss1 is working!");
-    return boss1.create(600, 650, "boss1").setScale(1).refreshBody();
+    return boss1.create(600, 350, "boss1").setScale(0.3).refreshBody();
   }
 
 
