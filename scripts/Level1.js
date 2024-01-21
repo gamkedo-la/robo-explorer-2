@@ -9,12 +9,13 @@ export default class Level1 extends BaseScene {
   
     create()
     {
-        
+        this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
         this.platform();
         this.building();
         this.spikes();
         this.boss1();
         super.create();
+        
 
         let particleOptions = {
           frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -31,5 +32,9 @@ export default class Level1 extends BaseScene {
         particles.setDepth(999);
     }
 
-
+   update(){
+    super.update();
+    this.foreground.tilePositionX -= 2;
+    // this.buildingVan.tilePositionX -= 6;
+   }
   }

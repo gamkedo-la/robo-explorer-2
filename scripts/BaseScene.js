@@ -42,10 +42,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
 
-    this.load.image(
-      "foreground",
-      "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
-    );
+   
     this.load.image(
       "ComicStory3",
       "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/ComicStory3.png"
@@ -99,6 +96,10 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
+    this.load.image(
+      "foreground",
+      "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
+    );
   }
 
   // Test Platforms
@@ -191,10 +192,11 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
+
   create() {
     // PARALLAX
-    this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
-
+    this.buildingVan = this.add.tileSprite(0, 280, 800, 320,  'buildingVan').setOrigin(1, 0);
+    
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -434,6 +436,7 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(this.player, [ movingPlatform ]);
 
     this.initInputs();
+    
   }
 
   initInputs() {
@@ -486,7 +489,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   update() {
-    this.foreground.tilePositionX -= 2;
+    
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -540,6 +543,7 @@ export default class BaseScene extends Phaser.Scene {
     if (this.healthbar.getValue() <= 0) {
       this.scene.start(SCENE_KEYS.GAME_OVER);
     }
+    
   }
 
   onCollision(player, obstacle) {
@@ -548,4 +552,5 @@ export default class BaseScene extends Phaser.Scene {
     fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
   }
+  
 }
