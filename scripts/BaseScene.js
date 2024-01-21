@@ -43,8 +43,8 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
 
     this.load.image(
-      "roadsand",
-      "assets/Artwork/Environment/Levels/IntroScene/roadSand.png"
+      "foreground",
+      "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
     );
     this.load.image(
       "ComicStory3",
@@ -162,7 +162,7 @@ export default class BaseScene extends Phaser.Scene {
     var platforms;
 
     platforms = this.physics.add.staticGroup();
-    platforms.create(800, 100, "roadsand").setScale(1).refreshBody();
+    platforms.create(800, 100, "foreground").setScale(1).refreshBody();
     var platforms2;
     platforms2 = this.physics.add.staticGroup();
     platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
