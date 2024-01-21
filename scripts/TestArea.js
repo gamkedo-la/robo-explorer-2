@@ -47,7 +47,7 @@ export default class TestArea extends BaseScene {
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
     this.initClouds();
-    this.hoverBoard = this.add.tileSprite(200, 200, 81, 22, 'hoverBoard').setOrigin(0, 0);
+   
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
@@ -57,6 +57,7 @@ export default class TestArea extends BaseScene {
     // this.spikes();
     this.killerBee();
     this.boss1();
+    this.hoverBoard = this.add.tileSprite(200, 200, 81, 22, 'hoverBoard').setOrigin(0, 0);
     super.create();
 
     let particleOptions = {
