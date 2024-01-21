@@ -62,10 +62,10 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
-    this.load.image(
-      "platform2",
-      "assets/Artwork/Environment/Levels/IntroScene/roadPlatform.png"
-    );
+    // this.load.image(
+    //   "platform2",
+    //   "assets/Artwork/Environment/Levels/IntroScene/roadPlatform.png"
+    // );
 
     // ENEMIES
     this.load.image(
@@ -164,9 +164,9 @@ export default class BaseScene extends Phaser.Scene {
 
     // platforms = this.physics.add.staticGroup();
     // platforms.create(800, 100, "foreground").setScale(1).refreshBody();
-    var platforms2;
-    platforms2 = this.physics.add.staticGroup();
-    platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
+    // var platforms2;
+    // platforms2 = this.physics.add.staticGroup();
+    // platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
     console.log("Test if platform function is working");
   }
 
