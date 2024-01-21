@@ -77,6 +77,8 @@ export default class TestArea extends BaseScene {
   
   update(){
     super.update();
+    this.hoverBoard.x = this.player.x-45;
+    this.hoverBoard.y = this.player.y+45;
     this.foreground.tilePositionX += 2;
     // this.buildingVan.tilePositionX -= 6;
    }
