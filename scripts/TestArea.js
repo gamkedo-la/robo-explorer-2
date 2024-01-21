@@ -45,6 +45,7 @@ export default class TestArea extends BaseScene {
     
     // this.spikes();
     this.killerBee();
+    this.boss1();
     super.create();
 
     let particleOptions = {

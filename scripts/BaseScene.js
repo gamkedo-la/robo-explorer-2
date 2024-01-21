@@ -58,6 +58,7 @@ export default class BaseScene extends Phaser.Scene {
       "buildingVan",
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
+    
     this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
@@ -74,6 +75,13 @@ export default class BaseScene extends Phaser.Scene {
       "killerBee",
       "assets/Artwork/Enemies/Enemy1/KillerBee2.png"
     );
+
+    // BOSS1
+    this.load.image(
+      "boss1",
+      "assets/Artwork/Enemies/Boss1/boss1.png"
+    );
+    // PLAYER
     this.load.spritesheet(
       "player",
       "assets/Artwork/Player/playerSpriteSheet.png",
@@ -132,6 +140,15 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if Killerbee is working!");
     return spike.create(500, 550, "killerBee").setScale(0.2).refreshBody();
   }
+
+  // BOSS1
+  boss1() {
+    var boss1;
+    boss1 = this.physics.add.staticGroup();
+    console.log("Test if Boss1 is working!");
+    return boss1.create(600, 650, "boss1").setScale(1).refreshBody();
+  }
+
 
   spikes() {
     var spike;

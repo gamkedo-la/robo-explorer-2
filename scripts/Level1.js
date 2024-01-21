@@ -13,6 +13,7 @@ export default class Level1 extends BaseScene {
         this.platform();
         this.building();
         this.spikes();
+        this.boss1();
         super.create();
 
         let particleOptions = {
