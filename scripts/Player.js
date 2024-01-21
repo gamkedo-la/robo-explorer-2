@@ -99,26 +99,31 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
     if (jumpWKey) {
-      this.isInAir = true;
+        if (inputController.keyD.isDown) {
+          this.setFlipX(false);
+          this.setVelocityY(-this.jumpForce);
+          fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
+
+          if (!this.isJumping) {
+            audioManager.playSound("jump");
+            this.isJumping = true;
+          }
+        } else if (inputController.keyA.isDown) {
+          this.setFlipX(true);
+          this.setVelocityY(-this.jumpForce);
+          fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
+
+          if (!this.isJumping) {
+            audioManager.playSound("jump");
+            this.isJumping = true;
+          }
+        }
+        if (!this.isInAir && this.isJumping) {
+            this.anims.play("up", true);
+        }
+        this.isInAir = true;
     }
-
-    if (jumpWKey && inputController.keyD.isDown) {
-      this.setFlipX(false);
-      this.setVelocityY(-this.jumpForce);
-      this.anims.play("up", true);
-
-      fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
-
-      if (!this.isJumping) {
-        audioManager.playSound("jump");
-        this.isJumping = true;
-      }
-    } else if (jumpWKey && inputController.keyA.isDown) {
-      this.setFlipX(true);
-      fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
-      this.setVelocityY(-this.jumpForce);
-      this.anims.play("up", true);
-    } else if (cursors.down.isDown || inputController.keyS.isDown) {
+    else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
   } // end of handleInput function
