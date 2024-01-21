@@ -6,6 +6,13 @@ export default class TestArea extends BaseScene {
     super("TestArea", "Level1");
   }
 
+  preload(){
+    super.preload();
+    this.load.image(
+      "hoverBoard",
+      "assets/Artwork/Environment/Levels/IntroScene/hoverBoard.png"
+    );
+  }
   animateClouds() {
     this.cloudsbg.x += this.cloudsSpeed;
     this.cloudsbg2.x += this.cloudsSpeed;
@@ -36,8 +43,11 @@ export default class TestArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
+    
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
+    
     this.initClouds();
+    this.hoverBoard = this.add.tileSprite(200, 200, 81, 22, 'hoverBoard').setOrigin(0, 0);
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
@@ -67,7 +77,7 @@ export default class TestArea extends BaseScene {
   
   update(){
     super.update();
-    this.foreground.tilePositionX -= 2;
+    this.foreground.tilePositionX += 2;
     // this.buildingVan.tilePositionX -= 6;
    }
   // update() {

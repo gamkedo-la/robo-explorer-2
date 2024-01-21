@@ -100,6 +100,7 @@ export default class BaseScene extends Phaser.Scene {
       "foreground",
       "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
     );
+    
   }
 
   // Test Platforms
