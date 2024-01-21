@@ -159,10 +159,10 @@ export default class BaseScene extends Phaser.Scene {
 
   //PLATFORMS
   platform() {
-    var platforms;
+    // var platforms;
 
-    platforms = this.physics.add.staticGroup();
-    platforms.create(800, 100, "foreground").setScale(1).refreshBody();
+    // platforms = this.physics.add.staticGroup();
+    // platforms.create(800, 100, "foreground").setScale(1).refreshBody();
     var platforms2;
     platforms2 = this.physics.add.staticGroup();
     platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
@@ -192,6 +192,9 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   create() {
+    // PARALLAX
+    this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
+
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -483,6 +486,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   update() {
+    this.foreground.tilePositionX -= 2;
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
