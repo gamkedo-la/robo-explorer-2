@@ -208,6 +208,11 @@ export default class BaseScene extends Phaser.Scene {
 
 
   create() {
+
+    // TEST Camera bounds
+    this.cameras.main.setBounds(0,0,1600,1200);
+    this.physics.world.bounds.width = 800;
+    this.physics.world.bounds.height = 600;
     // PARALLAX
     this.buildingVan = this.add.tileSprite(0, 280, 800, 320,  'buildingVan').setOrigin(1, 0);
     
@@ -240,7 +245,7 @@ export default class BaseScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
-
+    this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
     //   frames: this.anims.generateFrameNumbers("player", { start: 2, end: 1 }),
