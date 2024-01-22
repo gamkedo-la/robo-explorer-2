@@ -43,7 +43,7 @@ export default class TestArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
-    this.backgroundBuildings = this.add.tileSprite(0, -200, 800, 900, 'backgroundBuildings').setOrigin(0, 0);
+    this.backgroundBuildings = this.add.tileSprite(0, 50, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
     // this.initClouds();
