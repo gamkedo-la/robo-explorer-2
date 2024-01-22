@@ -43,10 +43,10 @@ export default class TestArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
-    
+    this.backgroundBuildings = this.add.tileSprite(0, 0, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
-    this.initClouds();
+    // this.initClouds();
    
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
@@ -80,6 +80,7 @@ export default class TestArea extends BaseScene {
     super.update();
     this.hoverBoard.x = this.player.x-45;
     this.hoverBoard.y = this.player.y+45;
+    this.backgroundBuildings.tilePositionX += 5;
     this.foreground.tilePositionX += 2;
     // this.buildingVan.tilePositionX -= 6;
    }

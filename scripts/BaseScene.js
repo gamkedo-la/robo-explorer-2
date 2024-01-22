@@ -96,10 +96,17 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
+    
+    // Parallax Layers
+    this.load.image(
+      "backgroundBuildings",
+      "assets/Artwork/Environment/Levels/IntroScene/backgroundBuildings.png"
+    );
     this.load.image(
       "foreground",
       "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
     );
+    
     
   }
 
