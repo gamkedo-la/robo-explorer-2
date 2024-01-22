@@ -44,6 +44,7 @@ export default class TestArea extends BaseScene {
   }
   create() {
     this.backgroundBuildings = this.add.tileSprite(0, 50, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
+    this.middleBuildings = this.add.tileSprite(0, 50, 800, 600, 'middleBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
     // this.initClouds();
@@ -81,6 +82,7 @@ export default class TestArea extends BaseScene {
     this.hoverBoard.x = this.player.x-45;
     this.hoverBoard.y = this.player.y+45;
     this.backgroundBuildings.tilePositionX += 2;
+    this.middleBuildings.tilePositionX += 3;
     this.foreground.tilePositionX += 5;
     // this.buildingVan.tilePositionX -= 6;
    }

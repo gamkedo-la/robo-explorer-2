@@ -102,6 +102,12 @@ export default class BaseScene extends Phaser.Scene {
       "backgroundBuildings",
       "assets/Artwork/Environment/Levels/IntroScene/backgroundBuildings.png"
     );
+    
+
+    this.load.image(
+      "middleBuildings",
+      "assets/Artwork/Environment/Levels/IntroScene/middleBuildings.png"
+    );
     this.load.image(
       "foreground",
       "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
