@@ -44,7 +44,7 @@ export default class TestArea extends BaseScene {
   }
   create() {
     this.backgroundBuildings = this.add.tileSprite(0, 50, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
-    this.middleBuildings = this.add.tileSprite(0, 50, 800, 600, 'middleBuildings').setOrigin(0, 0);
+    this.middleBuildings = this.add.tileSprite(0, 10, 800, 600, 'middleBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
     // this.initClouds();
