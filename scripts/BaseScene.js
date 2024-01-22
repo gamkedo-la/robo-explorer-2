@@ -210,8 +210,8 @@ export default class BaseScene extends Phaser.Scene {
   create() {
 
     // TEST Camera bounds
-    this.cameras.main.setBounds(0,0,1600,1200);
-    this.physics.world.bounds.width = 800;
+    this.cameras.main.setBounds(0,0,1600,600);
+    this.physics.world.bounds.width = 2000;
     this.physics.world.bounds.height = 600;
     // PARALLAX
     this.buildingVan = this.add.tileSprite(0, 280, 800, 320,  'buildingVan').setOrigin(1, 0);
