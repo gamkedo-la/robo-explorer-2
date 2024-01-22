@@ -43,7 +43,7 @@ export default class TestArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
-    this.backgroundBuildings = this.add.tileSprite(0, 0, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
+    this.backgroundBuildings = this.add.tileSprite(0, -200, 800, 900, 'backgroundBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
     // this.initClouds();
@@ -80,8 +80,8 @@ export default class TestArea extends BaseScene {
     super.update();
     this.hoverBoard.x = this.player.x-45;
     this.hoverBoard.y = this.player.y+45;
-    this.backgroundBuildings.tilePositionX += 5;
-    this.foreground.tilePositionX += 2;
+    this.backgroundBuildings.tilePositionX += 2;
+    this.foreground.tilePositionX += 5;
     // this.buildingVan.tilePositionX -= 6;
    }
   // update() {
