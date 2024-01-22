@@ -43,7 +43,7 @@ export default class TestArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
-    this.backgroundBuildings = this.add.tileSprite(0, 50, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
+    this.backgroundBuildings = this.add.tileSprite(0, 100, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
     this.middleBuildings = this.add.tileSprite(0, 10, 800, 600, 'middleBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     
@@ -52,7 +52,7 @@ export default class TestArea extends BaseScene {
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
     
-    this.platform();
+    // this.platform();
      
     
     // this.spikes();
