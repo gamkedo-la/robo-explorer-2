@@ -412,7 +412,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "platformLight",
       frames: this.anims.generateFrameNumbers("platform"),
-      frameRate: 2,
+      frameRate: 4,
       repeat: -1
     });
 
