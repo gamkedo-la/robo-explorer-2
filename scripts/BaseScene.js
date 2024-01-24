@@ -150,11 +150,14 @@ export default class BaseScene extends Phaser.Scene {
   // TRAPS and ENEMIES
 
   killerBee() {
-    var spike;
-    spike = this.physics.add.staticGroup();
+    var bee;
+    bee = this.physics.add.staticGroup();
     console.log("Test if Killerbee is working!");
-    return spike.create(500, 550, "killerBee").setScale(0.2).refreshBody();
+    
+    return bee.create(400, 550, "killerBee").setScale(0.2).refreshBody();
   }
+
+
 
   // BOSS1
   boss1() {
@@ -202,6 +205,12 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   hitBySpike(player, spike) {
+    player.takeDamage(1);
+    this.healthbar.setValue(this.player.health);
+  }
+
+  
+  hitByBee(player, killerBee) {
     player.takeDamage(1);
     this.healthbar.setValue(this.player.health);
   }
@@ -417,7 +426,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     let spike = this.spikes();
-
+    let killerBee = this.killerBee();
     let movingPlatform = this.movingPlatform();
 
     // Test for creating rocket
@@ -452,6 +461,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
+    this.physics.add.overlap(this.player, killerBee, this.hitByBee, null, this);
     this.physics.add.collider(this.player, [ movingPlatform ]);
 
     this.initInputs();
