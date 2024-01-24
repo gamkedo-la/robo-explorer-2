@@ -70,7 +70,7 @@ export default class BaseScene extends Phaser.Scene {
     // ENEMIES
     this.load.image(
       "killerBee",
-      "assets/Artwork/Enemies/Enemy1/KillerBee2.png"
+      "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png"
     );
 
     // BOSS1
