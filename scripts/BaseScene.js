@@ -524,7 +524,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   update() {
-    
+    this.updateHealthBarPosition();
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
@@ -572,14 +572,23 @@ export default class BaseScene extends Phaser.Scene {
     this.player.handleInput(this.cursors, this, audioManager);
 
     // Update UI
+    
     this.healthbar.setValue(this.player.health);
     this.healthbar.updateHealthFillImage();
-
+    
     if (this.healthbar.getValue() <= 0) {
       this.scene.start(SCENE_KEYS.GAME_OVER);
     }
     
+
   }
+
+  updateHealthBarPosition() {
+    // Update the health bar position to follow the camera
+    Healthbar.x = this.cameras.main.scrollX + 10;
+    Healthbar.y = this.cameras.main.scrollY + 10;
+  }
+
 
   onCollision(player, labDoor) {
     console.log(this);

@@ -1,3 +1,4 @@
+
 export default class Healthbar extends Phaser.Physics.Arcade.Sprite {
   value = 0;
   maxValue = 0;
@@ -18,6 +19,7 @@ export default class Healthbar extends Phaser.Physics.Arcade.Sprite {
     this.fillImage = fillImage;
 
     this.updateHealthFillImage();
+ 
   }
 
   setValue(value) {
@@ -27,6 +29,9 @@ export default class Healthbar extends Phaser.Physics.Arcade.Sprite {
   getValue() {
     return this.value;
   }
+
+  
+
 
   updateHealthFillImage() {
     this.healthUnits.forEach((image) => image.destroy());
@@ -39,4 +44,5 @@ export default class Healthbar extends Phaser.Physics.Arcade.Sprite {
       );
     }
   }
+  
 }
