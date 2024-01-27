@@ -60,6 +60,8 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
+    this.load.image("labDoor", "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png");
+
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
     // this.load.image(
@@ -248,8 +250,12 @@ export default class BaseScene extends Phaser.Scene {
     const PlayerPositionY = 400;
     const PlayerPositionX = 50;
 
-    // Obstacle
-    this.add.image(960, 135, "Bg");
+    // Lab Door
+
+    // this.add.image(960, 135, "Bg");
+
+    // this.add.image(960, 135, "labDoor");
+
 
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
@@ -388,10 +394,10 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // TEST Bomb
-    this.obstacle = this.physics.add.sprite(
-      PlayerPositionX + 610,
+    this.labDoor = this.physics.add.sprite(
+      PlayerPositionX + 1500,
       PlayerPositionY,
-      "bomb"
+      "labDoor"
     );
 
     let bomb;
@@ -434,7 +440,7 @@ export default class BaseScene extends Phaser.Scene {
     // Collisions Code
     this.physics.add.collider(
       this.player,
-      this.obstacle,
+      this.labDoor,
 
       this.onCollision,
       null,
@@ -456,7 +462,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.player.setBounce(0);
     this.player.setCollideWorldBounds(true,0,0,true);
-    this.obstacle.setCollideWorldBounds(true);
+    this.labDoor.setCollideWorldBounds(true);
     // this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
@@ -575,7 +581,7 @@ export default class BaseScene extends Phaser.Scene {
     
   }
 
-  onCollision(player, obstacle) {
+  onCollision(player, labDoor) {
     console.log(this);
     console.log("Trying to load " + this.nextLevelName);
     fx.forceReset();
