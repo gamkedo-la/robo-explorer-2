@@ -8,6 +8,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   isJumping;
   isInAir;
   jumpForce = 200;
+  lastFacingRight = true;
   reloadFrames;
 
   health = 22;
@@ -43,21 +44,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // WALK Movement
     if (inputController.keyShift.isDown && inputController.keyA.isDown) {
       this.setVelocityX(-160); // Move Left
+      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setVelocityX(-190); // Move Left
+      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
     } else if (inputController.keyShift.isDown && inputController.keyD.isDown) {
       this.setVelocityX(190); // Move right
+      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setVelocityX(160); // Move right
+      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
@@ -73,22 +78,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.isJumping = false;
     }
 
-    // fire a rocket left
-    if (inputController.keySpaceBar.isDown && inputController.keyA.isDown) {
-      if (!inputController.spaceDownLastFrame) this.fireRocket(true);
-      console.log("test Fire Left");
-      inputController.spaceDownLastFrame = true;
-      this.anims.play("fireLeft", true);
-    } else {
-      inputController.spaceDownLastFrame = false;
-    }
-
-    // fire a rocket right
-    if (inputController.keySpaceBar.isDown && inputController.keyD.isDown) {
-      if (!inputController.spaceDownLastFrame) this.fireRocket(false);
-      console.log("test Fire Right");
-      inputController.spaceDownLastFrame = true;
-      this.anims.play("fireRight", true);
+    if (inputController.keySpaceBar.isDown) {
+        if (!inputController.spaceDownLastFrame) this.fireRocket(this.lastFacingRight);
+        inputController.spaceDownLastFrame = true;
+        this.anims.play("fire", true);
     } else {
       inputController.spaceDownLastFrame = false;
     }
@@ -120,7 +113,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
-    this.setFlipX(this.body.velocity.x < 0);
+    this.setFlipX(this.lastFacingRight);
   } // end of handleInput function
 
   fireRocket(toLeft) {
