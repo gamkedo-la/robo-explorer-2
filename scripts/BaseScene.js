@@ -78,7 +78,7 @@ export default class BaseScene extends Phaser.Scene {
     // BOSS1
     this.load.image(
       "boss1",
-      "assets/Artwork/Enemies/Boss1/boss1.png"
+      "assets/Artwork/Enemies/Boss1/Boss1.png"
     );
     // PLAYER
     this.load.spritesheet(
