@@ -42,25 +42,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     // WALK Movement
     if (inputController.keyShift.isDown && inputController.keyA.isDown) {
-      this.setFlipX(true);
       this.setVelocityX(-160); // Move Left
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.left.isDown || inputController.keyA.isDown) {
-      this.setFlipX(true);
       this.setVelocityX(-190); // Move Left
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
     } else if (inputController.keyShift.isDown && inputController.keyD.isDown) {
-      this.setFlipX(false);
       this.setVelocityX(190); // Move right
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
-      this.setFlipX(false);
       this.setVelocityX(160); // Move right
       if (this.isInAir == false) {
         this.anims.play("right", true);
@@ -100,7 +96,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
     if (jumpWKey) {
         if (inputController.keyD.isDown) {
-          this.setFlipX(false);
           this.setVelocityY(-this.jumpForce);
           fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
 
@@ -109,7 +104,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.isJumping = true;
           }
         } else if (inputController.keyA.isDown) {
-          this.setFlipX(true);
           this.setVelocityY(-this.jumpForce);
           fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
 
@@ -126,6 +120,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
+    this.setFlipX(this.body.velocity.x < 0);
   } // end of handleInput function
 
   fireRocket(toLeft) {
