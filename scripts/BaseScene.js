@@ -75,6 +75,8 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png"
     );
 
+    this.load.image('bat', 'assets/Artwork/Enemies/Enemy2/bat.png');
+
     // BOSS1
     this.load.image(
       "boss1",
@@ -157,6 +159,13 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if Killerbee is working!");
     
     return bee.create(1000, 550, "killerBee").setScale(0.2).refreshBody();
+  }
+
+  bat(){
+    var bat;
+    bat = this.physics.add.sprite(400, 300, 'bat');
+    this.physics.world.enable(bat);
+    bat.setVelocityY(-100);
   }
 
 
@@ -527,6 +536,8 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
+
+   
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {

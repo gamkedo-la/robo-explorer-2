@@ -59,6 +59,7 @@ export default class TestArea extends BaseScene {
      this.killerBee();
      this.killerBee();
      this.killerBee();
+     this.bat();
     // this.killerBee();
     this.boss1();
     this.hoverBoard = this.add.tileSprite(200, 200, 81, 22, 'hoverBoard').setOrigin(0, 0);

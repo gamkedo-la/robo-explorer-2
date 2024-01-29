@@ -10,10 +10,12 @@ export default class Level1 extends BaseScene {
     create()
     {
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
+        this.bat();
         this.platform();
         this.building();
         this.spikes();
-        this.boss1();
+        // this.boss1();
+       
         super.create();
         
 
