@@ -9,11 +9,13 @@ export default class Level1 extends BaseScene {
   
     create()
     {
+      
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
-        this.bat();
+      
         this.platform();
         this.building();
         this.spikes();
+        this.bat();
         // this.boss1();
        
         super.create();
@@ -36,6 +38,7 @@ export default class Level1 extends BaseScene {
 
    update(){
     super.update();
+    // this.batMovement();
     this.foreground.tilePositionX -= 2;
     // this.buildingVan.tilePositionX -= 6;
    }

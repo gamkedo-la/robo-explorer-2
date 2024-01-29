@@ -25,6 +25,7 @@ export default class BaseScene extends Phaser.Scene {
   keyNumpadThree;
   numKeys;
 
+
   // UI elements
   healthbar;
 
@@ -144,12 +145,6 @@ export default class BaseScene extends Phaser.Scene {
   //   console.log("Test if platform function is working");
   // }
 
-  building() {
-    var building;
-    building = this.physics.add.staticGroup();
-    building.create(800, 100, "buildingVan").setScale(1).refreshBody();
-    console.log("Test if Building Van will work!");
-  }
 
   // TRAPS and ENEMIES
 
@@ -163,13 +158,25 @@ export default class BaseScene extends Phaser.Scene {
 
   bat(){
     var bat;
-    bat = this.physics.add.sprite(400, 300, 'bat');
+    bat = this.physics.add.sprite(200, 300, 'bat');
     this.physics.world.enable(bat);
-    bat.setVelocityY(-100);
+    
+    console.log("Bat spawn test!");
   }
 
+  // batMovement(){
+  
+  //   bat.setVelocityY(-10);
+  // }
 
 
+
+  building() {
+    var building;
+    building = this.physics.add.staticGroup();
+    building.create(800, 100, "buildingVan").setScale(1).refreshBody();
+    console.log("Test if Building Van will work!");
+  }
   // BOSS1
   boss1() {
     var boss1;
@@ -537,7 +544,7 @@ export default class BaseScene extends Phaser.Scene {
   update() {
     this.updateHealthBarPosition();
 
-   
+
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
