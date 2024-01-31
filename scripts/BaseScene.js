@@ -164,10 +164,10 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Bat spawn test!");
   }
 
-  // batMovement(){
+  batMovement(){
   
-  //   bat.setVelocityY(-10);
-  // }
+     bat.setVelocity(0,-100);
+  }
 
 
 
@@ -543,7 +543,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-
+    // this.batMovement();
 
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
