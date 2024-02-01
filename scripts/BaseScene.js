@@ -101,6 +101,10 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
 
+    // AUDIO BACKGROUND MUSIC
+    this.load.audio("track1","assets/Audio/MusicTracks/track1-DangerRoad.wav");
+    
+    
     // AUDIO SFX
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
     this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
@@ -129,6 +133,7 @@ export default class BaseScene extends Phaser.Scene {
   // Intro scene
   cutscene1() {
     var storyScene1;
+    
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory3").setScale(0.38).refreshBody();
     console.log("Test if cutscene is working");
@@ -241,7 +246,9 @@ export default class BaseScene extends Phaser.Scene {
 
 
   create() {
-
+    // Background Music
+    const track1 = this.sound.add('track1', { volume: 0.5, loop: true });
+    track1.play();
     // TEST Camera bounds
     this.cameras.main.setBounds(0,0,1600,600);
     this.physics.world.bounds.width = 2000;
