@@ -82,8 +82,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if (!inputController.spaceDownLastFrame) this.fireRocket(this.lastFacingRight);
         inputController.spaceDownLastFrame = true;
         this.anims.play("fire", true);
+        audioManager.playSound("missile");
+       
     } else {
       inputController.spaceDownLastFrame = false;
+      
+
     }
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;

@@ -100,9 +100,12 @@ export default class BaseScene extends Phaser.Scene {
         frameHeight: 64,
       }
     );
+
+    // AUDIO SFX
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
+    this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
     
-    // Parallax Layers
+    // PARALLAX LAYERS
     this.load.image(
       "backgroundBuildings",
       "assets/Artwork/Environment/Levels/IntroScene/backgroundBuildings.png"
@@ -157,17 +160,20 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   bat(){
-    var bat;
+  var bat;    
     bat = this.physics.add.sprite(200, 300, 'bat');
     this.physics.world.enable(bat);
     
     console.log("Bat spawn test!");
   }
 
-  batMovement(){
-  
-     bat.setVelocity(0,-100);
-  }
+  // batMovement(){
+   
+  //   if(bat){
+  //     bat.setVelocityY(-100);
+  //   }
+     
+  // }
 
 
 
