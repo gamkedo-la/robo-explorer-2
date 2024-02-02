@@ -220,9 +220,19 @@ export default class BaseScene extends Phaser.Scene {
      
     var movingPlatforms;
 
-    movingPlatforms = this.physics.add.staticGroup();
-    var movingPlatform = movingPlatforms.create(700, 300, "platform").setScale(1).refreshBody().setImmovable(true);
+    movingPlatforms = this.physics.add.group();
+    var movingPlatform = movingPlatforms.create(700, 300, "platform").setScale(1).setDirectControl().setImmovable();
+    movingPlatform.body.bounce.y = 1;
+    movingPlatform.body.collideWorldBounds = true;
     movingPlatform.anims.play("platformLight", true);
+
+    this.tweens.add({
+      targets: movingPlatform,
+      x: 200,
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    });
 
     console.log("Test if movingPlatform function is working");
 
