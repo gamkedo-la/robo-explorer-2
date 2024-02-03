@@ -7,6 +7,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   // JUMPING
   isJumping;
   isInAir;
+  isOnMovingPlatform = false;
   jumpForce = 200;
   lastFacingRight = true;
   reloadFrames;
@@ -109,8 +110,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.isJumping = true;
           }
         }
-        if (!this.isInAir && this.isJumping) {
+        if (!this.isInAir && this.isJumping || !this.isInAir && this.isOnPlatform) {
             this.anims.play("up", true);
+            this.isOnPlatform = true;
         }
         this.isInAir = true;
     }
@@ -161,5 +163,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   collisionPlatform() {
     this.isInAir = false;
     this.physics.add.collider(this.player, platform);
+   
   }
-} // The end of class
+} // The end of class Player

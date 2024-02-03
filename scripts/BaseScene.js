@@ -65,10 +65,6 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
-    // this.load.image(
-    //   "platform2",
-    //   "assets/Artwork/Environment/Levels/IntroScene/roadPlatform.png"
-    // );
 
     // ENEMIES
     this.load.image(
@@ -93,8 +89,8 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
     this.load.spritesheet(
-      "platform",
-      "assets/Artwork/Environment/Items/platform.png",
+      "movingPlatform",
+      "assets/Artwork/Environment/Items/movingPlatform.png",
       {
         frameWidth: 96,
         frameHeight: 64,
@@ -128,12 +124,9 @@ export default class BaseScene extends Phaser.Scene {
     
   }
 
-  // Test Platforms
-
   // Intro scene
   cutscene1() {
     var storyScene1;
-    
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory3").setScale(0.38).refreshBody();
     console.log("Test if cutscene is working");
@@ -145,14 +138,6 @@ export default class BaseScene extends Phaser.Scene {
     storyScene1.create(390.5, 300, "ComicStory4").setScale(0.38).refreshBody();
     console.log("Test if cutscene2 is working");
   }
-
-  // platform2() {
-  //   var platforms2;
-  //   platforms2 = this.physics.add.staticGroup();
-  //   platforms2.create(800, 100, "platform2").setScale(1).refreshBody();
-  //   console.log("Test if platform function is working");
-  // }
-
 
   // TRAPS and ENEMIES
 
@@ -204,24 +189,13 @@ export default class BaseScene extends Phaser.Scene {
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
-  //PLATFORMS
-  platform() {
-    // var platforms;
-
-    // platforms = this.physics.add.staticGroup();
-    // platforms.create(800, 100, "foreground").setScale(1).refreshBody();
-    // var platforms2;
-    // platforms2 = this.physics.add.staticGroup();
-    // platforms2.create(1020, 100, "platform2").setScale(1).refreshBody();
-    console.log("Test if platform function is working");
-  }
 
   movingPlatform() {
      
     var movingPlatforms;
 
     movingPlatforms = this.physics.add.group();
-    var movingPlatform = movingPlatforms.create(700, 300, "platform").setScale(1).setDirectControl().setImmovable();
+    var movingPlatform = movingPlatforms.create(700, 300, "movingPlatform").setScale(1).setDirectControl().setImmovable();
     movingPlatform.body.bounce.y = 1;
     movingPlatform.body.collideWorldBounds = true;
     movingPlatform.anims.play("platformLight", true);
@@ -434,6 +408,16 @@ export default class BaseScene extends Phaser.Scene {
     //   // repeat: -1,
     // });
 
+
+    // ANIMATIONI FOR ON  PLATFORM
+    this.anims.create({
+      key: "onPlatform",
+      frames: this.anims.generateFrameNumbers("player", { start: 16, end: 18 }),
+      frameRate: 5,
+      repeat: -1,
+    });
+
+
     // TEST Bomb
     this.labDoor = this.physics.add.sprite(
       PlayerPositionX + 1500,
@@ -467,7 +451,7 @@ export default class BaseScene extends Phaser.Scene {
     // PLATFORM LIGHT ANIMATION
     this.anims.create({
       key: "platformLight",
-      frames: this.anims.generateFrameNumbers("platform"),
+      frames: this.anims.generateFrameNumbers("movingPlatform"),
       frameRate: 4,
       repeat: -1
     });
