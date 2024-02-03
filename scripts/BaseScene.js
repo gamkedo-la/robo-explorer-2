@@ -102,7 +102,7 @@ export default class BaseScene extends Phaser.Scene {
     );
 
     // AUDIO BACKGROUND MUSIC
-    this.load.audio("track1","assets/Audio/MusicTracks/track1-DangerRoad.wav");
+    this.load.audio("track1","assets/Audio/MusicTracks/Track1-DangerRoadVersions/track1-DangerRoadv2.mp3");
     
     
     // AUDIO SFX
