@@ -5,6 +5,7 @@ import BatEnemy from "./BatEnemy.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
+import BossSelectText from "./UI/BossSelectText.js";
 
 export default class BaseScene extends Phaser.Scene {
   cursors;
@@ -82,9 +83,10 @@ export default class BaseScene extends Phaser.Scene {
       { frameWidth: 76, frameHeight: 76 }
     );
 
-    this.load.spritesheet("BatEnemy", "assets/Artwork/Enemies/Enemy2/Bat.png",
-    { frameWidth: 132, frameHeight: 132 }
-    );
+    this.load.spritesheet("BatEnemy", "assets/Artwork/Enemies/Enemy2/Bat.png", {
+      frameWidth: 132,
+      frameHeight: 132,
+    });
 
     // BOSS1
     this.load.image("boss1", "assets/Artwork/Enemies/Boss1/Boss1.png");
@@ -103,6 +105,16 @@ export default class BaseScene extends Phaser.Scene {
       {
         frameWidth: 96,
         frameHeight: 64,
+      }
+    );
+
+    // UI
+    this.load.spritesheet(
+      "bossTextSheet",
+      "assets/Artwork/UI/boss-selection-text-Sheet.png",
+      {
+        frameWidth: 89,
+        frameHeight: 50,
       }
     );
 
@@ -137,14 +149,12 @@ export default class BaseScene extends Phaser.Scene {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory3").setScale(0.38).refreshBody();
-    
   }
 
   cutscene2() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory4").setScale(0.38).refreshBody();
-    
   }
 
   // TRAPS and ENEMIES
@@ -159,14 +169,14 @@ export default class BaseScene extends Phaser.Scene {
   boss1() {
     var boss1;
     boss1 = this.physics.add.staticGroup();
- 
+
     return boss1.create(600, 350, "boss1").setScale(0.3).refreshBody();
   }
 
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
-   
+
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
@@ -174,21 +184,21 @@ export default class BaseScene extends Phaser.Scene {
 
   powerupArmor() {
     var powerupArmor;
-    powerupArmor = this.physics.add.group();;
-    
+    powerupArmor = this.physics.add.group();
+
     var powerupArmor = powerupArmor
-    .create(700, 300, "powerupArmor")
-    .setScale(1)
-    .setDirectControl()
-    .setImmovable();
+      .create(700, 300, "powerupArmor")
+      .setScale(1)
+      .setDirectControl()
+      .setImmovable();
     // powerupArmor.anims.play("powerupArmor", true);
     // powerupArmor.body.bounce.y = 1;
     // powerupArmor.body.collideWorldBounds = true;
     // powerupArmor.anims.play("powerupArmor", true);
-    return powerupArmor
-      // .create(400, 500, "powerupArmor")
-      // .setScale(1)
-      // .refreshBody();
+    return powerupArmor;
+    // .create(400, 500, "powerupArmor")
+    // .setScale(1)
+    // .refreshBody();
   }
 
   movingPlatform() {
@@ -211,8 +221,6 @@ export default class BaseScene extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
     });
-
-
 
     return movingPlatform;
   }
@@ -267,7 +275,7 @@ export default class BaseScene extends Phaser.Scene {
     const PlayerPositionY = 400;
     const PlayerPositionX = 50;
 
-      // Lab Door
+    // Lab Door
 
     // this.add.image(960, 135, "Bg");
 
@@ -354,6 +362,15 @@ export default class BaseScene extends Phaser.Scene {
        frameRate: 8,
        repeat: -1
      });*/
+
+    //  UI ANIMATIONS
+    this.anims.create({
+      key: "bossText",
+      frames: this.anims.generateFrameNumbers("bossTextSheet", {
+        start: 0,
+        end: 54,
+      }),
+    });
 
     // WALK LEFT ANIMATION
 
@@ -546,7 +563,6 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-    
 
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {

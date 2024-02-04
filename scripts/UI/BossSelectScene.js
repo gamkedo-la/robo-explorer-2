@@ -1,19 +1,32 @@
-import { SCENE_KEYS } from "./Constants.js";
-import BossSelectText from "./UI/BossSelectText.js";
+import { SCENE_KEYS } from "../Constants.js";
+import fx from "../Fx.js";
+import BossSelectText from "./BossSelectText.js";
 
-export default class TitleScene extends Phaser.Scene {
+export default class BossSelectScene extends Phaser.Scene {
+  boss_select_text;
   constructor() {
-    super({ key: SCENE_KEYS.TITLE });
+    super({ key: SCENE_KEYS.BOSS_SELECT });
   }
 
-
+  preload() {
+    this.load.spritesheet(
+      "bossTextSheet",
+      "assets/Artwork/UI/boss-selection-text-Sheet.png",
+      {
+        frameWidth: 89,
+        frameHeight: 50,
+      }
+    );
+  }
 
   create() {
+    this.boss_select_text = new BossSelectText(this, 375, 50, "bossTextSheet");
+    this.boss_select_text.anims.play("bossText", true);
     this.add
       .text(
         this.cameras.main.centerX,
         this.cameras.main.centerY,
-        "ROBO EXPLORER",
+        "BOSS SELECT",
         {
           fontSize: "32px",
           fill: "#FFF",
@@ -41,6 +54,7 @@ export default class TitleScene extends Phaser.Scene {
 
   update() {
     if (this.keyEnter.isDown) {
+      fx.forceReset();
       this.scene.start(SCENE_KEYS.LEVEL_1);
     }
   }

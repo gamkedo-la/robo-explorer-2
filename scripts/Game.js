@@ -8,6 +8,7 @@ import Level2 from "./Level2.js";
 import PauseScene from "./PauseScene.js";
 import GameOverScene from "./GameOverScene.js";
 import TitleScene from "./TitleScene.js";
+import BossSelectScene from "./UI/BossSelectScene.js";
 
 var config = {
   type: Phaser.AUTO,
@@ -22,6 +23,7 @@ var config = {
     },
   },
   scene: [
+    BossSelectScene,
     TitleScene,
     IntroCutScene,
     IntroCutScene2,
