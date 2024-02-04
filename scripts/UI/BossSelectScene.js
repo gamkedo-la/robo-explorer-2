@@ -20,8 +20,17 @@ export default class BossSelectScene extends Phaser.Scene {
   }
 
   create() {
+    //  UI ANIMATIONS
+    this.anims.create({
+      key: "bossText",
+      frames: this.anims.generateFrameNumbers("bossTextSheet", {
+        start: 0,
+        end: 54,
+      }),
+    });
+
     this.boss_select_text = new BossSelectText(this, 375, 50, "bossTextSheet");
-    this.boss_select_text.anims.play("bossText", true);
+    this.boss_select_text.anims.play("bossText", 60, true);
     this.add
       .text(
         this.cameras.main.centerX,

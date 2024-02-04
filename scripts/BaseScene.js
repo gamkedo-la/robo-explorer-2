@@ -363,15 +363,6 @@ export default class BaseScene extends Phaser.Scene {
        repeat: -1
      });*/
 
-    //  UI ANIMATIONS
-    this.anims.create({
-      key: "bossText",
-      frames: this.anims.generateFrameNumbers("bossTextSheet", {
-        start: 0,
-        end: 54,
-      }),
-    });
-
     // WALK LEFT ANIMATION
 
     this.anims.create({

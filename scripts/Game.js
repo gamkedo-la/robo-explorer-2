@@ -23,8 +23,8 @@ var config = {
     },
   },
   scene: [
-    BossSelectScene,
     TitleScene,
+    BossSelectScene,
     IntroCutScene,
     IntroCutScene2,
     TestArea,
