@@ -66,6 +66,8 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
 
+    // POWERUPS
+    this.load.image("powerupArmor", "assets/Artwork/Environment/Items/powerupArmor.png");
     // ENEMIES
     this.load.image(
       "killerBee",
@@ -187,6 +189,15 @@ export default class BaseScene extends Phaser.Scene {
     spike = this.physics.add.staticGroup();
     console.log("Test if Spikes is working!");
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
+  }
+
+  // POWERUP 
+  
+  powerupArmor() {
+    var powerupArmor;
+    powerupArmor = this.physics.add.staticGroup();
+    console.log("Test if Armor is working!");
+    return powerupArmor.create(400, 500, "powerupArmor").setScale(1).refreshBody();
   }
 
 
