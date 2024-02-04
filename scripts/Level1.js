@@ -16,7 +16,7 @@ export default class Level1 extends BaseScene {
         this.building();
         this.spikes();
         this.powerupArmor();
-        this.bat();
+        
         // this.boss1();
        
         super.create();

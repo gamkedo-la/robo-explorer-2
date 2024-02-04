@@ -1,6 +1,7 @@
 import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import KillerBee from "./KillerBee.js";
+import BatEnemy from "./BatEnemy.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
@@ -81,7 +82,7 @@ export default class BaseScene extends Phaser.Scene {
       { frameWidth: 76, frameHeight: 76 }
     );
 
-    this.load.spritesheet("bat", "assets/Artwork/Enemies/Enemy2/Bat.png",
+    this.load.spritesheet("BatEnemy", "assets/Artwork/Enemies/Enemy2/Bat.png",
     { frameWidth: 132, frameHeight: 132 }
     );
 
@@ -147,23 +148,6 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   // TRAPS and ENEMIES
-
-
-  bat() {
-    var bat;
-    bat = this.physics.add.sprite(200, 300, "bat");
-    this.physics.world.enable(bat);
-
-    console.log("Bat spawn test!");
-  }
-
-  // batMovement(){
-
-  //   if(bat){
-  //     bat.setVelocityY(-100);
-  //   }
-
-  // }
 
   building() {
     var building;
@@ -293,6 +277,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
+    this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
     this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
@@ -561,7 +546,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-    // this.batMovement();
+    
 
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
