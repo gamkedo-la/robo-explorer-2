@@ -10,6 +10,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.sceneRef.add.existing(this);
     this.sceneRef.physics.add.existing(this);
 
+    this.body.allowGravity=false;
   }
 
  // 1 stop the bee falling
