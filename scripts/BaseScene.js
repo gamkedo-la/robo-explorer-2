@@ -1,5 +1,6 @@
 import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
+import KillerBee from "./KillerBee.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
@@ -77,7 +78,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.spritesheet(
       "killerBee",
       "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png",
-      { frameWidth: 380, frameHeight: 380 }
+      { frameWidth: 76, frameHeight: 76 }
     );
 
     this.load.spritesheet("bat", "assets/Artwork/Enemies/Enemy2/Bat.png",
@@ -147,13 +148,6 @@ export default class BaseScene extends Phaser.Scene {
 
   // TRAPS and ENEMIES
 
-  killerBee() {
-    var bee;
-    bee = this.physics.add.staticGroup();
-    console.log("Test if Killerbee is working!");
-
-    return bee.create(1000, 550, "killerBee").setScale(0.2).refreshBody();
-  }
 
   bat() {
     var bat;
@@ -289,7 +283,7 @@ export default class BaseScene extends Phaser.Scene {
     const PlayerPositionY = 400;
     const PlayerPositionX = 50;
 
-    // Lab Door
+      // Lab Door
 
     // this.add.image(960, 135, "Bg");
 
@@ -298,6 +292,7 @@ export default class BaseScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
+    this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
     this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
@@ -490,7 +485,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     let spike = this.spikes();
-    let killerBee = this.killerBee();
+    // let killerBee = this.killerBee();
     let movingPlatform = this.movingPlatform();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
@@ -523,7 +518,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
-    this.physics.add.overlap(this.player, killerBee, this.hitByBee, null, this);
+    this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
     this.physics.add.collider(this.player, [movingPlatform]);
 
     this.initInputs();
