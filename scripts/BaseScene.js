@@ -136,14 +136,14 @@ export default class BaseScene extends Phaser.Scene {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory3").setScale(0.38).refreshBody();
-    console.log("Test if cutscene is working");
+    
   }
 
   cutscene2() {
     var storyScene1;
     storyScene1 = this.physics.add.staticGroup();
     storyScene1.create(390.5, 300, "ComicStory4").setScale(0.38).refreshBody();
-    console.log("Test if cutscene2 is working");
+    
   }
 
   // TRAPS and ENEMIES
@@ -175,14 +175,14 @@ export default class BaseScene extends Phaser.Scene {
   boss1() {
     var boss1;
     boss1 = this.physics.add.staticGroup();
-    console.log("Test if Boss1 is working!");
+ 
     return boss1.create(600, 350, "boss1").setScale(0.3).refreshBody();
   }
 
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
-    console.log("Test if Spikes is working!");
+   
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
@@ -191,7 +191,7 @@ export default class BaseScene extends Phaser.Scene {
   powerupArmor() {
     var powerupArmor;
     powerupArmor = this.physics.add.group();;
-    console.log("Test if Armor is working!");
+    
     var powerupArmor = powerupArmor
     .create(700, 300, "powerupArmor")
     .setScale(1)
@@ -228,7 +228,7 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    console.log("Test if movingPlatform function is working");
+
 
     return movingPlatform;
   }
@@ -464,18 +464,6 @@ export default class BaseScene extends Phaser.Scene {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
 
-    // ENEMY BEE
-    // let killerBee;
-    // killerBee = this.physics.add.group({
-    //   key: "killerBee",
-    //   repeat: 5,
-    //   setXY: { x: 12, y: 0, stepX: 70 },
-    // });
-
-    // killerBee.children.iterate(function (child) {
-    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    // });
-
     // PLATFORM LIGHT ANIMATION
     this.anims.create({
       key: "platformLight",
@@ -485,7 +473,6 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     let spike = this.spikes();
-    // let killerBee = this.killerBee();
     let movingPlatform = this.movingPlatform();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
@@ -514,7 +501,6 @@ export default class BaseScene extends Phaser.Scene {
     this.player.setBounce(0);
     this.player.setCollideWorldBounds(true, 0, 0, true);
     this.labDoor.setCollideWorldBounds(true);
-    // this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
