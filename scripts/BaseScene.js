@@ -68,18 +68,21 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
 
     // POWERUPS
-    this.load.image(
+    this.load.spritesheet(
       "powerupArmor",
       "assets/Artwork/Environment/Items/powerupArmor.png",
-      { frameWidth: 128, frameHeight: 64 }
+      { frameWidth: 64, frameHeight: 64 }
     );
     // ENEMIES
-    this.load.image(
+    this.load.spritesheet(
       "killerBee",
-      "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png"
+      "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png",
+      { frameWidth: 380, frameHeight: 380 }
     );
 
-    this.load.image("bat", "assets/Artwork/Enemies/Enemy2/Bat.png");
+    this.load.spritesheet("bat", "assets/Artwork/Enemies/Enemy2/Bat.png",
+    { frameWidth: 132, frameHeight: 132 }
+    );
 
     // BOSS1
     this.load.image("boss1", "assets/Artwork/Enemies/Boss1/Boss1.png");
