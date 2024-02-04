@@ -160,9 +160,5 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  collisionPlatform() {
-    this.isInAir = false;
-    this.physics.add.collider(this.player, platform);
-   
-  }
+
 } // The end of class Player
