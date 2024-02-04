@@ -25,7 +25,6 @@ export default class BaseScene extends Phaser.Scene {
   keyNumpadThree;
   numKeys;
 
-
   // UI elements
   healthbar;
 
@@ -43,7 +42,6 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
 
-   
     this.load.image(
       "ComicStory3",
       "assets/Artwork/IntroCutScene/Robo-Explorer1-Ending/ComicStory3.png"
@@ -56,31 +54,35 @@ export default class BaseScene extends Phaser.Scene {
       "buildingVan",
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
-    
+
     this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
-    this.load.image("labDoor", "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png");
+    this.load.image(
+      "labDoor",
+      "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png"
+    );
 
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
 
     // POWERUPS
-    this.load.image("powerupArmor", "assets/Artwork/Environment/Items/powerupArmor.png");
+    this.load.image(
+      "powerupArmor",
+      "assets/Artwork/Environment/Items/powerupArmor.png",
+      { frameWidth: 128, frameHeight: 64 }
+    );
     // ENEMIES
     this.load.image(
       "killerBee",
       "assets/Artwork/Enemies/Enemy1/killerBeeSpriteSheet.png"
     );
 
-    this.load.image('bat', 'assets/Artwork/Enemies/Enemy2/Bat.png');
+    this.load.image("bat", "assets/Artwork/Enemies/Enemy2/Bat.png");
 
     // BOSS1
-    this.load.image(
-      "boss1",
-      "assets/Artwork/Enemies/Boss1/Boss1.png"
-    );
+    this.load.image("boss1", "assets/Artwork/Enemies/Boss1/Boss1.png");
     // PLAYER
     this.load.spritesheet(
       "player",
@@ -100,19 +102,20 @@ export default class BaseScene extends Phaser.Scene {
     );
 
     // AUDIO BACKGROUND MUSIC
-    this.load.audio("track1","assets/Audio/MusicTracks/Track1-DangerRoadVersions/track1-DangerRoadv2.mp3");
-    
-    
+    this.load.audio(
+      "track1",
+      "assets/Audio/MusicTracks/Track1-DangerRoadVersions/track1-DangerRoadv2.mp3"
+    );
+
     // AUDIO SFX
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
     this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
-    
+
     // PARALLAX LAYERS
     this.load.image(
       "backgroundBuildings",
       "assets/Artwork/Environment/Levels/IntroScene/backgroundBuildings.png"
     );
-    
 
     this.load.image(
       "middleBuildings",
@@ -122,8 +125,6 @@ export default class BaseScene extends Phaser.Scene {
       "foreground",
       "assets/Artwork/Environment/Levels/IntroScene/foreground.png"
     );
-    
-    
   }
 
   // Intro scene
@@ -147,27 +148,25 @@ export default class BaseScene extends Phaser.Scene {
     var bee;
     bee = this.physics.add.staticGroup();
     console.log("Test if Killerbee is working!");
-    
+
     return bee.create(1000, 550, "killerBee").setScale(0.2).refreshBody();
   }
 
-  bat(){
-  var bat;    
-    bat = this.physics.add.sprite(200, 300, 'bat');
+  bat() {
+    var bat;
+    bat = this.physics.add.sprite(200, 300, "bat");
     this.physics.world.enable(bat);
-    
+
     console.log("Bat spawn test!");
   }
 
   // batMovement(){
-   
+
   //   if(bat){
   //     bat.setVelocityY(-100);
   //   }
-     
+
   // }
-
-
 
   building() {
     var building;
@@ -183,7 +182,6 @@ export default class BaseScene extends Phaser.Scene {
     return boss1.create(600, 350, "boss1").setScale(0.3).refreshBody();
   }
 
-
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
@@ -191,22 +189,30 @@ export default class BaseScene extends Phaser.Scene {
     return spike.create(300, 570, "spikes").setScale(1).refreshBody();
   }
 
-  // POWERUP 
-  
+  // POWERUP
+
   powerupArmor() {
     var powerupArmor;
-    powerupArmor = this.physics.add.staticGroup();
+    powerupArmor = this.physics.add.group();;
     console.log("Test if Armor is working!");
-    return powerupArmor.create(400, 500, "powerupArmor").setScale(1).refreshBody();
+    
+    // powerupArmor.anims.play("powerupArmor", true);
+
+    return powerupArmor
+      .create(400, 500, "powerupArmor")
+      .setScale(1)
+      .refreshBody();
   }
 
-
   movingPlatform() {
-     
     var movingPlatforms;
 
     movingPlatforms = this.physics.add.group();
-    var movingPlatform = movingPlatforms.create(700, 300, "movingPlatform").setScale(1).setDirectControl().setImmovable();
+    var movingPlatform = movingPlatforms
+      .create(700, 300, "movingPlatform")
+      .setScale(1)
+      .setDirectControl()
+      .setImmovable();
     movingPlatform.body.bounce.y = 1;
     movingPlatform.body.collideWorldBounds = true;
     movingPlatform.anims.play("platformLight", true);
@@ -216,7 +222,7 @@ export default class BaseScene extends Phaser.Scene {
       x: 200,
       duration: 4000,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
     });
 
     console.log("Test if movingPlatform function is working");
@@ -233,24 +239,24 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
-  
   hitByBee(player, killerBee) {
     player.takeDamage(1);
     this.healthbar.setValue(this.player.health);
   }
 
-
   create() {
     // Background Music
-    const track1 = this.sound.add('track1', { volume: 0.5, loop: true });
+    const track1 = this.sound.add("track1", { volume: 0.5, loop: true });
     track1.play();
     // TEST Camera bounds
-    this.cameras.main.setBounds(0,0,1600,600);
+    this.cameras.main.setBounds(0, 0, 1600, 600);
     this.physics.world.bounds.width = 2000;
     this.physics.world.bounds.height = 600;
     // PARALLAX
-    this.buildingVan = this.add.tileSprite(0, 280, 800, 320,  'buildingVan').setOrigin(1, 0);
-    
+    this.buildingVan = this.add
+      .tileSprite(0, 280, 800, 320, "buildingVan")
+      .setOrigin(1, 0);
+
     // UI
     const scoreText = new ScoreHUD(this, 10, 10, "SCORE: ", {
       fontSize: "32px",
@@ -280,7 +286,6 @@ export default class BaseScene extends Phaser.Scene {
 
     // this.add.image(960, 135, "labDoor");
 
-
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
@@ -298,7 +303,7 @@ export default class BaseScene extends Phaser.Scene {
       key: "up",
       //frames: [{ key: "player", frames: 64 }],
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [64,65,66,67,68,69],
+        frames: [64, 65, 66, 67, 68, 69],
       }),
       frameRate: 12,
     });
@@ -339,6 +344,16 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "idle",
       frames: this.anims.generateFrameNumbers("player", { start: 16, end: 18 }),
+      frameRate: 5,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "powerupArmor",
+      frames: this.anims.generateFrameNumbers("powerupArmor", {
+        start: 0,
+        end: 1,
+      }),
       frameRate: 5,
       repeat: -1,
     });
@@ -419,7 +434,6 @@ export default class BaseScene extends Phaser.Scene {
     //   // repeat: -1,
     // });
 
-
     // ANIMATIONI FOR ON  PLATFORM
     this.anims.create({
       key: "onPlatform",
@@ -427,7 +441,6 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 5,
       repeat: -1,
     });
-
 
     // TEST Bomb
     this.labDoor = this.physics.add.sprite(
@@ -464,13 +477,13 @@ export default class BaseScene extends Phaser.Scene {
       key: "platformLight",
       frames: this.anims.generateFrameNumbers("movingPlatform"),
       frameRate: 4,
-      repeat: -1
+      repeat: -1,
     });
 
     let spike = this.spikes();
     let killerBee = this.killerBee();
     let movingPlatform = this.movingPlatform();
-
+    let powerupArmor = this.powerupArmor();
     // Test for creating rocket
 
     // Collisions Code
@@ -483,31 +496,28 @@ export default class BaseScene extends Phaser.Scene {
       this
     );
 
-    this.physics.world.on('worldbounds', (body, up, down, left, right) =>
-        {
-            const { gameObject } = body;
+    this.physics.world.on("worldbounds", (body, up, down, left, right) => {
+      const { gameObject } = body;
 
-            if (down) { 
-              this.player.isInAir = false; 
-              console.log("Touching Bottom");
-            }
-            
-        });
+      if (down) {
+        this.player.isInAir = false;
+        console.log("Touching Bottom");
+      }
+    });
 
     console.log(this.nextLevelName);
 
     this.player.setBounce(0);
-    this.player.setCollideWorldBounds(true,0,0,true);
+    this.player.setCollideWorldBounds(true, 0, 0, true);
     this.labDoor.setCollideWorldBounds(true);
     // this.rocket.setCollideWorldBounds(true);
 
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, killerBee, this.hitByBee, null, this);
-    this.physics.add.collider(this.player, [ movingPlatform ]);
+    this.physics.add.collider(this.player, [movingPlatform]);
 
     this.initInputs();
-    
   }
 
   initInputs() {
@@ -610,15 +620,13 @@ export default class BaseScene extends Phaser.Scene {
     this.player.handleInput(this.cursors, this, audioManager);
 
     // Update UI
-    
+
     this.healthbar.setValue(this.player.health);
     this.healthbar.updateHealthFillImage();
-    
+
     if (this.healthbar.getValue() <= 0) {
       this.scene.start(SCENE_KEYS.GAME_OVER);
     }
-    
-
   }
 
   updateHealthBarPosition() {
@@ -627,12 +635,10 @@ export default class BaseScene extends Phaser.Scene {
     Healthbar.y = this.cameras.main.scrollY + 10;
   }
 
-
   onCollision(player, labDoor) {
     console.log(this);
     console.log("Trying to load " + this.nextLevelName);
     fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
   }
-  
 }
