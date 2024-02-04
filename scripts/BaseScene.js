@@ -195,13 +195,19 @@ export default class BaseScene extends Phaser.Scene {
     var powerupArmor;
     powerupArmor = this.physics.add.group();;
     console.log("Test if Armor is working!");
-    
+    var powerupArmor = powerupArmor
+    .create(700, 300, "powerupArmor")
+    .setScale(1)
+    .setDirectControl()
+    .setImmovable();
     // powerupArmor.anims.play("powerupArmor", true);
-
+    // powerupArmor.body.bounce.y = 1;
+    // powerupArmor.body.collideWorldBounds = true;
+    // powerupArmor.anims.play("powerupArmor", true);
     return powerupArmor
-      .create(400, 500, "powerupArmor")
-      .setScale(1)
-      .refreshBody();
+      // .create(400, 500, "powerupArmor")
+      // .setScale(1)
+      // .refreshBody();
   }
 
   movingPlatform() {
