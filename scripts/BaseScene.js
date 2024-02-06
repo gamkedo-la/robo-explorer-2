@@ -2,6 +2,7 @@ import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import KillerBee from "./KillerBee.js";
 import BatEnemy from "./BatEnemy.js";
+import Boss1 from "./Boss1.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
@@ -89,7 +90,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // BOSS1
-    this.load.spritesheet("boss1", "assets/Artwork/Enemies/Boss1/Boss1spritesheet.png",{
+    this.load.spritesheet("Boss1", "assets/Artwork/Enemies/Boss1/Boss1spritesheet.png",{
       frameWidth: 500,
       frameHeight: 640,
     });
@@ -169,12 +170,12 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if Building Van will work!");
   }
   // BOSS1
-  boss1() {
-    var boss1;
-    boss1 = this.physics.add.staticGroup();
-
-    return boss1.create(600, 350, "boss1").setScale(1).refreshBody();
-  }
+  // boss1() {
+  //   var boss1;
+  //   boss1 = this.physics.add.staticGroup();
+  //   boss1.anims.play("boss1", true);
+  //   return boss1.create(600, 350, "boss1").setScale(1).refreshBody();
+  // }
 
   spikes() {
     var spike;
@@ -289,6 +290,7 @@ export default class BaseScene extends Phaser.Scene {
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
     this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
+    this.Boss1 = new Boss1(this, 500, 400, "Boss1");
     this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
@@ -467,6 +469,14 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 4,
       repeat: -1,
     });
+
+    // BOSS 1 ANimation
+    this.anims.create({
+      key: 'boss1_idle',
+      frames: this.anims.generateFrameNumbers('boss1', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1 // -1 means loop indefinitely
+  });
 
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();

@@ -57,7 +57,7 @@ export default class TestArea extends BaseScene {
     
    
 
-    this.boss1();
+    // this.boss1();
     this.hoverBoard = this.add.tileSprite(200, 200, 81, 22, 'hoverBoard').setOrigin(0, 0);
     super.create();
 
