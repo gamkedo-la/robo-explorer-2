@@ -92,10 +92,14 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // BOSS1
-    this.load.spritesheet("Boss1", "assets/Artwork/Enemies/Boss1/Boss1spritesheet.png",{
-      frameWidth: 500,
-      frameHeight: 640,
-    });
+    this.load.spritesheet(
+      "Boss1",
+      "assets/Artwork/Enemies/Boss1/Boss1spritesheet.png",
+      {
+        frameWidth: 500,
+        frameHeight: 640,
+      }
+    );
     // PLAYER
     this.load.spritesheet(
       "player",
@@ -250,13 +254,11 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
-  create() {
-    // Background Music
-    const track1 = this.sound.add("track1", { volume: 0.5, loop: true });
-    const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
-    // track1.play();
+  // track1() {
+  //   track1.play();
+  // }
 
-     track2.play();
+  create() {
     // TEST Camera bounds
     this.cameras.main.setBounds(0, 0, 1600, 600);
     this.physics.world.bounds.width = 2000;
@@ -300,7 +302,7 @@ export default class BaseScene extends Phaser.Scene {
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
     this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
-    
+
     this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
@@ -482,11 +484,11 @@ export default class BaseScene extends Phaser.Scene {
 
     // BOSS 1 ANimation
     this.anims.create({
-      key: 'boss1_idle',
-      frames: this.anims.generateFrameNumbers('boss1', { start: 0, end: 3 }),
+      key: "boss1_idle",
+      frames: this.anims.generateFrameNumbers("boss1", { start: 0, end: 3 }),
       frameRate: 10,
-      repeat: -1 // -1 means loop indefinitely
-  });
+      repeat: -1, // -1 means loop indefinitely
+    });
 
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
@@ -524,7 +526,16 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(this.player, [movingPlatform]);
 
     this.initInputs();
-  }
+
+      // Background Music
+        const track1 = this.sound.add("track1", { volume: 0.5, loop:true });
+        const track2 = this.sound.add("track2", { volume: 0.5, loop: false });
+        
+        
+        track1.play();
+    
+      //  track2.play();
+  } // end of create() method in BaseScene
 
   initInputs() {
     // only need to be set up one time at init (not every frame)
@@ -586,9 +597,7 @@ export default class BaseScene extends Phaser.Scene {
         const nextScene = this.sceneKeyArray[keyNumber - 1];
         console.log("starting scene: " + nextScene);
         this.scene.start(nextScene);
-       
       }
-      
     });
 
     if (this.keyFour.isDown) {
@@ -645,7 +654,7 @@ export default class BaseScene extends Phaser.Scene {
   onCollision(player, labDoor) {
     console.log(this);
     console.log("Trying to load " + this.nextLevelName);
-   
+
     fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
   }

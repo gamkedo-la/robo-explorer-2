@@ -12,7 +12,7 @@ export default class Level1 extends BaseScene {
       
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
         // audioManager.playSound("track1");
-        
+         
         this.building();
         this.spikes();
         this.powerupArmor();
