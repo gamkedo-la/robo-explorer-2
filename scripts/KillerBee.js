@@ -76,6 +76,6 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.body.velocity.y = normalizedDirectionY * this.speed;
 
     // Optional: Rotate the KillerBee to face the player
-    this.rotation = Math.atan2(directionY, directionX);
+    // this.rotation = Math.atan2(directionY, directionX);
   }
 } // The end of class Player
