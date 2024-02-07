@@ -10,8 +10,9 @@ export default class Level2 extends BaseScene {
   
     create()
     {
+      audioManager.stopSound("track1");
+      // audioManager.playSound("track2");
         
-      
         this.building();
         super.create();
 

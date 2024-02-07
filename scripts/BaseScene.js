@@ -1,11 +1,13 @@
 import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import KillerBee from "./KillerBee.js";
+
 import BatEnemy from "./BatEnemy.js";
 
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
+
 import BossSelectText from "./UI/BossSelectText.js";
 
 export default class BaseScene extends Phaser.Scene {
@@ -128,6 +130,11 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Audio/MusicTracks/Track1-DangerRoadVersions/track1-DangerRoadv2.mp3"
     );
 
+    this.load.audio(
+      "track2",
+      "assets/Audio/MusicTracks/track2-RedBloodVersion2.wav"
+    );
+
     // AUDIO SFX
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
     this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
@@ -246,7 +253,10 @@ export default class BaseScene extends Phaser.Scene {
   create() {
     // Background Music
     const track1 = this.sound.add("track1", { volume: 0.5, loop: true });
-    track1.play();
+    const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
+    // track1.play();
+
+     track2.play();
     // TEST Camera bounds
     this.cameras.main.setBounds(0, 0, 1600, 600);
     this.physics.world.bounds.width = 2000;
@@ -576,7 +586,9 @@ export default class BaseScene extends Phaser.Scene {
         const nextScene = this.sceneKeyArray[keyNumber - 1];
         console.log("starting scene: " + nextScene);
         this.scene.start(nextScene);
+       
       }
+      
     });
 
     if (this.keyFour.isDown) {
@@ -633,6 +645,7 @@ export default class BaseScene extends Phaser.Scene {
   onCollision(player, labDoor) {
     console.log(this);
     console.log("Trying to load " + this.nextLevelName);
+   
     fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
   }
