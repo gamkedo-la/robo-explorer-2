@@ -74,6 +74,9 @@ export default class TestArea extends BaseScene {
     };
     let particles = this.add.particles(10, 550, "particles", particleOptions);
     particles.setDepth(999);
+
+    audioManager.stopSound("track2");
+    audioManager.playSound("track3");
   }
 
   

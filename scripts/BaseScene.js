@@ -139,6 +139,11 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Audio/MusicTracks/track2-RedBloodVersion2.wav"
     );
 
+    this.load.audio(
+      "track3",
+      "assets/Audio/MusicTracks/track3-ElectroHeat.wav"
+    );
+
     // AUDIO SFX
     this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
     this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
@@ -254,9 +259,7 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
-  // track1() {
-  //   track1.play();
-  // }
+
 
   create() {
     // TEST Camera bounds
@@ -539,11 +542,10 @@ export default class BaseScene extends Phaser.Scene {
       // Background Music
         const track1 = this.sound.add("track1", { volume: 0.5, loop:true });
         const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
+        const track3 = this.sound.add("track3", { volume: 0.5, loop: true });
         
         
-        // track1.play();
-    
-      //  track2.play();
+       
   } // end of create() method in BaseScene
 
   initInputs() {
