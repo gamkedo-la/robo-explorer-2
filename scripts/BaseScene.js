@@ -588,7 +588,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-
+    this.KillerBee.update();
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
