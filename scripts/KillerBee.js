@@ -23,6 +23,8 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.speed = 150;
 
     this.player = this.scene.player;
+
+    this.play('beeAnimation');
   }
 
   // 1 stop the bee falling
@@ -55,7 +57,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  update(){
+  update() {
     this.moveToPlayer();
   }
 
@@ -75,5 +77,5 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
 
     // Optional: Rotate the KillerBee to face the player
     this.rotation = Math.atan2(directionY, directionX);
-}
+  }
 } // The end of class Player

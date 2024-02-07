@@ -5,6 +5,7 @@ export default class Level1 extends BaseScene {
     constructor() 
     {
       super("Level1", "Level2");
+      
     }
   
     create()

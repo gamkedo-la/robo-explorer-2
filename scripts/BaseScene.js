@@ -490,6 +490,15 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1, // -1 means loop indefinitely
     });
 
+
+    this.anims.create({
+      key: 'beeAnimation',
+      frames: this.anims.generateFrameNumbers("killerBee",{start:0, end:3}),
+      frameRate: 10,
+      repeat: -1 // -1 for infinite loop
+      });
+
+  
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
     let powerupArmor = this.powerupArmor();
@@ -532,7 +541,7 @@ export default class BaseScene extends Phaser.Scene {
         const track2 = this.sound.add("track2", { volume: 0.5, loop: false });
         
         
-        track1.play();
+        // track1.play();
     
       //  track2.play();
   } // end of create() method in BaseScene
