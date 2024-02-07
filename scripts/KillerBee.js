@@ -25,6 +25,8 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.player = this.scene.player;
 
     this.play('beeAnimation');
+    // Initialize the direction the bee is facing
+    this.direction = -1; // 1 for right, -1 for left
   }
 
   // 1 stop the bee falling
@@ -65,7 +67,10 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     // Calculate the direction to the player
     const directionX = this.player.x - this.x;
     const directionY = this.player.y - this.y;
-
+    if (directionX * this.direction < 0) {
+      this.flipX = !this.flipX;
+      this.direction *= -1;
+  }
     // Normalize the direction vector
     const length = Math.sqrt(directionX * directionX + directionY * directionY);
     const normalizedDirectionX = directionX / length;
