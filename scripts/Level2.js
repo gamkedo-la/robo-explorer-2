@@ -29,6 +29,7 @@ export default class Level2 extends BaseScene {
         };
         let particles = this.add.particles(10, 550, "particles", particleOptions);
         particles.setDepth(999);
+        audioManager.playSound("track2");
     }
 
 

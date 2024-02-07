@@ -12,8 +12,8 @@ export default class Level1 extends BaseScene {
     {
       
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
-        // audioManager.playSound("track1");
-         
+       
+        
         this.building();
         this.spikes();
         this.powerupArmor();
@@ -36,6 +36,8 @@ export default class Level1 extends BaseScene {
         };
         let particles = this.add.particles(10, 550, "particles", particleOptions);
         particles.setDepth(999);
+
+        audioManager.playSound("track1");
     }
 
    update(){

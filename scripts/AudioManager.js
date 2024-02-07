@@ -4,6 +4,8 @@ const audioManager = {
     this.scene = scene;
     this.sounds.jump = scene.sound.add("jump");
     this.sounds.missile = scene.sound.add("missile");
+    this.sounds.track1 = scene.sound.add("track1");
+    this.sounds.track2 = scene.sound.add("track2");
   },
   playSound(key, volume = 1) {
     const sound = this.sounds[key];
