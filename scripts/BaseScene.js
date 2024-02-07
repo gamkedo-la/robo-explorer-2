@@ -494,7 +494,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: 'beeAnimation',
       frames: this.anims.generateFrameNumbers("killerBee",{start:0, end:3}),
-      frameRate: 10,
+      frameRate: 2.5,
       repeat: -1 // -1 for infinite loop
       });
 
