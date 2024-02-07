@@ -1,6 +1,6 @@
 import audioManager from "./AudioManager.js";
 import BaseScene from "./BaseScene.js";
-
+import Boss1 from "./Boss1.js";
 export default class TestArea extends BaseScene {
   constructor() {
     super("TestArea", "Level1");
@@ -46,7 +46,7 @@ export default class TestArea extends BaseScene {
     this.backgroundBuildings = this.add.tileSprite(0, 100, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
     this.middleBuildings = this.add.tileSprite(0, 10, 800, 600, 'middleBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
-    
+    this.Boss1 = new Boss1(this, 500, 400, "Boss1");
     // this.initClouds();
    
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class

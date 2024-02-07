@@ -2,7 +2,7 @@ import audioManager from "./AudioManager.js";
 import Player from "./Player.js";
 import KillerBee from "./KillerBee.js";
 import BatEnemy from "./BatEnemy.js";
-import Boss1 from "./Boss1.js";
+
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
@@ -290,7 +290,7 @@ export default class BaseScene extends Phaser.Scene {
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
     this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
-    this.Boss1 = new Boss1(this, 500, 400, "Boss1");
+    
     this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
