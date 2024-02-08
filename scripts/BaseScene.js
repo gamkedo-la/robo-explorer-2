@@ -535,7 +535,12 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
-    this.physics.add.collider(this.player, [movingPlatform]);
+    this.physics.add.collider(this.player, [movingPlatform], (player) => {
+      if (player.body.blocked.down) {
+        player.isInAir = false;
+        console.log("Touching Bottom");
+      }
+    });
 
     this.initInputs();
 
