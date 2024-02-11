@@ -159,6 +159,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     );
     this.rocket.setVelocityX(xSpeed);
     this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
+
+    this.rocket.damage = 10;
+    console.log("rocket hits bee")
   }
 
   takeDamage(amount) {
