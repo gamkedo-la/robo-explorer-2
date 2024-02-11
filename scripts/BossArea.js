@@ -43,11 +43,12 @@ export default class BossArea extends BaseScene {
     this.cloudsbg2.y = -56;
   }
   create() {
+    this.initClouds();
     this.backgroundBuildings = this.add.tileSprite(0, 100, 800, 600, 'backgroundBuildings').setOrigin(0, 0);
     this.middleBuildings = this.add.tileSprite(0, 10, 800, 600, 'middleBuildings').setOrigin(0, 0);
     this.foreground = this.add.tileSprite(0, 0, 800, 600, 'foreground').setOrigin(0, 0);
     this.Boss1 = new Boss1(this, 500, 400, "Boss1");
-    // this.initClouds();
+    
    
     // This may need to be added to the base scene so that it's called anytime we move into a new scene derived from that class
     globalState.currentScene = this.scene.key; // global state key for storing the current scene key
@@ -72,7 +73,7 @@ export default class BossArea extends BaseScene {
       lifespan: { min: 500, max: 2500 },
       blendMode: "ADD", // lighten
     };
-    let particles = this.add.particles(10, 550, "particles", particleOptions);
+    let particles = this.add.particles(10, 800, "particles", particleOptions);
     particles.setDepth(999);
 
     audioManager.stopSound("track2");
