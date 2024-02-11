@@ -64,7 +64,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
-    this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
+    // this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.image(
       "labDoor",
       "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png"
@@ -251,9 +251,9 @@ export default class BaseScene extends Phaser.Scene {
     return movingPlatform;
   }
 
-  collectBomb(player, bomb) {
-    bomb.disableBody(true, true);
-  }
+  // collectBomb(player, bomb) {
+  //   bomb.disableBody(true, true);
+  // }
 
   hitBySpike(player, spike) {
     player.takeDamage(1);
@@ -472,16 +472,16 @@ export default class BaseScene extends Phaser.Scene {
       "labDoor"
     );
 
-    let bomb;
-    bomb = this.physics.add.group({
-      key: "bomb",
-      repeat: 10,
-      setXY: { x: 12, y: 0, stepX: 70 },
-    });
+    // let bomb;
+    // bomb = this.physics.add.group({
+    //   key: "bomb",
+    //   repeat: 10,
+    //   setXY: { x: 12, y: 0, stepX: 70 },
+    // });
 
-    bomb.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    });
+    // bomb.children.iterate(function (child) {
+    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    // });
 
     // PLATFORM LIGHT ANIMATION
     this.anims.create({
@@ -538,7 +538,7 @@ export default class BaseScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true, 0, 0, true);
     this.labDoor.setCollideWorldBounds(true);
 
-    this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
+    // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
