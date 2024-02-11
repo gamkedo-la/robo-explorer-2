@@ -32,6 +32,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.isJumping = false;
     this.reloadFrames = 0;
+
+    this.isOnPlatform = false;
+    this.currentPlatform = null;
+  }
+
+  update() {
+    if (this.isOnPlatform && this.currentPlatform) {
+      if (this.currentPlatform.vx) {
+        this.body.position.x += this.currentPlatform.vx;
+      }
+      if (this.currentPlatform.vy) {
+        this.body.position.y += this.currentPlatform.vy;
+      }
+
+      this.isOnPlatform = false;
+      this.currentPlatform = null;
+    }
   }
 
   handleInput(

@@ -240,6 +240,12 @@ export default class BaseScene extends Phaser.Scene {
       duration: 4000,
       yoyo: true,
       repeat: -1,
+      onUpdate: () => {
+        movingPlatform.vx = movingPlatform.body.position.x - movingPlatform.previousX;
+        movingPlatform.vy = movingPlatform.body.position.y - movingPlatform.previousY;
+        movingPlatform.previousX = movingPlatform.body.position.x;
+        movingPlatform.previousY = movingPlatform.body.position.y;
+      }
     });
 
     return movingPlatform;
@@ -535,10 +541,12 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
-    this.physics.add.collider(this.player, [movingPlatform], (player) => {
+    this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
         console.log("Touching Bottom");
+        player.isOnPlatform = true;
+        player.currentPlatform = movingPlatform;
       }
     });
 
@@ -659,6 +667,8 @@ export default class BaseScene extends Phaser.Scene {
     if (this.healthbar.getValue() <= 0) {
       this.scene.start(SCENE_KEYS.GAME_OVER);
     }
+
+    this.player.update();
   }
 
   updateHealthBarPosition() {
