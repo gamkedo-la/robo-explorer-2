@@ -104,6 +104,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         audioManager.playSound("missile");
        
     } else {
+      if (inputController.spaceDownLastFrame) {
+        this.anims.play("up", true);
+      }
       inputController.spaceDownLastFrame = false;
      
 
