@@ -30,7 +30,7 @@ export default class BossSelectScene extends Phaser.Scene {
     });
 
     this.boss_select_text = new BossSelectText(this, 375, 50, "bossTextSheet");
-    this.boss_select_text.anims.play("bossText", 60, true);
+
     this.add
       .text(
         this.cameras.main.centerX,
@@ -62,6 +62,7 @@ export default class BossSelectScene extends Phaser.Scene {
   }
 
   update() {
+    this.boss_select_text.anims.play("bossText", 60, true);
     if (this.keyEnter.isDown) {
       fx.forceReset();
       this.scene.start(SCENE_KEYS.LEVEL_1);
