@@ -232,6 +232,7 @@ export default class BaseScene extends Phaser.Scene {
       .setImmovable();
     movingPlatform.body.bounce.y = 1;
     movingPlatform.body.collideWorldBounds = true;
+    movingPlatform.body.setSize(94, 37, false).setOffset(1, 0);
     movingPlatform.anims.play("platformLight", true);
 
     this.tweens.add({

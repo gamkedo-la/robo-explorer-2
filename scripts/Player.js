@@ -36,6 +36,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.isOnPlatform = false;
     this.currentPlatform = null;
     
+    this.body.setSize(60, 100).setOffset(32, 22);
   }
 
   update() {
