@@ -136,12 +136,12 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.audio(
       "track2",
-      "assets/Audio/MusicTracks/track2-RedBloodVersion2.wav"
+      "assets/Audio/MusicTracks/Track2-RedBloodVersion2.wav"
     );
 
     this.load.audio(
       "track3",
-      "assets/Audio/MusicTracks/track3-ElectroHeat.wav"
+      "assets/Audio/MusicTracks/Track3-ElectroHeat.wav"
     );
 
     // AUDIO SFX
