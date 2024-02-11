@@ -2,7 +2,7 @@ import audioManager from "./AudioManager.js";
 // import platform from "./Platform.js"
 import IntroCutScene from "./IntroCutScene.js";
 import IntroCutScene2 from "./IntroCutScene2.js";
-import TestArea from "./TestArea.js";
+import BossArea from "./BossArea.js";
 import Level1 from "./Level1.js";
 import Level2 from "./Level2.js";
 import PauseScene from "./PauseScene.js";
@@ -27,7 +27,7 @@ var config = {
     BossSelectScene,
     IntroCutScene,
     IntroCutScene2,
-    TestArea,
+    BossArea,
     Level1,
     Level2,
     PauseScene,

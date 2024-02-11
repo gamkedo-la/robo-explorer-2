@@ -1,9 +1,9 @@
 import audioManager from "./AudioManager.js";
 import BaseScene from "./BaseScene.js";
 import Boss1 from "./Boss1.js";
-export default class TestArea extends BaseScene {
+export default class BossArea extends BaseScene {
   constructor() {
-    super("TestArea", "Level1");
+    super("BossArea", "Level1");
   }
 
   preload(){
