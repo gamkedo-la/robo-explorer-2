@@ -5,7 +5,22 @@ import BossSelectText from "./BossSelectText.js";
 export default class BossSelectScene extends Phaser.Scene {
   boss_select_text;
   constructor() {
-    super({ key: SCENE_KEYS.BOSS_SELECT });
+    super({
+      key: SCENE_KEYS.BOSS_SELECT,
+      cameras: {
+        name: "",
+        x: 0,
+        y: 0,
+        zoom: 1,
+        rotation: 0,
+        scrollX: 0,
+        scrollY: 0,
+        roundPixels: false,
+        visible: true,
+        backgroundColor: "#404080",
+        bounds: null, // {x, y, width, height}
+      },
+    });
   }
 
   preload() {
