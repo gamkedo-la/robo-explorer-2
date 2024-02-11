@@ -13,6 +13,7 @@ export default class Level1 extends BaseScene {
       
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
        
+        // Set up collision between player and killerBee
         
         this.building();
         this.spikes();

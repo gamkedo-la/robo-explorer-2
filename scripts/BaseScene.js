@@ -507,6 +507,14 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1 // -1 for infinite loop
       });
 
+
+      // this.anims.create({
+      //   key: 'batAnimation',
+      //   frames: this.anims.generateFrameNumbers("batAnimation",{start:0, end:4}),
+      //   frameRate: 2.5,
+      //   repeat: -1 // -1 for infinite loop
+      //   });
+
   
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
@@ -541,6 +549,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
+    
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
@@ -613,6 +622,7 @@ export default class BaseScene extends Phaser.Scene {
   update() {
     this.updateHealthBarPosition();
     this.KillerBee.update();
+    this.BatEnemy.update();
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {

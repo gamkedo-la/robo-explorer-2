@@ -29,13 +29,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.sceneRef = scene;
     this.sceneRef.add.existing(this);
     this.sceneRef.physics.add.existing(this);
+    this.rockets = this.sceneRef.physics.add.group(); 
 
     this.isJumping = false;
     this.reloadFrames = 0;
-
     this.isOnPlatform = false;
     this.currentPlatform = null;
-    this.rockets = this.sceneRef.physics.add.group(); 
+    
   }
 
   update() {

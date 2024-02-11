@@ -24,7 +24,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.health = 5;
 
     this.scene.physics.world.enable(this);
-    this.speed = 150;
+    this.speed = 100;
 
    
 
@@ -53,7 +53,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleRocketCollision(bee, rocket){
-    bee.takeDamage(rocket.damage);
+    bee.takeDamage(this.rocket.damage);
     rocket.destroy();
   }
 
