@@ -528,7 +528,7 @@ export default class BaseScene extends Phaser.Scene {
 
       if (down) {
         this.player.isInAir = false;
-        console.log("Touching Bottom");
+        // console.log("Touching Bottom");
       }
     });
 
