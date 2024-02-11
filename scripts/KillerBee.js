@@ -3,6 +3,8 @@ import fx from "./Fx.js";
 
 export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
+  player;
+  health;
 
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
@@ -17,7 +19,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
       this
     );
     this.body.allowGravity = false;
-    this.health = 100;
+    this.health = 5;
 
     this.scene.physics.world.enable(this);
     this.speed = 150;

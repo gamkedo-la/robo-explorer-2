@@ -3,7 +3,7 @@ import fx from "./Fx.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sceneRef;
-
+  rockets;
   // JUMPING
   isJumping;
   isInAir;
@@ -35,6 +35,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.isOnPlatform = false;
     this.currentPlatform = null;
+    this.rockets = this.sceneRef.physics.add.group(); 
   }
 
   update() {
