@@ -10,7 +10,9 @@ export default class Level1 extends BaseScene {
   
     create()
     {
-      
+      this.cameras.main.setBounds(0, 0, 1600, 600);
+      this.physics.world.bounds.width = 2000;
+      this.physics.world.bounds.height = 600;
         this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
        
         // Set up collision between player and killerBee
@@ -22,7 +24,7 @@ export default class Level1 extends BaseScene {
         // this.boss1();
        
         super.create();
-        
+        this.cameras.main.startFollow(this.player);
 
         let particleOptions = {
           frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],

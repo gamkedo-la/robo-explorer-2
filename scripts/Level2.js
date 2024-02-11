@@ -10,12 +10,16 @@ export default class Level2 extends BaseScene {
   
     create()
     {
+
+      this.cameras.main.setBounds(0, 0, 1600, 600);
+      this.physics.world.bounds.width = 2000;
+      this.physics.world.bounds.height = 600;
       audioManager.stopSound("track1");
       // audioManager.playSound("track2");
         
         this.building();
         super.create();
-
+        this.cameras.main.startFollow(this.player);
         let particleOptions = {
           frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],
           angle: { min: 180, max: 360 },

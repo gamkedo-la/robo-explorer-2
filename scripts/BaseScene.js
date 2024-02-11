@@ -269,9 +269,9 @@ export default class BaseScene extends Phaser.Scene {
 
   create() {
     // TEST Camera bounds
-    this.cameras.main.setBounds(0, 0, 1600, 600);
-    this.physics.world.bounds.width = 2000;
-    this.physics.world.bounds.height = 600;
+    // this.cameras.main.setBounds(0, 0, 1600, 600);
+    // this.physics.world.bounds.width = 2000;
+    // this.physics.world.bounds.height = 600;
     // PARALLAX
     this.buildingVan = this.add
       .tileSprite(0, 280, 800, 320, "buildingVan")
@@ -312,7 +312,7 @@ export default class BaseScene extends Phaser.Scene {
     this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
     this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
 
-    this.cameras.main.startFollow(this.player);
+    // this.cameras.main.startFollow(this.player);
     // this.anims.create({
     //   key: "up",
     //   frames: this.anims.generateFrameNumbers("player", { start: 2, end: 1 }),
