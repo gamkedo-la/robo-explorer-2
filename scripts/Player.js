@@ -64,25 +64,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // WALK Movement
     if (inputController.keyShift.isDown && inputController.keyA.isDown) {
       this.setVelocityX(-160); // Move Left
-      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setVelocityX(-190); // Move Left
-      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
     } else if (inputController.keyShift.isDown && inputController.keyD.isDown) {
       this.setVelocityX(190); // Move right
-      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("runRight", true);
       }
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setVelocityX(160); // Move right
-      this.lastFacingRight = this.body.velocity.x < 0;
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
@@ -93,13 +89,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }
     } // Stop moving
 
+    if (this.body.velocity.x != 0) {
+        this.lastFacingRight = this.body.velocity.x > 0;
+    }
+
     if (cursors.up.isUp || inputController.keyUp.isUp) {
       audioManager.stopSound("jump");
       this.isJumping = false;
     }
 
     if (inputController.keySpaceBar.isDown) {
-        if (!inputController.spaceDownLastFrame) this.fireRocket(this.lastFacingRight);
+        if (!inputController.spaceDownLastFrame) this.fireRocket(!this.lastFacingRight);
         inputController.spaceDownLastFrame = true;
         this.anims.play("fire", true);
         audioManager.playSound("missile");
@@ -142,7 +142,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
-    this.setFlipX(this.lastFacingRight);
+    this.setFlipX(!this.lastFacingRight);
   } // end of handleInput function
 
   fireRocket(toLeft) {
