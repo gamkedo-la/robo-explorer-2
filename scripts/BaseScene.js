@@ -131,7 +131,7 @@ export default class BaseScene extends Phaser.Scene {
     // AUDIO BACKGROUND MUSIC
     this.load.audio(
       "track1",
-      "assets/Audio/MusicTracks/Track1-DangerRoadVersions/Track1-DangerRoadv3.wav"
+      "assets/Audio/MusicTracks/Track1-DangerRoadVersions/Track1-DangerRoadv4.wav"
     );
 
     this.load.audio(
@@ -437,11 +437,11 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [34],
+        frames: [34,35],
       }),
       // frames: [{ key: "player", frame: 1 }],
       // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
-      frameRate: -1,
+      frameRate: -100,
       // repeat: -1,
     });
 
