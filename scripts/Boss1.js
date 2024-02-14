@@ -12,6 +12,7 @@ export default class Boss1 extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.add.collider(this, this.player, this.handleCollision, null, this);
     this.body.allowGravity=false;
     this.health = 100; 
+    this.play('Boss1Animation_idle');
   }
 
  // 1 stop the bee falling

@@ -516,6 +516,15 @@ export default class BaseScene extends Phaser.Scene {
          repeat: -1 // -1 for infinite loop
       });
 
+
+      this.anims.create({
+        key: 'Boss1Animation_idle',
+        frames: this.anims.generateFrameNumbers("Boss1",{start:0, end:1}),
+        frameRate: 10,
+        repeat: -1 // -1 for infinite loop
+     });
+
+
   
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
