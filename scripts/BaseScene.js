@@ -215,6 +215,7 @@ export default class BaseScene extends Phaser.Scene {
     // powerupArmor.body.bounce.y = 1;
     // powerupArmor.body.collideWorldBounds = true;
     // powerupArmor.anims.play("powerupArmor", true);
+    powerupArmor.anims.play('powerupArmor1');
     return powerupArmor;
     // .create(400, 500, "powerupArmor")
     // .setScale(1)
@@ -373,7 +374,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "powerupArmor",
+      key: "powerupArmor1",
       frames: this.anims.generateFrameNumbers("powerupArmor", {
         start: 0,
         end: 1,
@@ -496,7 +497,7 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "boss1_idle",
       frames: this.anims.generateFrameNumbers("boss1", { start: 0, end: 3 }),
-      frameRate: 10,
+      frameRate: 1,
       repeat: -1, // -1 means loop indefinitely
     });
 
@@ -524,6 +525,8 @@ export default class BaseScene extends Phaser.Scene {
         repeat: -1 // -1 for infinite loop
      });
 
+
+   
 
   
     let spike = this.spikes();
