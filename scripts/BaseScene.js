@@ -494,12 +494,12 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     // BOSS 1 ANimation
-    this.anims.create({
-      key: "boss1_idle",
-      frames: this.anims.generateFrameNumbers("boss1", { start: 0, end: 3 }),
-      frameRate: 1,
-      repeat: -1, // -1 means loop indefinitely
-    });
+    // this.anims.create({
+    //   key: "boss1_idle",
+    //   frames: this.anims.generateFrameNumbers("boss1", { start: 0, end: 3 }),
+    //   frameRate: 1,
+    //   repeat: -1, // -1 means loop indefinitely
+    // });
 
 
     this.anims.create({
@@ -520,8 +520,8 @@ export default class BaseScene extends Phaser.Scene {
 
       this.anims.create({
         key: 'Boss1Animation_idle',
-        frames: this.anims.generateFrameNumbers("Boss1",{start:0, end:1}),
-        frameRate: 10,
+        frames: this.anims.generateFrameNumbers("Boss1",{start:0, end:2}),
+        frameRate: 5,
         repeat: -1 // -1 for infinite loop
      });
 
