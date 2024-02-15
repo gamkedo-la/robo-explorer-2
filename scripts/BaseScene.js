@@ -32,6 +32,7 @@ export default class BaseScene extends Phaser.Scene {
   numKeys;
 
   // UI elements
+  scoreText;
   healthbar;
 
   constructor(levelKey, nextLevel) {
@@ -284,7 +285,7 @@ export default class BaseScene extends Phaser.Scene {
       fontSize: "32px",
       fill: "#000",
     });
-    this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
+    this.scoreText = this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
     this.healthbar = new Healthbar(
       this,
       25,
@@ -696,8 +697,10 @@ export default class BaseScene extends Phaser.Scene {
 
   updateHealthBarPosition() {
     // Update the health bar position to follow the camera
-    Healthbar.x = this.cameras.main.scrollX + 10;
-    Healthbar.y = this.cameras.main.scrollY + 10;
+    this.healthbar.x = this.cameras.main.scrollX + 25;
+    this.healthbar.y = this.cameras.main.scrollY + 125;
+    this.scoreText.x = this.cameras.main.scrollX + 10;
+    this.scoreText.y = this.cameras.main.scrollY + 10;
   }
 
   onCollision(player, labDoor) {
