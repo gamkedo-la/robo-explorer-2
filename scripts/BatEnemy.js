@@ -60,4 +60,4 @@ export default class BatEnemy extends Phaser.Physics.Arcade.Sprite {
 
  
 
-} // The end of class Player
+} // The end of class Bat

@@ -15,22 +15,13 @@ export default class Boss1 extends Phaser.Physics.Arcade.Sprite {
     this.play('Boss1Animation_idle');
   }
 
- // 1 stop the bee falling
- // 2 touch the bee and take damage
- // 3 make the bee move on its own. 
- // Until stops falling test for in the scene
+
+  
+
  handleCollision(boss1, player) {
-  // Your logic for what happens when the player touches the bee
-  // For example, you might decrease player health and damage the bee
-  player.takeDamage(10); // Assuming your player class has a takeDamage method
-
-  // Damage the bee
-  this.takeDamage(20); // Adjust the damage value as needed
+  player.takeDamage(10); 
+  this.takeDamage(20);
   console.log("Taking damge from boss1")
-  // Additional logic for handling the collision
-  // For example, you might play a sound, show an animation, etc.
-
-  // Destroy the bee sprite if needed
   boss1.destroy();
 }
 
@@ -41,12 +32,10 @@ takeDamage(amount) {
   this.health -= amount;
   if (this.health <= 0) {
     this.health = 0;
-    // Additional logic for when the bee is defeated
-    // For example, play an explosion animation, spawn particles, etc.
     this.destroy();
   }
 }
 
  
 
-} // The end of class Player
+} // The end of class Boss1
