@@ -73,6 +73,11 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
+    this.load.image("bossFrame", "assets/Artwork/UI/boss-frame.png");
+    this.load.image(
+      "bossFrameHighlighted",
+      "assets/Artwork/UI/boss-frame-highlighted.png"
+    );
 
     // POWERUPS
     this.load.spritesheet(
