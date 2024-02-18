@@ -11,7 +11,7 @@ export default class Level1 extends BaseScene {
     create()
     {
       this.cameras.main.setBounds(0, 0, 5000, 600);
-      this.physics.world.bounds.width = 2000;
+      this.physics.world.bounds.width = 800;
       this.physics.world.bounds.height = 600;
         // this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
        
@@ -46,7 +46,7 @@ export default class Level1 extends BaseScene {
    update(){
     super.update();
     // this.batMovement();
-    this.foreground.tilePositionX -= 2;
+    //this.foreground.tilePositionX -= 2;
     // this.buildingVan.tilePositionX -= 6;
    }
   }

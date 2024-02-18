@@ -35,9 +35,15 @@ export default class BaseScene extends Phaser.Scene {
   scoreText;
   healthbar;
 
+  // ENEMY LIST
+  enemyList;
+
   constructor(levelKey, nextLevel) {
+    
     super({ key: levelKey });
+   
     this.nextLevelName = nextLevel;
+
   }
 
   preload() {
@@ -268,14 +274,19 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
-  hitByBee(player, killerBee) {
-    player.takeDamage(1);
+  hitByEnemy(player, whichEnemy) {
+    player.takeDamage(1); // Could be based on whichEnemy
     this.healthbar.setValue(this.player.health);
   }
 
+  updateFromGroup(object){
+    object.update();
+  }
 
 
   create() {
+    this.enemyList = this.physics.add.group(); 
+    this.add.existing(this.enemyList);
     // TEST Camera bounds
     // this.cameras.main.setBounds(0, 0, 1600, 600);
     // this.physics.world.bounds.width = 2000;
@@ -317,7 +328,7 @@ export default class BaseScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
-    this.KillerBee = new KillerBee(this, 500, 500, "killerBee");
+    new KillerBee(this, 500, 500, "killerBee"); // Add itself to enemyList
     this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
 
     // this.cameras.main.startFollow(this.player);
@@ -567,7 +578,7 @@ export default class BaseScene extends Phaser.Scene {
 
     // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
-    this.physics.add.overlap(this.player, KillerBee, this.hitByBee, null, this);
+    this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
     
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
@@ -640,7 +651,8 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-    this.KillerBee.update();
+    //this.KillerBee.update();
+    this.enemyList.children.entries.forEach(this.updateFromGroup);
     this.BatEnemy.update();
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {

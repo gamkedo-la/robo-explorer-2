@@ -11,7 +11,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.sceneRef = scene;
     this.player = this.scene.player;
     this.sceneRef.add.existing(this);
-    
+    this.sceneRef.enemyList.add(this);
     this.sceneRef.physics.add.existing(this);
     this.scene.physics.add.collider(
       this,
@@ -41,8 +41,10 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleRocketCollision(bee, rocket){
-    bee.takeDamage(this.rocket.damage);
+    console.log("rocket collision function test.");
+    bee.takeDamage(rocket.damage);
     rocket.destroy();
+    
   }
 
   takeDamage(amount) {
@@ -60,6 +62,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.moveToPlayer();
   }
 
+  
   moveToPlayer() {
     // Calculate the direction to the player
     const directionX = this.player.x - this.x;

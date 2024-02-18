@@ -157,17 +157,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     let rocketImage = toLeft ? "rocketLeft" : "rocket";
     let xSpeed = toLeft ? -this.ROCKET_SPEED_X : this.ROCKET_SPEED_X;
 
-    // console.log("firing a rocket!");
+    
     this.rocket = this.sceneRef.physics.add.sprite(
       this.x + xOffset,
       this.y + this.ROCKET_SPAWN_YOFFSET,
       rocketImage
     );
+
+    this.rockets.add(this.rocket);
     this.rocket.setVelocityX(xSpeed);
     this.rocket.setVelocityY(this.ROCKET_SPEED_Y);
 
     this.rocket.damage = 10;
-    console.log("rocket hits bee")
+    // console.log("rocket hits bee")
   }
 
   takeDamage(amount) {
