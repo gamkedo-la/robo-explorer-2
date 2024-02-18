@@ -9,6 +9,7 @@ export default class BatEnemy extends Phaser.Physics.Arcade.Sprite {
     this.sceneRef = scene;
     this.player = this.scene.player;
     this.sceneRef.add.existing(this);
+    this.sceneRef.enemyList.add(this);
     this.sceneRef.physics.add.existing(this);
 
     this.body.allowGravity=false;
@@ -19,18 +20,32 @@ export default class BatEnemy extends Phaser.Physics.Arcade.Sprite {
 
     this.scene.physics.world.enable(this);
     this.speed = 50;
+    this.scene.physics.add.collider(
+      this,
+      this.player.rockets,
+      this.handleRocketCollision,
+      null,
+      this
+    );
 
    
 
  
   }
 
+  handleRocketCollision(enemy, rocket){
+    console.log("rocket collision function test.");
+    enemy.takeDamage(rocket.damage);
+    rocket.destroy();
+    
+  }
 
   takeDamage(amount) {
     console.log("taking " + amount + " damage");
     this.health -= amount;
     if (this.health <= 0) {
       this.health = 0;
+      this.destroy();
     }
   }
 

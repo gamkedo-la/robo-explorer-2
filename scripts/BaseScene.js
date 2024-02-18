@@ -329,7 +329,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     new KillerBee(this, 500, 500, "killerBee"); // Add itself to enemyList
-    this.BatEnemy = new BatEnemy(this, 400, 400, "BatEnemy");
+    new BatEnemy(this, 400, 400, "BatEnemy");
 
     // this.cameras.main.startFollow(this.player);
     // this.anims.create({
@@ -651,9 +651,7 @@ export default class BaseScene extends Phaser.Scene {
 
   update() {
     this.updateHealthBarPosition();
-    //this.KillerBee.update();
     this.enemyList.children.entries.forEach(this.updateFromGroup);
-    this.BatEnemy.update();
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
