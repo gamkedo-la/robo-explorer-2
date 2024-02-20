@@ -135,8 +135,8 @@ export default class BaseScene extends Phaser.Scene {
       "bridge",
       "assets/Artwork/Environment/Levels/Level1/bridgeTile.png",
       {
-        frameWidth: 130,
-        frameHeight: 260,
+        frameWidth: 120,
+        frameHeight: 180,
       }
     );
     // UI
@@ -250,7 +250,7 @@ export default class BaseScene extends Phaser.Scene {
 
     movingPlatforms = this.physics.add.group();
     var movingPlatform = movingPlatforms
-      .create(700, 300, "movingPlatform")
+      .create(1000, 300, "movingPlatform")
       .setScale(1)
       .setDirectControl()
       .setImmovable();
@@ -589,7 +589,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
-    this.physics.add.overlap(this.player, bridge, null, this);
+    
     
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
