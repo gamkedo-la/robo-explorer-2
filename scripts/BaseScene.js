@@ -281,6 +281,7 @@ export default class BaseScene extends Phaser.Scene {
       var bridge;
   
       this.bridge = this.physics.add.staticGroup();
+      this.bridge.create(70, 500, 'bridge').setScale(1).refreshBody();
       this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
       this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
   }
@@ -335,7 +336,7 @@ export default class BaseScene extends Phaser.Scene {
     audioManager.init(this);
 
     // PLAYER
-    const PlayerPositionY = 400;
+    const PlayerPositionY = 200;
     const PlayerPositionX = 50;
 
    
