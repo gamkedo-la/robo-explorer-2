@@ -136,7 +136,7 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/Level1/bridgeTile.png",
       {
         frameWidth: 130,
-        frameHeight: 130,
+        frameHeight: 260,
       }
     );
     // UI
@@ -218,7 +218,7 @@ export default class BaseScene extends Phaser.Scene {
     var spike;
     spike = this.physics.add.staticGroup();
 
-    return spike.create(300, 570, "spikes").setScale(1).refreshBody();
+    return spike.create(400, 570, "spikes").setScale(1).refreshBody();
   }
 
   // POWERUP
@@ -279,7 +279,8 @@ export default class BaseScene extends Phaser.Scene {
       var bridge;
   
       this.bridge = this.physics.add.staticGroup();
-      this.bridge.create(200, 568, 'bridge').setScale(1).refreshBody();
+      this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
+      this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
   }
   // collectBomb(player, bomb) {
   //   bomb.disableBody(true, true);
