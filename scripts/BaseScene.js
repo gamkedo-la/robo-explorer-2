@@ -130,6 +130,15 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
 
+
+    this.load.spritesheet(
+      "bridge",
+      "assets/Artwork/Environment/Levels/Level1/bridgeTile.png",
+      {
+        frameWidth: 130,
+        frameHeight: 130,
+      }
+    );
     // UI
     this.load.spritesheet(
       "bossTextSheet",
@@ -265,6 +274,13 @@ export default class BaseScene extends Phaser.Scene {
     return movingPlatform;
   }
 
+  bridge(){
+    
+      var bridge;
+  
+      this.bridge = this.physics.add.staticGroup();
+      this.bridge.create(200, 568, 'bridge').setScale(1).refreshBody();
+  }
   // collectBomb(player, bomb) {
   //   bomb.disableBody(true, true);
   // }
@@ -538,6 +554,7 @@ export default class BaseScene extends Phaser.Scene {
   
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
+    let bridge = this.bridge();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
 
