@@ -217,8 +217,10 @@ export default class BaseScene extends Phaser.Scene {
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
-
+    spike.create(600, 570, "spikes").setScale(1).refreshBody();
     return spike.create(400, 570, "spikes").setScale(1).refreshBody();
+    
+    
   }
 
   // POWERUP
