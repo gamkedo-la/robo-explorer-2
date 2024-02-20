@@ -589,6 +589,7 @@ export default class BaseScene extends Phaser.Scene {
     // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
     this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
+    this.physics.add.overlap(this.player, bridge, null, this);
     
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
@@ -598,6 +599,8 @@ export default class BaseScene extends Phaser.Scene {
         player.currentPlatform = movingPlatform;
       }
     });
+
+    this.physics.add.collider(this.player, this.bridge);
 
     this.initInputs();
 
