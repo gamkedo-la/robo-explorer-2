@@ -12,7 +12,7 @@ export default class Level2 extends BaseScene {
     {
 
       this.cameras.main.setBounds(0, 0, 4000, 600);
-      this.physics.world.bounds.width = 2000;
+      this.physics.world.bounds.width = 5000;
       this.physics.world.bounds.height = 600;
       audioManager.stopSound("track1");
       // audioManager.playSound("track2");

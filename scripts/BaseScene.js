@@ -523,7 +523,7 @@ export default class BaseScene extends Phaser.Scene {
 
     // TEST Bomb
     this.labDoor = this.physics.add.sprite(
-      PlayerPositionX + 3000,
+      PlayerPositionX + 3500,
       PlayerPositionY,
       "labDoor"
     );
