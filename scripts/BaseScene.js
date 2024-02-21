@@ -139,6 +139,15 @@ export default class BaseScene extends Phaser.Scene {
         frameHeight: 180,
       }
     );
+
+    this.load.spritesheet(
+      "bridge2",
+      "assets/Artwork/Environment/Levels/Level1/bridgeTile2.png",
+      {
+        frameWidth: 1000,
+        frameHeight: 180,
+      }
+    );
     // UI
     this.load.spritesheet(
       "bossTextSheet",
@@ -285,6 +294,16 @@ export default class BaseScene extends Phaser.Scene {
       this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
       this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
   }
+
+  
+  createBridge2(){
+    
+    var bridge2;
+
+    this.bridge2 = this.physics.add.staticGroup();
+    this.bridge2.create(1000, 500, 'bridge2').setScale(1).refreshBody();
+    
+}
   // collectBomb(player, bomb) {
   //   bomb.disableBody(true, true);
   // }
@@ -559,6 +578,7 @@ export default class BaseScene extends Phaser.Scene {
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
     let bridge = this.createBridge();
+    let bridge2 = this.createBridge2();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
 
@@ -607,6 +627,16 @@ export default class BaseScene extends Phaser.Scene {
         console.log("Touching Bottom");
         player.isOnPlatform = true;
         player.currentPlatform = bridge;
+      }
+    });
+
+    
+    this.physics.add.collider(this.player, this.bridge2, (player,bridge2) => {
+      if (player.body.blocked.down) {
+        player.isInAir = false;
+        console.log("Touching Bottom");
+        player.isOnPlatform = true;
+        player.currentPlatform = bridge2;
       }
     });
 
