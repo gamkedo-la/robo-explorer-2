@@ -72,10 +72,15 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     // this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
-    this.load.image(
+    this.load.spritesheet(
       "labDoor",
-      "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png"
+      "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png",{
+        frameWidth: 280,
+      frameHeight: 188,
+      }
     );
+
+  
 
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
@@ -144,7 +149,7 @@ export default class BaseScene extends Phaser.Scene {
       "bridge2",
       "assets/Artwork/Environment/Levels/Level1/bridgeTile2.png",
       {
-        frameWidth: 1000,
+        frameWidth: 2000,
         frameHeight: 180,
       }
     );
@@ -303,7 +308,8 @@ export default class BaseScene extends Phaser.Scene {
     var bridge2;
 
     this.bridge2 = this.physics.add.staticGroup();
-    this.bridge2.create(1200, 500, 'bridge2').setScale(1).refreshBody();
+    this.bridge2.create(1200, 600, 'bridge2').setScale(1).refreshBody();
+    this.bridge2.create(3000, 650, 'bridge2').setScale(1).refreshBody();
     
 }
   // collectBomb(player, bomb) {
@@ -517,7 +523,7 @@ export default class BaseScene extends Phaser.Scene {
 
     // TEST Bomb
     this.labDoor = this.physics.add.sprite(
-      PlayerPositionX + 1500,
+      PlayerPositionX + 3000,
       PlayerPositionY,
       "labDoor"
     );
