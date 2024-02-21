@@ -601,7 +601,14 @@ export default class BaseScene extends Phaser.Scene {
       }
     });
 
-    this.physics.add.collider(this.player, this.bridge);
+    this.physics.add.collider(this.player, this.bridge, (player,bridge) => {
+      if (player.body.blocked.down) {
+        player.isInAir = false;
+        console.log("Touching Bottom");
+        player.isOnPlatform = true;
+        player.currentPlatform = bridge;
+      }
+    });
 
     this.initInputs();
 
