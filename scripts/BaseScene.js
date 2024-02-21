@@ -276,7 +276,7 @@ export default class BaseScene extends Phaser.Scene {
     return movingPlatform;
   }
 
-  bridge(){
+  createBridge(){
     
       var bridge;
   
@@ -558,7 +558,7 @@ export default class BaseScene extends Phaser.Scene {
   
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
-    let bridge = this.bridge();
+    let bridge = this.createBridge();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
 
