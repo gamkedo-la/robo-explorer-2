@@ -226,7 +226,9 @@ export default class BaseScene extends Phaser.Scene {
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
+    spike.create(180, 570, "spikes").setScale(1).refreshBody();
     spike.create(600, 570, "spikes").setScale(1).refreshBody();
+    spike.create(670, 570, "spikes").setScale(1).refreshBody();
     return spike.create(400, 570, "spikes").setScale(1).refreshBody();
     
     
@@ -301,7 +303,7 @@ export default class BaseScene extends Phaser.Scene {
     var bridge2;
 
     this.bridge2 = this.physics.add.staticGroup();
-    this.bridge2.create(1000, 500, 'bridge2').setScale(1).refreshBody();
+    this.bridge2.create(1200, 500, 'bridge2').setScale(1).refreshBody();
     
 }
   // collectBomb(player, bomb) {
