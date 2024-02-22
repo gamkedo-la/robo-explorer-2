@@ -17,7 +17,7 @@ export default class Level2 extends BaseScene {
       audioManager.stopSound("track1");
       // audioManager.playSound("track2");
         
-        this.building();
+        this.subway();
         super.create();
         this.cameras.main.startFollow(this.player);
         let particleOptions = {

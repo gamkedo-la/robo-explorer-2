@@ -68,6 +68,11 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/IntroScene/buildingVan.png"
     );
 
+    this.load.image(
+      "subway",
+      "assets/Artwork/Environment/Levels/Level2/subway.png"
+    );
+
     this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
@@ -218,6 +223,13 @@ export default class BaseScene extends Phaser.Scene {
     building = this.physics.add.staticGroup();
     building.create(2000, 100, "buildingVan").setScale(1).refreshBody(); // this will adjust the background image
     console.log("Test if Building Van will work!");
+  }
+
+  subway(){
+    var subway;
+    subway = this.physics.add.staticGroup();
+    subway.create(1600, 100, "subway").setScale(1).refreshBody(); // this will adjust the background image
+    console.log("Test if Subway Scene will work!");
   }
  
   spikes() {
