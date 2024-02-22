@@ -51,7 +51,7 @@ export default class BaseScene extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32,
     });
-    // this.load.image("Bg", "assets/Artwork/Environment/Levels/IntroScene/Bg.png");
+   
 
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
 
@@ -71,7 +71,6 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
     this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
-    // this.load.image("bomb", "assets/Artwork/Environment/Items/bomb.png");
     this.load.spritesheet(
       "labDoor",
       "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png",{
@@ -217,17 +216,10 @@ export default class BaseScene extends Phaser.Scene {
   building() {
     var building;
     building = this.physics.add.staticGroup();
-    building.create(800, 100, "buildingVan").setScale(1).refreshBody();
+    building.create(2000, 100, "buildingVan").setScale(1).refreshBody(); // this will adjust the background image
     console.log("Test if Building Van will work!");
   }
-  // BOSS1
-  // boss1() {
-  //   var boss1;
-  //   boss1 = this.physics.add.staticGroup();
-  //   boss1.anims.play("boss1", true);
-  //   return boss1.create(600, 350, "boss1").setScale(1).refreshBody();
-  // }
-
+ 
   spikes() {
     var spike;
     spike = this.physics.add.staticGroup();
@@ -250,15 +242,10 @@ export default class BaseScene extends Phaser.Scene {
       .setScale(1)
       .setDirectControl()
       .setImmovable();
-    // powerupArmor.anims.play("powerupArmor", true);
-    // powerupArmor.body.bounce.y = 1;
-    // powerupArmor.body.collideWorldBounds = true;
-    // powerupArmor.anims.play("powerupArmor", true);
+    
     powerupArmor.anims.play('powerupArmor1');
     return powerupArmor;
-    // .create(400, 500, "powerupArmor")
-    // .setScale(1)
-    // .refreshBody();
+   
   }
 
   movingPlatform() {
@@ -334,10 +321,7 @@ export default class BaseScene extends Phaser.Scene {
   create() {
     this.enemyList = this.physics.add.group(); 
     this.add.existing(this.enemyList);
-    // TEST Camera bounds
-    // this.cameras.main.setBounds(0, 0, 1600, 600);
-    // this.physics.world.bounds.width = 2000;
-    // this.physics.world.bounds.height = 600;
+   
     // PARALLAX
     this.buildingVan = this.add
       .tileSprite(0, 280, 800, 320, "buildingVan")
