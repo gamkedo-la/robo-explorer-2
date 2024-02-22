@@ -226,6 +226,14 @@ export default class BaseScene extends Phaser.Scene {
     spike.create(180, 570, "spikes").setScale(1).refreshBody();
     spike.create(600, 570, "spikes").setScale(1).refreshBody();
     spike.create(670, 570, "spikes").setScale(1).refreshBody();
+    spike.create(2600, 570, "spikes").setScale(1).refreshBody();
+    spike.create(2800, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3000, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3100, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3200, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3300, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3400, 570, "spikes").setScale(1).refreshBody();
+    spike.create(3400, 570, "spikes").setScale(1).refreshBody();
     return spike.create(400, 570, "spikes").setScale(1).refreshBody();
     
     
@@ -287,6 +295,9 @@ export default class BaseScene extends Phaser.Scene {
       this.bridge.create(70, 500, 'bridge').setScale(1).refreshBody();
       this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
       this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
+      this.bridge.create(2700, 600, 'bridge').setScale(1).refreshBody();
+      this.bridge.create(2900, 600, 'bridge').setScale(1).refreshBody();
+      this.bridge.create(3200, 600, 'bridge').setScale(1).refreshBody();
   }
 
   
@@ -296,7 +307,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.bridge2 = this.physics.add.staticGroup();
     this.bridge2.create(1200, 600, 'bridge2').setScale(1).refreshBody();
-    this.bridge2.create(3000, 650, 'bridge2').setScale(1).refreshBody();
+    this.bridge2.create(2000, 650, 'bridge2').setScale(1).refreshBody();
     
 }
   // collectBomb(player, bomb) {
