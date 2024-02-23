@@ -7,6 +7,7 @@ import BatEnemy from "./BatEnemy.js";
 import { SCENE_KEYS } from "./Constants.js";
 import Healthbar from "./UI/Healthbar.js";
 import fx from "./Fx.js";
+import BridgePlatform from "./BridgePlatform.js";
 
 import BossSelectText from "./UI/BossSelectText.js";
 
@@ -299,18 +300,18 @@ export default class BaseScene extends Phaser.Scene {
     return movingPlatform;
   }
 
-  createBridge(){
+  // createBridge(){
     
-      var bridge;
+  //     var bridge;
   
-      this.bridge = this.physics.add.staticGroup();
-      this.bridge.create(70, 500, 'bridge').setScale(1).refreshBody();
-      this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
-      this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
-      this.bridge.create(2700, 600, 'bridge').setScale(1).refreshBody();
-      this.bridge.create(2900, 600, 'bridge').setScale(1).refreshBody();
-      this.bridge.create(3200, 600, 'bridge').setScale(1).refreshBody();
-  }
+  //     this.bridge = this.physics.add.staticGroup();
+  //     this.bridge.create(70, 500, 'bridge').setScale(1).refreshBody();
+  //     this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
+  //     this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
+  //     this.bridge.create(2700, 600, 'bridge').setScale(1).refreshBody();
+  //     this.bridge.create(2900, 600, 'bridge').setScale(1).refreshBody();
+  //     this.bridge.create(3200, 600, 'bridge').setScale(1).refreshBody();
+  // }
 
   
   createBridge2(){
@@ -592,7 +593,7 @@ export default class BaseScene extends Phaser.Scene {
   
     let spike = this.spikes();
     let movingPlatform = this.movingPlatform();
-    let bridge = this.createBridge();
+    // let bridge = this.createBridge();
     let bridge2 = this.createBridge2();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
