@@ -48,6 +48,8 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image('tileArt', 'assets/Artwork/Environment/tileArt.png');
+
     this.load.spritesheet("particles", "assets/Artwork/FX/particles.png", {
       frameWidth: 32,
       frameHeight: 32,
