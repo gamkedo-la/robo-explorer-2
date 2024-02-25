@@ -235,24 +235,6 @@ export default class BaseScene extends Phaser.Scene {
     console.log("Test if Subway Scene will work!");
   }
  
-  spikes() {
-    var spike;
-    spike = this.physics.add.staticGroup();
-    spike.create(180, 570, "spikes").setScale(1).refreshBody();
-    spike.create(600, 570, "spikes").setScale(1).refreshBody();
-    spike.create(670, 570, "spikes").setScale(1).refreshBody();
-    spike.create(2600, 570, "spikes").setScale(1).refreshBody();
-    spike.create(2800, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3000, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3100, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3200, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3300, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3400, 570, "spikes").setScale(1).refreshBody();
-    spike.create(3400, 570, "spikes").setScale(1).refreshBody();
-    return spike.create(400, 570, "spikes").setScale(1).refreshBody();
-    
-    
-  }
 
   // POWERUP
 
@@ -593,7 +575,7 @@ export default class BaseScene extends Phaser.Scene {
    
 
   
-    let spike = this.spikes();
+    
     let movingPlatform = this.movingPlatform();
     // let bridge = this.createBridge();
     let bridge2 = this.createBridge2();
@@ -626,7 +608,7 @@ export default class BaseScene extends Phaser.Scene {
     this.labDoor.setCollideWorldBounds(true);
 
     // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
-    this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
+    // this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
     
     

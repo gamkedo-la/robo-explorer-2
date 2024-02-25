@@ -17,16 +17,18 @@ export default class Level1 extends BaseScene {
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+        [ 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 ],
+        [ 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-        [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-        [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-        [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+        [ 0, 1, 2, 0, 7, 7, 0, 0, 0, 0, 0 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     ];
     this.building();
     const map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64 });
     const tiles = map.addTilesetImage('tileArt');
     const layer = map.createLayer(0, tiles, 0, 0);
+    map.setCollision([ 1, 2,3,4,5,6,7 ]);
+    
 
     this.cameras.main.setBounds(0, 0, 4000, 600);
     this.physics.world.bounds.width = 4000;
@@ -36,12 +38,13 @@ export default class Level1 extends BaseScene {
     // Set up collision between player and killerBee
 
     
-    this.spikes();
+    // this.spikes(); Now going to become part of tilemap.
     this.powerupArmor();
 
     // this.boss1();
 
     super.create();
+    this.physics.add.collider(this.player, layer);
     this.cameras.main.startFollow(this.player);
 
     let particleOptions = {
