@@ -23,6 +23,7 @@ export default class Level1 extends BaseScene {
         [ 0, 1, 2, 0, 7, 7, 0, 0, 0, 0, 0 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     ];
+  
     this.building();
     const map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64 });
     const tiles = map.addTilesetImage('tileArt');
@@ -40,6 +41,7 @@ export default class Level1 extends BaseScene {
     
     // this.spikes(); Now going to become part of tilemap.
     this.powerupArmor();
+    this.lightPostAnimation();
 
     // this.boss1();
 

@@ -103,6 +103,12 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Items/powerupArmor.png",
       { frameWidth: 64, frameHeight: 64 }
     );
+
+    this.load.spritesheet(
+      "lightPost",
+      "assets/Artwork/Environment/Levels/IntroScene/LightPostSpriteSheet.png",
+      { frameWidth: 620, frameHeight: 380 }
+    );
     // ENEMIES
     this.load.spritesheet(
       "killerBee",
@@ -250,6 +256,21 @@ export default class BaseScene extends Phaser.Scene {
     
     powerupArmor.anims.play('powerupArmor1');
     return powerupArmor;
+   
+  }
+
+  lightPostAnimation() {
+    var lightPost;
+    lightPost = this.physics.add.group();
+
+    var lightPost = lightPost
+      .create(620, 380, "lightPost")
+      .setScale(.5)
+      .setDirectControl()
+      .setImmovable();
+    
+    lightPost.anims.play('lightPostAnimation');
+    return lightPost;
    
   }
 
@@ -428,6 +449,17 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 5,
       repeat: -1,
     });
+
+    this.anims.create({
+      key: "lightPost",
+      frames: this.anims.generateFrameNumbers("lightPost", {
+        start: 0,
+        end: 1,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+
 
     /*
      this.anims.create({
