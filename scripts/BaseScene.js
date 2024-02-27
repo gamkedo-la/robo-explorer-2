@@ -319,15 +319,15 @@ export default class BaseScene extends Phaser.Scene {
   // }
 
   
-  createBridge2(){
+//   createBridge2(){
     
-    var bridge2;
+//     var bridge2;
 
-    this.bridge2 = this.physics.add.staticGroup();
-    this.bridge2.create(1200, 600, 'bridge2').setScale(1).refreshBody();
-    this.bridge2.create(2000, 650, 'bridge2').setScale(1).refreshBody();
+//     this.bridge2 = this.physics.add.staticGroup();
+//     this.bridge2.create(1200, 600, 'bridge2').setScale(1).refreshBody();
+//     this.bridge2.create(2000, 650, 'bridge2').setScale(1).refreshBody();
     
-}
+// }
   // collectBomb(player, bomb) {
   //   bomb.disableBody(true, true);
   // }
@@ -610,7 +610,7 @@ export default class BaseScene extends Phaser.Scene {
     
     let movingPlatform = this.movingPlatform();
     // let bridge = this.createBridge();
-    let bridge2 = this.createBridge2();
+    // let bridge2 = this.createBridge2();
     let powerupArmor = this.powerupArmor();
     // Test for creating rocket
 
