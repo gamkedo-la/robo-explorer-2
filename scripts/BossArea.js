@@ -76,8 +76,7 @@ export default class BossArea extends BaseScene {
     let particles = this.add.particles(10, 800, "particles", particleOptions);
     particles.setDepth(999);
 
-    audioManager.stopSound("track2");
-    audioManager.playSound("track3");
+    audioManager.switchToMusicTrack("track3");
   }
 
   

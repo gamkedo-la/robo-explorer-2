@@ -34,8 +34,6 @@ export default class Level2 extends BaseScene {
       this.cameras.main.setBounds(0, 0, 4000, 600);
       this.physics.world.bounds.width = 5000;
       this.physics.world.bounds.height = 600;
-      audioManager.stopSound("track1");
-      // audioManager.playSound("track2");
         
         
         super.create();
@@ -54,7 +52,7 @@ export default class Level2 extends BaseScene {
         };
         let particles = this.add.particles(10, 550, "particles", particleOptions);
         particles.setDepth(999);
-        audioManager.playSound("track2");
+        audioManager.switchToMusicTrack("track2");
     }
 
 

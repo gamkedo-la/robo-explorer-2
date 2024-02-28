@@ -27,6 +27,14 @@ const audioManager = {
       sound.stop();
     }
   },
+  switchToMusicTrack(key) {
+    if (this.currentMusicTrack) {
+      this.currentMusicTrack.setVolume(0);
+      this.currentMusicTrack.stop();
+    }
+    this.playSound(key);
+    this.currentMusicTrack = this.sounds[key];
+  },
 };
 
 export default audioManager;
