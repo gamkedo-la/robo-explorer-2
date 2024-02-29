@@ -80,8 +80,8 @@ export default class Level1 extends BaseScene {
     // this.buildingVan.tilePositionX -= 6;
    }
 
-   hitDamage (player, tile)
+   hitDamage (player, damageTiles)
     {
-        this.player.takeDamage();
+        this.player.takeDamage(1);
     }
   }
