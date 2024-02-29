@@ -11,6 +11,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   jumpForce = 200;
   lastFacingRight = true;
   reloadFrames;
+  invulFrames = 0;
 
   health = 22;
   MAX_HEALTH = 22;
@@ -40,6 +41,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
+    if(this.invulFrames > 0){
+      this.invulFrames--;
+      this.visible = (this.invulFrames % 4 ) < 2;
+    }else{
+      this.visible = true;
+    }
+
+
     if (this.isOnPlatform && this.currentPlatform) {
       if (this.currentPlatform.vx) {
         this.body.position.x += this.currentPlatform.vx;
@@ -173,8 +182,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   takeDamage(amount) {
+    if(this.invulFrames > 0){
+      return;
+    }
     console.log("taking " + amount + " damage");
     this.health -= amount;
+    this.invulFrames = 20;
     if (this.health <= 0) {
       this.health = 0;
     }
