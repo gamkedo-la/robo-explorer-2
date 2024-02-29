@@ -193,8 +193,8 @@ export default class BaseScene extends Phaser.Scene {
     );
 
     // AUDIO SFX
-    this.load.audio("jump", "assets/Audio/Sfx/jump/jump-0.wav");
-    this.load.audio("missile", "assets/Audio/Sfx/explosion/explosion2.mp3");
+    this.load.audio("jump", "assets/Audio/SFX/jump/jump-0.wav");
+    this.load.audio("missile", "assets/Audio/SFX/explosion/explosion2.mp3");
 
     // PARALLAX LAYERS
     this.load.image(
