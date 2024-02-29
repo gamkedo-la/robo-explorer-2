@@ -74,10 +74,6 @@ export default class Level1 extends BaseScene {
   update(){
     super.update();
     this.physics.world.overlapTiles(this.player, this.damageTiles, this.hitDamage, null, this);
-
-    // this.batMovement();
-    //this.foreground.tilePositionX -= 2;
-    // this.buildingVan.tilePositionX -= 6;
    }
 
    hitDamage (player, damageTiles)
