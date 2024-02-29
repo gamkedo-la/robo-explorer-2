@@ -43,10 +43,13 @@ export default class Level1 extends BaseScene {
     this.powerupArmor();
     this.lightPostAnimation();
 
-    // this.boss1();
+    function playerGridCollision(playerSprite, tile){
+      // console.log("touching grid");
+      playerSprite.isInAir = false;
+    }
 
     super.create();
-    this.physics.add.collider(this.player, layer);
+    this.physics.add.collider(this.player, layer,playerGridCollision);
     this.cameras.main.startFollow(this.player);
 
     let particleOptions = {

@@ -231,14 +231,14 @@ export default class BaseScene extends Phaser.Scene {
     var building;
     building = this.physics.add.staticGroup();
     building.create(2000, 100, "buildingVan").setScale(1).refreshBody(); // this will adjust the background image
-    console.log("Test if Building Van will work!");
+    // console.log("Test if Building Van will work!");
   }
 
   subway(){
     var subway;
     subway = this.physics.add.staticGroup();
     subway.create(1600, 100, "subway").setScale(1).refreshBody(); // this will adjust the background image
-    console.log("Test if Subway Scene will work!");
+    // console.log("Test if Subway Scene will work!");
   }
  
 
@@ -647,7 +647,7 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
-        console.log("Touching Bottom");
+        // console.log("Touching Bottom");
         player.isOnPlatform = true;
         player.currentPlatform = movingPlatform;
       }
@@ -656,7 +656,7 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.bridge, (player,bridge) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
-        console.log("Touching Bottom");
+        // console.log("Touching Bottom");
         player.isOnPlatform = true;
         player.currentPlatform = bridge;
       }
@@ -666,7 +666,7 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.bridge2, (player,bridge2) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
-        console.log("Touching Bottom");
+        // console.log("Touching Bottom");
         player.isOnPlatform = true;
         player.currentPlatform = bridge2;
       }
@@ -685,7 +685,7 @@ export default class BaseScene extends Phaser.Scene {
 
   initInputs() {
     // only need to be set up one time at init (not every frame)
-    console.log("Initializing player input");
+    // console.log("Initializing player input");
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); // Move Up
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A); // Move left
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Move right
@@ -738,10 +738,10 @@ export default class BaseScene extends Phaser.Scene {
     // Dev tool to move between scenes with num keys
     this.numKeys.forEach((key) => {
       if (key.isDown) {
-        console.log("num key pressed: " + key.originalEvent.key);
+        // console.log("num key pressed: " + key.originalEvent.key);
         const keyNumber = parseInt(key.originalEvent.key);
         const nextScene = this.sceneKeyArray[keyNumber - 1];
-        console.log("starting scene: " + nextScene);
+        // console.log("starting scene: " + nextScene);
         this.scene.start(nextScene);
       }
     });
@@ -749,13 +749,13 @@ export default class BaseScene extends Phaser.Scene {
     if (this.keyFour.isDown) {
       this.player.takeDamage(1);
       this.healthbar.setValue(this.player.health);
-      console.log(this.player.health);
+      // console.log(this.player.health);
     }
 
     if (this.keyFive.isDown) {
       this.player.recoverHealth(1);
       this.healthbar.setValue(this.player.health);
-      console.log(this.player.health);
+      // console.log(this.player.health);
     }
 
     // Pausing game
@@ -802,8 +802,8 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   onCollision(player, labDoor) {
-    console.log(this);
-    console.log("Trying to load " + this.nextLevelName);
+    // console.log(this);
+    // console.log("Trying to load " + this.nextLevelName);
 
     fx.forceReset();
     player.scene.scene.start(this.nextLevelName);
