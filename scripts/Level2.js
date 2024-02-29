@@ -25,6 +25,13 @@ export default class Level2 extends BaseScene {
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     ];
 
+    // Pad row with zeros to complete the grid
+    for (const row of level) { 
+      while (row.length < level[0].length) {
+        row.push(0);
+      }
+    }
+
     this.subway();
     const map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64 });
     const tiles = map.addTilesetImage('tileArt');
