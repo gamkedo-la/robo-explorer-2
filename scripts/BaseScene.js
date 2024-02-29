@@ -76,8 +76,8 @@ export default class BaseScene extends Phaser.Scene {
       "assets/Artwork/Environment/Levels/Level2/subway.png"
     );
 
-    this.load.image("rocket", "assets/Artwork/Weapons/Rocket.png");
-    this.load.image("spikes", "assets/Artwork/Environment/Items/Spikes.png");
+    this.load.image("rocket", "assets/Artwork/Weapons/rocket.png");
+    this.load.image("spikes", "assets/Artwork/Environment/Items/spikes.png");
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.spritesheet(
       "labDoor",
@@ -179,17 +179,17 @@ export default class BaseScene extends Phaser.Scene {
     // AUDIO BACKGROUND MUSIC
     this.load.audio(
       "track1",
-      "assets/Audio/MusicTracks/Track1-DangerRoadVersions/Track1-DangerRoadv4.wav"
+      "assets/Audio/MusicTracks/Track1-DangerRoadVersions/Track1-DangerRoadv4.mp3"
     );
 
     this.load.audio(
       "track2",
-      "assets/Audio/MusicTracks/Track2-RedBloodVersion2.wav"
+      "assets/Audio/MusicTracks/Track2-RedBloodVersion2.mp3"
     );
 
     this.load.audio(
       "track3",
-      "assets/Audio/MusicTracks/Track3-ElectroHeat.wav"
+      "assets/Audio/MusicTracks/Track3-ElectroHeat.mp3"
     );
 
     // AUDIO SFX
