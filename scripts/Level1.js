@@ -28,7 +28,9 @@ export default class Level1 extends BaseScene {
     const map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64 });
     const tiles = map.addTilesetImage('tileArt');
     const layer = map.createLayer(0, tiles, 0, 0);
-    map.setCollision([ 1, 2,3,4,5,6,7,8,9,10,11 ]);
+    map.setCollision([ 1, 2,3,4,5,6,8,9,10,11 ]);
+    this.damageTiles = map.filterTiles(tile => tile.index === 7);
+
     
 
     this.cameras.main.setBounds(0, 0, 4000, 600);
@@ -71,8 +73,15 @@ export default class Level1 extends BaseScene {
 
   update(){
     super.update();
+    this.physics.world.overlapTiles(this.player, this.damageTiles, this.hitDamage, null, this);
+
     // this.batMovement();
     //this.foreground.tilePositionX -= 2;
     // this.buildingVan.tilePositionX -= 6;
    }
+
+   hitDamage (player, tile)
+    {
+        this.player.takeDamage();
+    }
   }

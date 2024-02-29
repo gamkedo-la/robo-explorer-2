@@ -187,10 +187,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     console.log("taking " + amount + " damage");
     this.health -= amount;
-    this.invulFrames = 20;
+   
     if (this.health <= 0) {
       this.health = 0;
+    }else{
+      this.invulFrames = 20;
     }
+
   }
 
   recoverHealth(amount) {
