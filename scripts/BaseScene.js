@@ -305,33 +305,6 @@ export default class BaseScene extends Phaser.Scene {
     return movingPlatform;
   }
 
-  // createBridge(){
-    
-  //     var bridge;
-  
-  //     this.bridge = this.physics.add.staticGroup();
-  //     this.bridge.create(70, 500, 'bridge').setScale(1).refreshBody();
-  //     this.bridge.create(300, 500, 'bridge').setScale(1).refreshBody();
-  //     this.bridge.create(500, 500, 'bridge').setScale(1).refreshBody();
-  //     this.bridge.create(2700, 600, 'bridge').setScale(1).refreshBody();
-  //     this.bridge.create(2900, 600, 'bridge').setScale(1).refreshBody();
-  //     this.bridge.create(3200, 600, 'bridge').setScale(1).refreshBody();
-  // }
-
-  
-//   createBridge2(){
-    
-//     var bridge2;
-
-//     this.bridge2 = this.physics.add.staticGroup();
-//     this.bridge2.create(1200, 600, 'bridge2').setScale(1).refreshBody();
-//     this.bridge2.create(2000, 650, 'bridge2').setScale(1).refreshBody();
-    
-// }
-  // collectBomb(player, bomb) {
-  //   bomb.disableBody(true, true);
-  // }
-
   hitBySpike(player, spike) {
     player.takeDamage(1);
     this.healthbar.setValue(this.player.health);
@@ -400,17 +373,7 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 12,
     });
 
-    // JUMP LEFT
-    /*
-    this.anims.create({
-      key: "upLeft",
-      //frames: [{ key: "player", frames: 64 }],
-      frames: this.anims.generateFrameNumbers("player", {
-        // frames: [14], working
-        frames: [72],
-      }),
-      frameRate: 10,
-    });*/
+  
 
     this.anims.create({
       key: "down",
@@ -418,7 +381,6 @@ export default class BaseScene extends Phaser.Scene {
         start: 1,
         end: 2,
       }),
-      // frames: [{ key: "player", frame: 1 }],
       frameRate: 5,
       repeat: -1,
     });
@@ -461,14 +423,6 @@ export default class BaseScene extends Phaser.Scene {
     });
 
 
-    /*
-     this.anims.create({
-       key: "idle",
-       frames: [{key:"player", frame: [13,14]}],
-       frameRate: 8,
-       repeat: -1
-     });*/
-
     // WALK LEFT ANIMATION
 
     this.anims.create({
@@ -500,43 +454,18 @@ export default class BaseScene extends Phaser.Scene {
       frameRate: 10,
     });
 
-    // JUMP Animation
-    /*
-    this.anims.create({
-      key: "playerJump",
-      frames: this.anims.generateFrameNumbers("player", {
-        frames: [64, 65],
-      }),
-      
-      frameRate: 8,
-    });
-
-*/
     // FIRING Rockets Right
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
         frames: [34,35],
       }),
-      // frames: [{ key: "player", frame: 1 }],
-      // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
+     
       frameRate: -100,
-      // repeat: -1,
+     
     });
 
-    // use setFlipX in Player.js to flip left when firing
-    //
-    // this.anims.create({
-    //   key: "fireLeft",
-    //   frames: this.anims.generateFrameNumbers("player", {
-    //     frames: [35],
-    //   }),
-    //   // frames: [{ key: "player", frame: 1 }],
-    //   // frames: this.anims.generateFrameNumbers("player", { start: 26, end: 28 }),
-    //   frameRate: -1,
-    //   // repeat: -1,
-    // });
-
+    
     // ANIMATIONI FOR ON  PLATFORM
     this.anims.create({
       key: "onPlatform",
@@ -552,17 +481,7 @@ export default class BaseScene extends Phaser.Scene {
       "labDoor"
     );
 
-    // let bomb;
-    // bomb = this.physics.add.group({
-    //   key: "bomb",
-    //   repeat: 10,
-    //   setXY: { x: 12, y: 0, stepX: 70 },
-    // });
-
-    // bomb.children.iterate(function (child) {
-    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    // });
-
+    
     // PLATFORM LIGHT ANIMATION
     this.anims.create({
       key: "platformLight",
@@ -571,13 +490,6 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    // BOSS 1 ANimation
-    // this.anims.create({
-    //   key: "boss1_idle",
-    //   frames: this.anims.generateFrameNumbers("boss1", { start: 0, end: 3 }),
-    //   frameRate: 1,
-    //   repeat: -1, // -1 means loop indefinitely
-    // });
 
 
     this.anims.create({
@@ -609,11 +521,9 @@ export default class BaseScene extends Phaser.Scene {
   
     
     let movingPlatform = this.movingPlatform();
-    // let bridge = this.createBridge();
-    // let bridge2 = this.createBridge2();
+    
     let powerupArmor = this.powerupArmor();
-    // Test for creating rocket
-
+    
     // Collisions Code
     this.physics.add.collider(
       this.player,
@@ -639,8 +549,6 @@ export default class BaseScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true, 0, 0, true);
     this.labDoor.setCollideWorldBounds(true);
 
-    // this.physics.add.overlap(this.player, bomb, this.collectBomb, null, this);
-    // this.physics.add.overlap(this.player, spike, this.hitBySpike, null, this);
     this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
     
     
@@ -774,10 +682,7 @@ export default class BaseScene extends Phaser.Scene {
       this.muteButtonIsDown = false;
     }
 
-    // if(this.player.body.touching.down){
-    //   console.log("jump limit test");
-    //   this.isJumping = false;
-    // }
+    
 
     this.player.handleInput(this.cursors, this, audioManager);
 
