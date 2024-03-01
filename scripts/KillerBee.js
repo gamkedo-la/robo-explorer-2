@@ -36,19 +36,19 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
   handleCollision(bee, player) {
     player.takeDamage(10); 
     this.takeDamage(20); 
-    console.log("Taking damge from bee");
+    // console.log("Taking damge from bee");
     bee.destroy();
   }
 
   handleRocketCollision(enemy, rocket){
-    console.log("rocket collision function test.");
+    // console.log("rocket collision function test.");
     enemy.takeDamage(rocket.damage);
     rocket.destroy();
     
   }
 
   takeDamage(amount) {
-    console.log("Bee taking " + amount + " damage");
+    // console.log("Bee taking " + amount + " damage");
     this.health -= amount;
     if (this.health <= 0) {
       this.health = 0;

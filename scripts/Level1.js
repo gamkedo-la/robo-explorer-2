@@ -37,17 +37,12 @@ export default class Level1 extends BaseScene {
     this.cameras.main.setBounds(0, 0, 4000, 600);
     this.physics.world.bounds.width = 4000;
     this.physics.world.bounds.height = 600;
-    // this.foreground = this.add.tileSprite(0, 38, 800, 296, 'foreground').setOrigin(0, 0);
-
-    // Set up collision between player and killerBee
-
+   
     
-    // this.spikes(); Now going to become part of tilemap.
     // this.powerupArmor();
     this.lightPostAnimation();
 
     function playerGridCollision(playerSprite, tile){
-      // console.log("touching grid");
       playerSprite.isInAir = false;
     }
 
@@ -55,19 +50,19 @@ export default class Level1 extends BaseScene {
     this.physics.add.collider(this.player, layer,playerGridCollision);
     this.cameras.main.startFollow(this.player);
 
-    let particleOptions = {
-      frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      angle: { min: 180, max: 360 },
-      speed: { min: 50, max: 200 },
-      frequency: 50,
-      gravityY: 200,
-      scale: { start: 1, end: 1 },
-      alpha: { start: 1, end: 0 },
-      lifespan: { min: 500, max: 2500 },
-      blendMode: "ADD", // lighten
-    };
-    let particles = this.add.particles(10, 550, "particles", particleOptions);
-    particles.setDepth(999);
+    // let particleOptions = {
+    //   frame: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    //   angle: { min: 180, max: 360 },
+    //   speed: { min: 50, max: 200 },
+    //   frequency: 50,
+    //   gravityY: 200,
+    //   scale: { start: 1, end: 1 },
+    //   alpha: { start: 1, end: 0 },
+    //   lifespan: { min: 500, max: 2500 },
+    //   blendMode: "ADD", // lighten
+    // };
+    // let particles = this.add.particles(10, 550, "particles", particleOptions);
+    // particles.setDepth(999);
 
     audioManager.switchToMusicTrack("track1");
   }
@@ -84,10 +79,11 @@ export default class Level1 extends BaseScene {
         this.player.takeDamage(1);
     }
 
-    hitPowerUp(player, tile){
-      // this.map.removeTile(tile, 12, false);
+    
+    hitPowerUp(player, tile){   
+        // this.map.removeTile(tile, 12, false);
 
-      // this.armorPowerUp = this.map.filterTiles(tile => tile.index === 12);
+        // this.armorPowerUp = this.map.filterTiles(tile => tile.index === 12);
       console.log("Hitting powerup");
     }
   }

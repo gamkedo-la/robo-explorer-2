@@ -633,7 +633,7 @@ export default class BaseScene extends Phaser.Scene {
       }
     });
 
-    console.log(this.nextLevelName);
+    // console.log(this.nextLevelName);
 
     this.player.setBounce(0);
     this.player.setCollideWorldBounds(true, 0, 0, true);
