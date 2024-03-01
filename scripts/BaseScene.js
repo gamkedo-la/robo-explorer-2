@@ -107,7 +107,7 @@ export default class BaseScene extends Phaser.Scene {
     this.load.spritesheet(
       "lightPost",
       "assets/Artwork/Environment/Levels/IntroScene/LightPostSpriteSheet.png",
-      { frameWidth: 620, frameHeight: 380 }
+      { frameWidth: 310, frameHeight: 380 }
     );
     // ENEMIES
     this.load.spritesheet(
@@ -260,11 +260,30 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   lightPostAnimation() {
+    var lightPostGroup;
+    lightPostGroup = this.physics.add.group();
+
+    var lightPost = lightPostGroup
+      .create(600, 400, "lightPost")
+      .setScale(.5)
+      .setDirectControl()
+      .setImmovable();
+    
+    lightPost.anims.play('lightPostAnimation');
+    return lightPostGroup;
+   
+  }
+
+
+  
+
+  
+  lightPostAnimation2() {
     var lightPost;
     lightPost = this.physics.add.group();
 
     var lightPost = lightPost
-      .create(620, 380, "lightPost")
+      .create(1000, 400, "lightPost")
       .setScale(.5)
       .setDirectControl()
       .setImmovable();
@@ -273,6 +292,8 @@ export default class BaseScene extends Phaser.Scene {
     return lightPost;
    
   }
+
+  
 
   movingPlatform() {
     var movingPlatforms;
@@ -413,12 +434,12 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "lightPost",
+      key: "lightPostAnimation",
       frames: this.anims.generateFrameNumbers("lightPost", {
         start: 0,
         end: 1,
       }),
-      frameRate: 5,
+      frameRate: 10,
       repeat: -1,
     });
 
