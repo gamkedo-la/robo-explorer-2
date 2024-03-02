@@ -244,20 +244,20 @@ export default class BaseScene extends Phaser.Scene {
 
   // POWERUP
 
-  powerupArmor() {
-    var powerupArmor;
-    powerupArmor = this.physics.add.group();
+  // powerupArmor() {
+  //   var powerupArmor;
+  //   powerupArmor = this.physics.add.group();
 
-    var powerupArmor = powerupArmor
-      .create(700, 300, "powerupArmor")
-      .setScale(1)
-      .setDirectControl()
-      .setImmovable();
+  //   var powerupArmor = powerupArmor
+  //     .create(700, 300, "powerupArmor")
+  //     .setScale(1)
+  //     .setDirectControl()
+  //     .setImmovable();
     
-    powerupArmor.anims.play('powerupArmor1');
-    return powerupArmor;
+  //   powerupArmor.anims.play('powerupArmor1');
+  //   return powerupArmor;
    
-  }
+  // }
 
   lightPostAnimation() {
     var lightPostGroup;
@@ -564,7 +564,7 @@ export default class BaseScene extends Phaser.Scene {
     
     let movingPlatform = this.movingPlatform();
     
-    let powerupArmor = this.powerupArmor();
+    // let powerupArmor = this.powerupArmor();
     
     // Collisions Code
     this.physics.add.collider(
