@@ -24,7 +24,7 @@ export default class KillerBee extends Phaser.Physics.Arcade.Sprite {
     this.health = 5;
 
     this.scene.physics.world.enable(this);
-    this.speed = 100;
+    this.speed = 50;
 
    
 

@@ -378,10 +378,31 @@ export default class BaseScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
-    new KillerBee(this, 500, 500, "killerBee"); // Add itself to enemyList
     
-    new BatEnemy(this, 400, 400, "BatEnemy");
 
+
+      new KillerBee(this, 800, 100, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 600, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 700, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 900, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 1000, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 1100, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 1500, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 1600, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 1700, 200, "killerBee"); // Add itself to enemyList
+      new KillerBee(this, 2000, 200, "killerBee"); // Add itself to enemyList
+
+      
+ 
+    
+    new BatEnemy(this, 1000, 400, "BatEnemy");
+    new BatEnemy(this, 1500, 500, "BatEnemy");
+    new BatEnemy(this, 2000, 400, "BatEnemy");
+    new BatEnemy(this, 3300, 500, "BatEnemy");
+    new BatEnemy(this, 4400, 400, "BatEnemy");
+    new BatEnemy(this, 5500, 500, "BatEnemy");
+    new BatEnemy(this, 6600, 400, "BatEnemy");
+    
 
 
     // JUMP RIGHT

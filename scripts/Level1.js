@@ -25,6 +25,8 @@ export default class Level1 extends BaseScene {
       ];
     
       this.building();
+  
+     
       const map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64 });
       const tiles = map.addTilesetImage('tileArt');
       const layer = map.createLayer(0, tiles, 0, 0);
