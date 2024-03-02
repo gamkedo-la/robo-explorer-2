@@ -394,13 +394,13 @@ export default class BaseScene extends Phaser.Scene {
       
  
     
-    new BatEnemy(this, 1000, 400, "BatEnemy");
-    new BatEnemy(this, 1500, 500, "BatEnemy");
-    new BatEnemy(this, 2000, 400, "BatEnemy");
-    new BatEnemy(this, 3300, 500, "BatEnemy");
-    new BatEnemy(this, 4400, 400, "BatEnemy");
-    new BatEnemy(this, 5500, 500, "BatEnemy");
-    new BatEnemy(this, 6600, 400, "BatEnemy");
+    // new BatEnemy(this, 1000, 400, "BatEnemy");
+    // new BatEnemy(this, 1500, 500, "BatEnemy");
+    // new BatEnemy(this, 2000, 400, "BatEnemy");
+    // new BatEnemy(this, 3300, 500, "BatEnemy");
+    // new BatEnemy(this, 4400, 400, "BatEnemy");
+    // new BatEnemy(this, 5500, 500, "BatEnemy");
+    // new BatEnemy(this, 6600, 400, "BatEnemy");
     
 
 
@@ -623,7 +623,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.initInputs();
     this.spawnEnemies();
-
+    this.spawnEnemies2();
       // Background Music
         const track1 = this.sound.add("track1", { volume: 0.5, loop:true });
         const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
@@ -654,6 +654,27 @@ export default class BaseScene extends Phaser.Scene {
 
     positions.forEach(position => {
         new KillerBee(this, position.x, position.y, "killerBee");
+    });
+  }
+
+
+  
+  
+  spawnEnemies2() {
+    var positions = [
+        
+        { x: 1500, y: 300 },
+        { x: 1700, y: 400 },
+        { x: 1900, y: 300 },
+        { x: 2000, y: 400 },
+        { x: 2100, y: 300 },
+        { x: 2500, y: 400 },
+        { x: 2800, y: 200 }
+
+    ];
+
+    positions.forEach(position => {
+        new BatEnemy(this, position.x, position.y, "BatEnemy");
     });
   }
 
