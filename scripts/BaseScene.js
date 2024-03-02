@@ -380,17 +380,16 @@ export default class BaseScene extends Phaser.Scene {
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
     
 
-
-      new KillerBee(this, 800, 100, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 600, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 700, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 900, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 1000, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 1100, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 1500, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 1600, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 1700, 200, "killerBee"); // Add itself to enemyList
-      new KillerBee(this, 2000, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 800, 100, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 600, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 700, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 900, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 1000, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 1100, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 1500, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 1600, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 1700, 200, "killerBee"); // Add itself to enemyList
+      // new KillerBee(this, 2000, 200, "killerBee"); // Add itself to enemyList
 
       
  
@@ -623,6 +622,7 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     this.initInputs();
+    this.spawnEnemies();
 
       // Background Music
         const track1 = this.sound.add("track1", { volume: 0.5, loop:true });
@@ -632,6 +632,30 @@ export default class BaseScene extends Phaser.Scene {
         
        
   } // end of create() method in BaseScene
+  
+
+  
+  spawnEnemies() {
+    var positions = [
+        { x: 500, y: 100 },
+        { x: 500, y: 200 },
+        { x: 600, y: 200 },
+        { x: 800, y: 200 },
+        { x: 1000, y: 200 },
+        { x: 1500, y: 200 },
+        { x: 1700, y: 200 },
+        { x: 1900, y: 200 },
+        { x: 2000, y: 200 },
+        { x: 2100, y: 200 },
+        { x: 2500, y: 200 },
+        { x: 2800, y: 200 }
+
+    ];
+
+    positions.forEach(position => {
+        new KillerBee(this, position.x, position.y, "killerBee");
+    });
+  }
 
   initInputs() {
     // only need to be set up one time at init (not every frame)
