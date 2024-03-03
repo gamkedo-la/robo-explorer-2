@@ -36,10 +36,16 @@ export default class BossSelectScene extends Phaser.Scene {
       }
     );
 
-    this.load.image("bossFrame", "assets/Artwork/UI/boss-frame.png");
+    // this.load.image("bossFrame", "assets/Artwork/UI/boss-frame.png");
+    // this.load.image(
+    //   "bossFrameHighlighted",
+    //   "assets/Artwork/UI/boss-frame-highlighted.png"
+    // );
+
+    this.load.image("bossFrame", "assets/Artwork/UI/boss1-frame/boss-frame.png");
     this.load.image(
       "bossFrameHighlighted",
-      "assets/Artwork/UI/boss-frame-highlighted.png"
+      "assets/Artwork/UI/boss1-frame/boss-frame-highlighted.png"
     );
     this.load.image("bossSelectBG", "assets/Artwork/UI/boss-selection-bg.png");
   }
