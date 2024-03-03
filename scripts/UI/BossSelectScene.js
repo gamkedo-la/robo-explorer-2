@@ -5,6 +5,7 @@ import BossFrame from "./BossFrame.js";
 
 export default class BossSelectScene extends Phaser.Scene {
   bossSelectText;
+  tileBG;
 
   constructor() {
     super({
@@ -40,9 +41,13 @@ export default class BossSelectScene extends Phaser.Scene {
       "bossFrameHighlighted",
       "assets/Artwork/UI/boss-frame-highlighted.png"
     );
+    this.load.image("bossSelectBG", "assets/Artwork/UI/boss-selection-bg.png");
   }
 
   create() {
+    // this.add.image(400, 300, "bossSelectBG");
+    this.tileBG = this.add.tileSprite(400, 300, 800, 600, "bossSelectBG");
+
     //  UI Animations
     this.anims.create({
       key: "bossText",
@@ -94,6 +99,7 @@ export default class BossSelectScene extends Phaser.Scene {
   }
 
   update() {
+    this.tileBG.tilePositionX += 1;
     this.bossSelectText.anims.play("bossText", 60, true);
 
     if (this.keyEnter.isDown) {
