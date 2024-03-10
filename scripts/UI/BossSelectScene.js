@@ -36,22 +36,26 @@ export default class BossSelectScene extends Phaser.Scene {
       }
     );
 
-    // this.load.image("bossFrame", "assets/Artwork/UI/boss-frame.png");
-    // this.load.image(
-    //   "bossFrameHighlighted",
-    //   "assets/Artwork/UI/boss-frame-highlighted.png"
-    // );
+    this.load.image("bossFrame", "assets/Artwork/UI/boss-frame.png");
 
-    this.load.image("bossFrame", "assets/Artwork/UI/boss1-frame/boss-frame.png");
     this.load.image(
       "bossFrameHighlighted",
-      "assets/Artwork/UI/boss1-frame/boss-frame-highlighted.png"
+      "assets/Artwork/UI/boss-frame-highlighted.png"
     );
+
     this.load.image("bossSelectBG", "assets/Artwork/UI/boss-selection-bg.png");
+
+    this.load.image("level1Sprite", "assets/Artwork/UI/level-1.png");
+
+    this.load.image("level2Sprite", "assets/Artwork/UI/level-2.png");
+
+    this.load.image(
+      "boss1Sprite",
+      "assets/Artwork/UI/boss1-frame/boss-frame.png"
+    );
   }
 
   create() {
-    // this.add.image(400, 300, "bossSelectBG");
     this.tileBG = this.add.tileSprite(400, 300, 800, 600, "bossSelectBG");
 
     //  UI Animations
@@ -67,7 +71,7 @@ export default class BossSelectScene extends Phaser.Scene {
     this.bossSelectText = new BossSelectText(this, 375, 75, "bossTextSheet");
     this.bossSelectText.setScale(2);
 
-    // Bosses
+    // Levels
     var frameScale = 2;
     var frameWidth = 96 * frameScale;
     var frameStartX = 190;
@@ -75,13 +79,31 @@ export default class BossSelectScene extends Phaser.Scene {
     var frameMargin = 10;
     var bossCount = 3;
     const frames = [];
+    const levels = [
+      {
+        scene: SCENE_KEYS.LEVEL_1,
+        image: "level1Sprite",
+      },
+      {
+        scene: SCENE_KEYS.LEVEL_2,
+        image: "level2Sprite",
+      },
+      {
+        scene: SCENE_KEYS.BOSS_AREA,
+        image: "boss1Sprite",
+      },
+    ];
 
     for (var i = 0; i < bossCount; i++) {
+      const current_index = i;
+      let x = frameStartX + i * (frameWidth + frameMargin);
+      let y = frameStartY;
       const frame = new BossFrame(
         this,
-        frameStartX + i * (frameWidth + frameMargin),
-        frameStartY,
-        "bossFrame"
+        x,
+        y,
+        "bossFrame",
+        levels[current_index].image
       ).setInteractive();
 
       frame.setScale(frameScale);
@@ -91,8 +113,13 @@ export default class BossSelectScene extends Phaser.Scene {
       frame.on("pointerover", (e) => {
         frame.setTexture("bossFrameHighlighted");
       });
+
       frame.on("pointerout", (e) => {
         frame.setTexture("bossFrame");
+      });
+
+      frame.on("pointerdown", (e) => {
+        this.scene.start(levels[current_index].scene);
       });
 
       frames.push(frame);
