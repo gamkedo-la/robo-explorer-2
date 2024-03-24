@@ -39,8 +39,8 @@ export default class Level2 extends BaseScene {
       map.setCollision([1,2,3,4,5,6,8,9,10,11]);
       this.damageTiles = map.filterTiles(tile => tile.index === 7);
       
-        this.cameras.main.setBounds(0, 0, 4000, 600);
-        this.physics.world.bounds.width = 5000;
+        this.cameras.main.setBounds(0, 0, 3800, 600);
+        this.physics.world.bounds.width = 3300;
         this.physics.world.bounds.height = 600;
       
               
