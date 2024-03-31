@@ -30,24 +30,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.sceneRef = scene;
     this.sceneRef.add.existing(this);
     this.sceneRef.physics.add.existing(this);
-    this.rockets = this.sceneRef.physics.add.group(); 
+    this.rockets = this.sceneRef.physics.add.group();
 
     this.isJumping = false;
     this.reloadFrames = 0;
     this.isOnPlatform = false;
     this.currentPlatform = null;
-    
+
     this.body.setSize(60, 100).setOffset(32, 22);
   }
 
   update() {
-    if(this.invulFrames > 0){
+    if (this.invulFrames > 0) {
       this.invulFrames--;
-      this.visible = (this.invulFrames % 4 ) < 2;
-    }else{
+      this.visible = this.invulFrames % 4 < 2;
+    } else {
       this.visible = true;
     }
-
 
     if (this.isOnPlatform && this.currentPlatform) {
       if (this.currentPlatform.vx) {
@@ -93,13 +92,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }
     } else {
       this.setVelocityX(0);
-      if(this.isInAir == false){
+      if (this.isInAir == false) {
         this.anims.play("idle", true);
       }
     } // Stop moving
 
     if (this.body.velocity.x != 0) {
-        this.lastFacingRight = this.body.velocity.x > 0;
+      this.lastFacingRight = this.body.velocity.x > 0;
     }
 
     if (cursors.up.isUp || inputController.keyUp.isUp) {
@@ -108,47 +107,53 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (inputController.keySpaceBar.isDown) {
-        if (!inputController.spaceDownLastFrame) this.fireRocket(!this.lastFacingRight);
-        inputController.spaceDownLastFrame = true;
-        this.anims.play("fire", true);
+      if (!inputController.spaceDownLastFrame) {
+        this.fireRocket(!this.lastFacingRight);
         audioManager.playSound("missile");
-       
+      }
+
+      inputController.spaceDownLastFrame = true;
+      this.anims.play("fire", true);
     } else {
-      if (inputController.spaceDownLastFrame || 
-         (this.body.velocity.y > 0 && !this.isOnPlatform && !this.isOnMovingPlatform)) {
+      if (
+        inputController.spaceDownLastFrame ||
+        (this.body.velocity.y > 0 &&
+          !this.isOnPlatform &&
+          !this.isOnMovingPlatform)
+      ) {
         this.anims.play("up", true);
       }
       inputController.spaceDownLastFrame = false;
-     
-
     }
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
     if (jumpWKey) {
-        if (inputController.keyD.isDown) {
-          this.setVelocityY(-this.jumpForce);
-          fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
+      if (inputController.keyD.isDown) {
+        this.setVelocityY(-this.jumpForce);
+        fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
 
-          if (!this.isJumping) {
-            audioManager.playSound("jump");
-            this.isJumping = true;
-          }
-        } else if (inputController.keyA.isDown) {
-          this.setVelocityY(-this.jumpForce);
-          fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
+        if (!this.isJumping) {
+          audioManager.playSound("jump");
+          this.isJumping = true;
+        }
+      } else if (inputController.keyA.isDown) {
+        this.setVelocityY(-this.jumpForce);
+        fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
 
-          if (!this.isJumping) {
-            audioManager.playSound("jump");
-            this.isJumping = true;
-          }
+        if (!this.isJumping) {
+          audioManager.playSound("jump");
+          this.isJumping = true;
         }
-        if (!this.isInAir && this.isJumping || !this.isInAir && this.isOnPlatform) {
-            this.anims.play("up", true);
-            this.isOnPlatform = true;
-        }
-        this.isInAir = true;
-    }
-    else if (cursors.down.isDown || inputController.keyS.isDown) {
+      }
+      if (
+        (!this.isInAir && this.isJumping) ||
+        (!this.isInAir && this.isOnPlatform)
+      ) {
+        this.anims.play("up", true);
+        this.isOnPlatform = true;
+      }
+      this.isInAir = true;
+    } else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
     }
     this.setFlipX(!this.lastFacingRight);
@@ -166,7 +171,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     let rocketImage = toLeft ? "rocketLeft" : "rocket";
     let xSpeed = toLeft ? -this.ROCKET_SPEED_X : this.ROCKET_SPEED_X;
 
-    
     this.rocket = this.sceneRef.physics.add.sprite(
       this.x + xOffset,
       this.y + this.ROCKET_SPAWN_YOFFSET,
@@ -182,18 +186,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   takeDamage(amount) {
-    if(this.invulFrames > 0){
+    if (this.invulFrames > 0) {
       return;
     }
     console.log("taking " + amount + " damage");
     this.health -= amount;
-   
+
     if (this.health <= 0) {
       this.health = 0;
-    }else{
+    } else {
       this.invulFrames = 20;
     }
-
   }
 
   recoverHealth(amount) {
@@ -203,6 +206,4 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.health = this.MAX_HEALTH;
     }
   }
-
-
 } // The end of class Player
