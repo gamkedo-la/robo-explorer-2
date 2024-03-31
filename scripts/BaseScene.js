@@ -40,21 +40,18 @@ export default class BaseScene extends Phaser.Scene {
   enemyList;
 
   constructor(levelKey, nextLevel) {
-    
     super({ key: levelKey });
-   
-    this.nextLevelName = nextLevel;
 
+    this.nextLevelName = nextLevel;
   }
 
   preload() {
-    this.load.image('tileArt', 'assets/Artwork/Environment/tileArt.png');
+    this.load.image("tileArt", "assets/Artwork/Environment/tileArt.png");
 
     this.load.spritesheet("particles", "assets/Artwork/FX/particles.png", {
       frameWidth: 32,
       frameHeight: 32,
     });
-   
 
     this.load.image("clouds", "assets/Artwork/FX/clouds.png");
 
@@ -81,13 +78,12 @@ export default class BaseScene extends Phaser.Scene {
     this.load.image("rocketLeft", "assets/Artwork/Weapons/rocketLeft.png");
     this.load.spritesheet(
       "labDoor",
-      "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png",{
+      "assets/Artwork/Environment/Levels/LevelDoor/labDoor.png",
+      {
         frameWidth: 280,
-      frameHeight: 188,
+        frameHeight: 188,
       }
     );
-
-  
 
     this.load.image("healthbar", "assets/Artwork/UI/health-bar.png");
     this.load.image("healthUnit", "assets/Artwork/UI/health-unit.png");
@@ -148,7 +144,6 @@ export default class BaseScene extends Phaser.Scene {
       }
     );
 
-
     this.load.spritesheet(
       "bridge",
       "assets/Artwork/Environment/Levels/Level1/bridgeTile.png",
@@ -177,10 +172,7 @@ export default class BaseScene extends Phaser.Scene {
     );
 
     // AUDIO BACKGROUND MUSIC
-    this.load.audio(
-      "track1",
-      "assets/Audio/MusicTracks/Track1-DangerRoad.mp3"
-    );
+    this.load.audio("track1", "assets/Audio/MusicTracks/Track1-DangerRoad.mp3");
 
     this.load.audio(
       "track2",
@@ -234,13 +226,12 @@ export default class BaseScene extends Phaser.Scene {
     // console.log("Test if Building Van will work!");
   }
 
-  subway(){
+  subway() {
     var subway;
     subway = this.physics.add.staticGroup();
     subway.create(1600, 100, "subway").setScale(1).refreshBody(); // this will adjust the background image
     // console.log("Test if Subway Scene will work!");
   }
- 
 
   // POWERUP
 
@@ -253,10 +244,10 @@ export default class BaseScene extends Phaser.Scene {
   //     .setScale(1)
   //     .setDirectControl()
   //     .setImmovable();
-    
+
   //   powerupArmor.anims.play('powerupArmor1');
   //   return powerupArmor;
-   
+
   // }
 
   lightPostAnimation() {
@@ -265,35 +256,27 @@ export default class BaseScene extends Phaser.Scene {
 
     var lightPost = lightPostGroup
       .create(600, 400, "lightPost")
-      .setScale(.5)
+      .setScale(0.5)
       .setDirectControl()
       .setImmovable();
-    
-    lightPost.anims.play('lightPostAnimation');
+
+    lightPost.anims.play("lightPostAnimation");
     return lightPostGroup;
-   
   }
 
-
-  
-
-  
   lightPostAnimation2() {
     var lightPost;
     lightPost = this.physics.add.group();
 
     var lightPost = lightPost
       .create(1000, 400, "lightPost")
-      .setScale(.5)
+      .setScale(0.5)
       .setDirectControl()
       .setImmovable();
-    
-    lightPost.anims.play('lightPostAnimation');
-    return lightPost;
-   
-  }
 
-  
+    lightPost.anims.play("lightPostAnimation");
+    return lightPost;
+  }
 
   movingPlatform() {
     var movingPlatforms;
@@ -316,11 +299,13 @@ export default class BaseScene extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
       onUpdate: () => {
-        movingPlatform.vx = movingPlatform.body.position.x - movingPlatform.previousX;
-        movingPlatform.vy = movingPlatform.body.position.y - movingPlatform.previousY;
+        movingPlatform.vx =
+          movingPlatform.body.position.x - movingPlatform.previousX;
+        movingPlatform.vy =
+          movingPlatform.body.position.y - movingPlatform.previousY;
         movingPlatform.previousX = movingPlatform.body.position.x;
         movingPlatform.previousY = movingPlatform.body.position.y;
-      }
+      },
     });
 
     return movingPlatform;
@@ -336,15 +321,14 @@ export default class BaseScene extends Phaser.Scene {
     this.healthbar.setValue(this.player.health);
   }
 
-  updateFromGroup(object){
+  updateFromGroup(object) {
     object.update();
   }
 
-
   create() {
-    this.enemyList = this.physics.add.group(); 
+    this.enemyList = this.physics.add.group();
     this.add.existing(this.enemyList);
-   
+
     // PARALLAX
     this.buildingVan = this.add
       .tileSprite(0, 280, 800, 320, "buildingVan")
@@ -355,7 +339,12 @@ export default class BaseScene extends Phaser.Scene {
       fontSize: "32px",
       fill: "#000",
     });
-    this.scoreText = this.add.text(scoreText.x, scoreText.y, scoreText.text, scoreText.style);
+    this.scoreText = this.add.text(
+      scoreText.x,
+      scoreText.y,
+      scoreText.text,
+      scoreText.style
+    );
     this.healthbar = new Healthbar(
       this,
       25,
@@ -373,36 +362,9 @@ export default class BaseScene extends Phaser.Scene {
     const PlayerPositionY = 200;
     const PlayerPositionX = 50;
 
-   
-
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.add.grid(0, 0, 192, 384, 48, 48).setOrigin(0, 0).setOutlineStyle(0x00ff00);
     this.player = new Player(this, PlayerPositionX, PlayerPositionY, "player");
-    
-
-      // new KillerBee(this, 800, 100, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 600, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 700, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 900, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 1000, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 1100, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 1500, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 1600, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 1700, 200, "killerBee"); // Add itself to enemyList
-      // new KillerBee(this, 2000, 200, "killerBee"); // Add itself to enemyList
-
-      
- 
-    
-    // new BatEnemy(this, 1000, 400, "BatEnemy");
-    // new BatEnemy(this, 1500, 500, "BatEnemy");
-    // new BatEnemy(this, 2000, 400, "BatEnemy");
-    // new BatEnemy(this, 3300, 500, "BatEnemy");
-    // new BatEnemy(this, 4400, 400, "BatEnemy");
-    // new BatEnemy(this, 5500, 500, "BatEnemy");
-    // new BatEnemy(this, 6600, 400, "BatEnemy");
-    
-
 
     // JUMP RIGHT
     this.anims.create({
@@ -413,8 +375,6 @@ export default class BaseScene extends Phaser.Scene {
       }),
       frameRate: 12,
     });
-
-  
 
     this.anims.create({
       key: "down",
@@ -463,7 +423,6 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1,
     });
 
-
     // WALK LEFT ANIMATION
 
     this.anims.create({
@@ -499,14 +458,12 @@ export default class BaseScene extends Phaser.Scene {
     this.anims.create({
       key: "fire",
       frames: this.anims.generateFrameNumbers("player", {
-        frames: [34,35],
+        frames: [34, 35],
       }),
-     
+
       frameRate: -100,
-     
     });
 
-    
     // ANIMATIONI FOR ON  PLATFORM
     this.anims.create({
       key: "onPlatform",
@@ -522,7 +479,6 @@ export default class BaseScene extends Phaser.Scene {
       "labDoor"
     );
 
-    
     // PLATFORM LIGHT ANIMATION
     this.anims.create({
       key: "platformLight",
@@ -531,40 +487,34 @@ export default class BaseScene extends Phaser.Scene {
       repeat: -1,
     });
 
-
+    this.anims.create({
+      key: "beeAnimation",
+      frames: this.anims.generateFrameNumbers("killerBee", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 2.5,
+      repeat: -1, // -1 for infinite loop
+    });
 
     this.anims.create({
-      key: 'beeAnimation',
-      frames: this.anims.generateFrameNumbers("killerBee",{start:0, end:3}),
-      frameRate: 2.5,
-      repeat: -1 // -1 for infinite loop
-      });
+      key: "batAnimation",
+      frames: this.anims.generateFrameNumbers("BatEnemy", { start: 0, end: 4 }),
+      frameRate: 10,
+      repeat: -1, // -1 for infinite loop
+    });
 
+    this.anims.create({
+      key: "Boss1Animation_idle",
+      frames: this.anims.generateFrameNumbers("Boss1", { start: 0, end: 2 }),
+      frameRate: 5,
+      repeat: -1, // -1 for infinite loop
+    });
 
-      this.anims.create({
-         key: 'batAnimation',
-         frames: this.anims.generateFrameNumbers("BatEnemy",{start:0, end:4}),
-         frameRate: 10,
-         repeat: -1 // -1 for infinite loop
-      });
-
-
-      this.anims.create({
-        key: 'Boss1Animation_idle',
-        frames: this.anims.generateFrameNumbers("Boss1",{start:0, end:2}),
-        frameRate: 5,
-        repeat: -1 // -1 for infinite loop
-     });
-
-
-   
-
-  
-    
     let movingPlatform = this.movingPlatform();
-    
+
     // let powerupArmor = this.powerupArmor();
-    
+
     // Collisions Code
     this.physics.add.collider(
       this.player,
@@ -590,19 +540,28 @@ export default class BaseScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true, 0, 0, true);
     this.labDoor.setCollideWorldBounds(true);
 
-    this.physics.add.overlap(this.player, this.enemyList, this.hitByEnemy, null, this);
-    
-    
-    this.physics.add.collider(this.player, [movingPlatform], (player, movingPlatform) => {
-      if (player.body.blocked.down) {
-        player.isInAir = false;
-        // console.log("Touching Bottom");
-        player.isOnPlatform = true;
-        player.currentPlatform = movingPlatform;
-      }
-    });
+    this.physics.add.overlap(
+      this.player,
+      this.enemyList,
+      this.hitByEnemy,
+      null,
+      this
+    );
 
-    this.physics.add.collider(this.player, this.bridge, (player,bridge) => {
+    this.physics.add.collider(
+      this.player,
+      [movingPlatform],
+      (player, movingPlatform) => {
+        if (player.body.blocked.down) {
+          player.isInAir = false;
+          // console.log("Touching Bottom");
+          player.isOnPlatform = true;
+          player.currentPlatform = movingPlatform;
+        }
+      }
+    );
+
+    this.physics.add.collider(this.player, this.bridge, (player, bridge) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
         // console.log("Touching Bottom");
@@ -611,8 +570,7 @@ export default class BaseScene extends Phaser.Scene {
       }
     });
 
-    
-    this.physics.add.collider(this.player, this.bridge2, (player,bridge2) => {
+    this.physics.add.collider(this.player, this.bridge2, (player, bridge2) => {
       if (player.body.blocked.down) {
         player.isInAir = false;
         // console.log("Touching Bottom");
@@ -624,57 +582,46 @@ export default class BaseScene extends Phaser.Scene {
     this.initInputs();
     this.spawnEnemies();
     this.spawnEnemies2();
-      // Background Music
-        const track1 = this.sound.add("track1", { volume: 0.5, loop:true });
-        const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
-        const track3 = this.sound.add("track3", { volume: 0.5, loop: true });
-        
-        
-       
+    // Background Music
+    const track1 = this.sound.add("track1", { volume: 0.5, loop: true });
+    const track2 = this.sound.add("track2", { volume: 0.5, loop: true });
+    const track3 = this.sound.add("track3", { volume: 0.5, loop: true });
   } // end of create() method in BaseScene
-  
 
-  
   spawnEnemies() {
     var positions = [
-        { x: 500, y: 100 },
-        { x: 500, y: 200 },
-        { x: 600, y: 200 },
-        { x: 800, y: 200 },
-        { x: 1000, y: 200 },
-        { x: 1500, y: 200 },
-        { x: 1700, y: 200 },
-        { x: 1900, y: 200 },
-        { x: 2000, y: 200 },
-        { x: 2100, y: 200 },
-        { x: 2500, y: 200 },
-        { x: 2800, y: 200 }
-
+      { x: 500, y: 100 },
+      { x: 500, y: 200 },
+      { x: 600, y: 200 },
+      { x: 800, y: 200 },
+      { x: 1000, y: 200 },
+      { x: 1500, y: 200 },
+      { x: 1700, y: 200 },
+      { x: 1900, y: 200 },
+      { x: 2000, y: 200 },
+      { x: 2100, y: 200 },
+      { x: 2500, y: 200 },
+      { x: 2800, y: 200 },
     ];
 
-    positions.forEach(position => {
-        new KillerBee(this, position.x, position.y, "killerBee");
+    positions.forEach((position) => {
+      new KillerBee(this, position.x, position.y, "killerBee");
     });
   }
 
-
-  
-  
   spawnEnemies2() {
     var positions = [
-        
-        { x: 1500, y: 300 },
-        { x: 1700, y: 400 },
-        { x: 1900, y: 300 },
-        { x: 2000, y: 400 },
-        { x: 2100, y: 300 },
-        { x: 2500, y: 400 },
-        { x: 2800, y: 200 }
-
+      { x: 1500, y: 300 },
+      { x: 1700, y: 400 },
+      { x: 1900, y: 300 },
+      { x: 2000, y: 400 },
+      { x: 2100, y: 300 },
+      { x: 2500, y: 400 },
+      { x: 2800, y: 200 },
     ];
 
-    positions.forEach(position => {
-        new BatEnemy(this, position.x, position.y, "BatEnemy");
+    positions.forEach((position) => {
+      new BatEnemy(this, position.x, position.y, "BatEnemy");
     });
   }
 
@@ -768,8 +715,6 @@ export default class BaseScene extends Phaser.Scene {
     if (this.keyM.isUp) {
       this.muteButtonIsDown = false;
     }
-
-    
 
     this.player.handleInput(this.cursors, this, audioManager);
 
