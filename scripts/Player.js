@@ -12,6 +12,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   lastFacingRight = true;
   reloadFrames;
   invulFrames = 0;
+  facingDirection = "right";
 
   health = 22;
   MAX_HEALTH = 22;
@@ -77,6 +78,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }
     } else if (cursors.left.isDown || inputController.keyA.isDown) {
       this.setVelocityX(-190); // Move Left
+      this.facingDirection = "left";
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
@@ -87,6 +89,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }
     } else if (cursors.right.isDown || inputController.keyD.isDown) {
       this.setVelocityX(160); // Move right
+      this.facingDirection = "right";
       if (this.isInAir == false) {
         this.anims.play("right", true);
       }
@@ -128,23 +131,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     let jumpWKey = cursors.up.isDown || inputController.keyUp.isDown;
     if (jumpWKey) {
-      if (inputController.keyD.isDown) {
-        this.setVelocityY(-this.jumpForce);
-        fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
-
-        if (!this.isJumping) {
-          audioManager.playSound("jump");
-          this.isJumping = true;
-        }
-      } else if (inputController.keyA.isDown) {
-        this.setVelocityY(-this.jumpForce);
-        fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
-
-        if (!this.isJumping) {
-          audioManager.playSound("jump");
-          this.isJumping = true;
-        }
+      this.setVelocityY(-this.jumpForce);
+      if (!this.isJumping) {
+        audioManager.playSound("jump");
+        this.isJumping = true;
       }
+
+      if (this.facingDirection == "right") {
+        fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
+      } else if (this.facingDirection == "left") {
+        fx.smoke(this.x + 40, this.y, this.sceneRef); // rocket pack smoke
+      } else {
+        fx.smoke(this.x, this.y, this.sceneRef); // rocket pack smoke
+      }
+
       if (
         (!this.isInAir && this.isJumping) ||
         (!this.isInAir && this.isOnPlatform)
@@ -152,6 +152,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.play("up", true);
         this.isOnPlatform = true;
       }
+
       this.isInAir = true;
     } else if (cursors.down.isDown || inputController.keyS.isDown) {
       this.setVelocityY(160);
