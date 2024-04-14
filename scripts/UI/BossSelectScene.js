@@ -53,6 +53,10 @@ export default class BossSelectScene extends Phaser.Scene {
       "boss1Sprite",
       "assets/Artwork/UI/boss1-frame/boss-frame.png"
     );
+    this.load.image(
+      "tutorial",
+      "assets/Artwork/UI/boss1-frame/boss-frame.png"
+    );
   }
 
   create() {
@@ -91,7 +95,8 @@ export default class BossSelectScene extends Phaser.Scene {
       {
         scene: SCENE_KEYS.BOSS_AREA,
         image: "boss1Sprite",
-      },
+      }
+      
     ];
 
     for (var i = 0; i < bossCount; i++) {

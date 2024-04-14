@@ -5,4 +5,5 @@ export const SCENE_KEYS = {
   GAME_OVER: "GameOver",
   BOSS_SELECT: "BossSelect",
   TITLE: "Title",
+  TUTORIAL: "tutorial"
 };
